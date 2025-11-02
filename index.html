@@ -1,10 +1,10 @@
 ﻿<!-- ./index.html -->
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 	<meta charset="utf-8">
-	<title>Practice Exam – Q39</title>
+	<title>Practice Exam – Q39 · Q49</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		:root {
@@ -21,23 +21,21 @@
 		body {
 			margin: 0;
 			padding: 24px;
-			font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-			background: linear-gradient(180deg, #0b1020 0%, #0d1426 100%);
+			background: linear-gradient(180deg, #0b1020, #0d1426);
 			color: var(--text);
+			font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
 		}
 
 		.container {
-			max-width: 860px;
+			max-width: 920px;
 			margin: 0 auto;
 		}
 
 		.card {
-			background: radial-gradient(1200px 400px at -10% -10%, rgba(79, 124, 255, 0.1), transparent 60%),
-				radial-gradient(1000px 300px at 110% -20%, rgba(16, 185, 129, 0.08), transparent 60%),
-				var(--card);
+			background: var(--card);
 			border: 1px solid var(--border);
 			border-radius: 16px;
-			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+			box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
 			overflow: hidden;
 		}
 
@@ -45,14 +43,9 @@
 			padding: 20px 24px;
 			border-bottom: 1px solid var(--border);
 			display: flex;
-			align-items: center;
 			gap: 12px;
-		}
-
-		header h1 {
-			margin: 0;
-			font-size: 18px;
-			letter-spacing: .2px;
+			align-items: center;
+			flex-wrap: wrap;
 		}
 
 		.badge {
@@ -64,47 +57,44 @@
 			border-radius: 999px;
 		}
 
+		h1 {
+			margin: 0;
+			font-size: 18px;
+			letter-spacing: .2px;
+		}
+
+		.select {
+			margin-left: auto;
+		}
+
 		main {
 			padding: 24px;
 		}
 
 		.prompt {
-			color: var(--text);
 			line-height: 1.65;
-		}
-
-		.prompt p {
-			margin: 0 0 12px;
-		}
-
-		.prompt ul {
-			margin: 8px 0 16px 20px;
 		}
 
 		.divider {
 			height: 1px;
 			background: var(--border);
-			margin: 16px 0 24px;
+			margin: 16px 0 20px;
 		}
 
 		.statement {
-			margin: 14px 0;
-			padding: 14px 12px;
+			margin: 12px 0;
+			padding: 12px;
 			border: 1px solid var(--border);
 			border-radius: 12px;
-			background: rgba(255, 255, 255, 0.02);
+			background: rgba(255, 255, 255, .02);
 		}
 
 		.row {
 			display: flex;
 			justify-content: space-between;
-			align-items: center;
 			gap: 12px;
+			align-items: center;
 			flex-wrap: wrap;
-		}
-
-		.row strong {
-			font-weight: 600;
 		}
 
 		.choices {
@@ -116,68 +106,69 @@
 			padding: 8px 12px;
 			border-radius: 8px;
 			border: 1px solid var(--border);
-			background: rgba(255, 255, 255, 0.02);
+			background: rgba(255, 255, 255, .02);
 			color: var(--text);
-			cursor: pointer;
+			cursor: pointer
 		}
 
 		button.choice.active {
 			border-color: var(--accent);
-			background: rgba(79, 124, 255, 0.15);
+			background: rgba(79, 124, 255, .15)
 		}
 
 		.result {
-			margin-top: 8px;
+			margin-top: 6px;
 			font-size: 14px;
-			color: var(--muted);
+			color: var(--muted)
 		}
 
 		.result.ok {
-			color: var(--ok);
+			color: var(--ok)
 		}
 
 		.result.bad {
-			color: var(--bad);
+			color: var(--bad)
 		}
 
 		.bar {
 			display: flex;
 			gap: 8px;
-			margin-top: 20px;
+			margin-top: 16px
 		}
 
 		.action {
 			padding: 10px 14px;
 			border-radius: 10px;
 			border: 1px solid var(--border);
+			background: rgba(255, 255, 255, .03);
 			color: var(--text);
-			background: rgba(255, 255, 255, 0.03);
-			cursor: pointer;
+			cursor: pointer
 		}
 
 		.action.primary {
 			background: linear-gradient(180deg, #4f7cff, #3b68f7);
-			border-color: rgba(79, 124, 255, .6);
+			border-color: rgba(79, 124, 255, .6)
+		}
+
+		select {
+			padding: 8px 10px;
+			border-radius: 8px;
+			background: #0f162a;
+			color: var(--text);
+			border: 1px solid var(--border)
 		}
 
 		.muted {
 			color: var(--muted);
 			font-size: 14px;
-			margin-top: 8px;
+			margin-top: 8px
 		}
 
 		footer {
-			padding: 16px 24px;
+			padding: 14px 24px;
 			border-top: 1px solid var(--border);
 			color: var(--muted);
-			font-size: 12px;
-		}
-
-		code {
-			background: rgba(255, 255, 255, 0.05);
-			padding: 2px 6px;
-			border-radius: 6px;
-			border: 1px solid var(--border);
+			font-size: 12px
 		}
 	</style>
 </head>
@@ -187,102 +178,172 @@
 		<div class="card">
 			<header>
 				<span class="badge">Practice Exam</span>
-				<h1>Question 39 — Private Store 접근 권한 평가</h1>
+				<h1 id="title">Question</h1>
+				<div class="select">
+					<label for="qsel" style="font-size:12px;color:var(--muted);margin-right:6px;">문항 선택</label>
+					<select id="qsel"></select>
+				</div>
 			</header>
 			<main>
 				<section id="prompt" class="prompt"></section>
 				<div class="divider"></div>
-				<section id="statements"></section>
+				<section id="dynamic"></section>
 				<div class="bar">
 					<button id="check" class="action primary">정답 확인</button>
 					<button id="reset" class="action">초기화</button>
 				</div>
-				<p class="muted">이미지가 보이지 않으면, 레포의 ./assets/q39.png 경로를 확인하세요.</p>
+				<p class="muted">이미지가 보이지 않으면 CDN “직접 이미지 링크”인지 확인하세요. 필요 시 ?v=YYYYMMDD 형식으로 캐시 버전을 붙이세요.</p>
 			</main>
-			<footer>
-				Built for quick MS-102 practice. Files: <code>index.html</code>, <code>questions.js</code>,
-				<code>assets/q39.png</code>
-			</footer>
+			<footer>Files: index.html, questions.js</footer>
 		</div>
 	</div>
 
 	<script src="./questions.js"></script>
 	<script>
-		const q = (window.questions || [])[0];
-		const $prompt = document.getElementById("prompt");
-		const $list = document.getElementById("statements");
-		const picks = new Array(q?.statements?.length || 0).fill(null);
+		const qs = window.questions || [];
+		const $sel = document.getElementById('qsel');
+		const $title = document.getElementById('title');
+		const $prompt = document.getElementById('prompt');
+		const $dynamic = document.getElementById('dynamic');
 
-		function renderPrompt() {
+		// 상태
+		let state = {
+			current: 0,
+			picksYN: [],     // Q39용
+			picksPair: []    // Q49용
+		};
+
+		function initSelect() {
+			$sel.innerHTML = qs.map((q, i) =>
+				`<option value="${i}">${q.id} — ${q.title}</option>`
+			).join('');
+			$sel.value = String(state.current);
+		}
+
+		function render() {
+			const q = qs[state.current];
 			if (!q) return;
+			$title.textContent = `Question ${q.id} — ${q.title}`;
 			$prompt.innerHTML = q.promptHtml;
-		}
 
-		function renderStatements() {
-			if (!q) return;
-			$list.innerHTML = "";
-			q.statements.forEach((text, idx) => {
-				const wrap = document.createElement("div");
-				wrap.className = "statement";
-				wrap.innerHTML = `
-          <div class="row">
-            <div><strong>Statement ${idx + 1}.</strong> ${text}</div>
-            <div class="choices">
-              ${q.options.map(opt => {
+			// 문항 유형별 UI
+			if (q.statements) {
+				// Yes/No 3문항 (Q39)
+				if (!state.picksYN[state.current]) state.picksYN[state.current] = new Array(q.statements.length).fill(null);
+				const picks = state.picksYN[state.current];
+				$dynamic.innerHTML = q.statements.map((text, idx) => `
+          <div class="statement">
+            <div class="row">
+              <div><strong>Statement ${idx + 1}.</strong> ${text}</div>
+              <div class="choices">
+                ${q.options.map(opt => {
 					const active = picks[idx] === opt ? "active" : "";
-					return `<button class="choice ${active}" data-idx="${idx}" data-opt="${opt}">${opt}</button>`;
-				}).join("")}
+					return `<button class="choice ${active}" data-type="yn" data-idx="${idx}" data-opt="${opt}">${opt}</button>`;
+				}).join('')}
+              </div>
             </div>
+            <div class="result" id="res-${idx}"></div>
           </div>
-          <div class="result" id="res-${idx}" aria-live="polite"></div>
-        `;
-				$list.appendChild(wrap);
-			});
-		}
-
-		function updateChoiceButtons() {
-			document.querySelectorAll("button.choice").forEach(btn => {
-				const idx = Number(btn.getAttribute("data-idx"));
-				const opt = btn.getAttribute("data-opt");
-				btn.classList.toggle("active", picks[idx] === opt);
-			});
-		}
-
-		function checkAnswers() {
-			if (!q) return;
-			q.statements.forEach((_, idx) => {
-				const res = document.getElementById(`res-${idx}`);
-				const pick = picks[idx];
-				if (pick == null) {
-					res.textContent = "선택하지 않았어요.";
-					res.className = "result";
-					return;
-				}
-				const ok = pick === q.correctAnswers[idx];
-				res.textContent = ok ? "정답!" : `오답. 정답: ${q.correctAnswers[idx]}`;
-				res.className = "result " + (ok ? "ok" : "bad");
-			});
-		}
-
-		function resetAll() {
-			for (let i = 0; i < picks.length; i++) picks[i] = null;
-			renderStatements();
-		}
-
-		document.addEventListener("click", (e) => {
-			const t = e.target;
-			if (t.matches("button.choice")) {
-				const idx = Number(t.getAttribute("data-idx"));
-				const opt = t.getAttribute("data-opt");
-				picks[idx] = opt;
-				updateChoiceButtons();
+        `).join('');
+			} else if (q.pairLabels) {
+				// 역할 매칭 2개 (Q49)
+				if (!state.picksPair[state.current]) state.picksPair[state.current] = new Array(q.pairLabels.length).fill("");
+				const picks = state.picksPair[state.current];
+				$dynamic.innerHTML = q.pairLabels.map((label, idx) => `
+          <div class="statement">
+            <div class="row" style="gap:16px;">
+              <div><strong>${label}</strong></div>
+              <div>
+                <select data-type="pair" data-idx="${idx}">
+                  <option value="">-- 선택 --</option>
+                  ${qs[state.current].pairOptions.map(opt =>
+					`<option value="${opt}" ${picks[idx] === opt ? 'selected' : ''}>${opt}</option>`
+				).join('')}
+                </select>
+              </div>
+            </div>
+            <div class="result" id="res-${idx}"></div>
+          </div>
+        `).join('');
 			}
-			if (t.id === "check") checkAnswers();
-			if (t.id === "reset") resetAll();
+		}
+
+		function check() {
+			const q = qs[state.current];
+			if (!q) return;
+
+			if (q.statements) {
+				const picks = state.picksYN[state.current];
+				q.statements.forEach((_, idx) => {
+					const res = document.getElementById(`res-${idx}`);
+					if (picks[idx] == null) {
+						res.textContent = "선택하지 않았어요.";
+						res.className = "result";
+						return;
+					}
+					const ok = picks[idx] === q.correctAnswers[idx];
+					res.textContent = ok ? "정답!" : `오답. 정답: ${q.correctAnswers[idx]}`;
+					res.className = "result " + (ok ? "ok" : "bad");
+				});
+			} else if (q.pairLabels) {
+				const picks = state.picksPair[state.current];
+				q.pairLabels.forEach((_, idx) => {
+					const res = document.getElementById(`res-${idx}`);
+					if (!picks[idx]) {
+						res.textContent = "선택하지 않았어요.";
+						res.className = "result";
+						return;
+					}
+					const ok = picks[idx] === q.pairAnswer[idx];
+					res.textContent = ok ? "정답!" : `오답. 정답: ${q.pairAnswer[idx]}`;
+					res.className = "result " + (ok ? "ok" : "bad";
+				});
+			}
+		}
+
+		function resetCurrent() {
+			const q = qs[state.current];
+			if (q?.statements) state.picksYN[state.current] = new Array(q.statements.length).fill(null);
+			if (q?.pairLabels) state.picksPair[state.current] = new Array(q.pairLabels.length).fill("");
+			render();
+		}
+
+		// 이벤트
+		document.addEventListener('click', (e) => {
+			const t = e.target;
+			if (t.matches('button.choice')) {
+				const type = t.getAttribute('data-type');
+				const idx = Number(t.getAttribute('data-idx'));
+				const opt = t.getAttribute('data-opt');
+				if (type === 'yn') {
+					const picks = state.picksYN[state.current];
+					picks[idx] = opt;
+					// 버튼 활성화 토글
+					document.querySelectorAll(`button.choice[data-idx="${idx}"]`).forEach(btn => {
+						btn.classList.toggle('active', btn.getAttribute('data-opt') === opt);
+					});
+				}
+			}
+			if (t.id === 'check') check();
+			if (t.id === 'reset') resetCurrent();
 		});
 
-		renderPrompt();
-		renderStatements();
+		document.addEventListener('change', (e) => {
+			const t = e.target;
+			if (t.id === 'qsel') {
+				state.current = Number(t.value);
+				render();
+			}
+			if (t.matches('select[data-type="pair"]')) {
+				const idx = Number(t.getAttribute('data-idx'));
+				const picks = state.picksPair[state.current];
+				picks[idx] = t.value;
+			}
+		});
+
+		// 초기화
+		initSelect();
+		render();
 	</script>
 </body>
 
