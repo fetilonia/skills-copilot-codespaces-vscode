@@ -1,44 +1,32 @@
-﻿// questions.js
-// 전체 문항 데이터. 필요 시 choices(보기)와 explain(해설)을 추가해 확장하세요.
-const data = [
-  { id:"notion-21", question:"MAM 정책으로 비준수 디바이스 차단", answer:"C. an application policy" },
-  { id:"notion-22", question:"Intune 설정 프로필  구성", answer:"Mobility(MDM and MAM)\nDevice Enrollment" },
-  { id:"notion-24", question:"Co-management용 장치 컬렉션 지정 필요", answer:"B.  No" },
-  { id:"notion-25", question:"Microsoft Store 생성 가능한 사용자 식별", answer:"C. User4" },
-  { id:"notion-26", question:"Azure ATP Sensor 설치 서버 식별", answer:"A. Server1" },
-  { id:"notion-27", question:"각 오피스 PC의 Microsoft 지원 기간 식별", answer:"Seattle: 24 months\nNewYork: 18 months" },
-  { id:"notion-28", question:"Co-management와 자동 등록 설정 필요", answer:"Azure AD 구성 항목: Mobility (MDM and MAM)\nIntune 구성 항목: Device enrollment" },
-  { id:"notion-30", question:"DEM 1인당 1,000대 → 4명 필요", answer:"B. 4" },
-  { id:"notion-31", question:"파일럿 지정만으로 Co-management 불가", answer:"B. No" },
-  { id:"notion-32", question:"Defender Identity Sensor 설치 대상 버", answer:"A. Server1" },
-  { id:"notion-33", question:"User1이 디바이스 등록을 수행할 방법 식별", answer:"C. From the Intune admin center, add User1 as a Device Enrollment Manager." },
-  { id:"notion-34", question:"조건부 액세스 정책(Conditional Access Policy) 구성 시 추가 설정 식별", answer:"✔ Device platform\n✔ Require device to be marked as compliant" },
-  { id:"notion-36", question:"법무 부서의 요구사항 충족을 위한 작업 순서 식별", answer:"1️⃣ Create a new eDiscovery case\n2️⃣ Add User1’s mailbox and OneDrive content to the case\n3️⃣ Apply a hold to the case" },
-  { id:"notion-38", question:"EU PII 데이터 보존을 위한 정책 유형 식별", answer:"A. a retention policy from the Security & Compliance admin center" },
-  { id:"notion-40", question:"뉴욕 감사자가 확인해야 할 보고서 식별", answer:"C. DLP Incidents" },
-  { id:"notion-41", question:"대량 문서 다운로드 탐지를 위한 정책 구성 식별", answer:"D. an activity policy from Microsoft Cloud App Security" },
-  { id:"notion-42", question:"보안 관리자 솔루션·기술 요구사항 충족 식별", answer:"B. Microsoft Azure Active Directory (Azure AD) Identity Protection" },
-  { id:"notion-43", question:"미국 PII 데이터 보호를 위한 정책 구성 식별", answer:"A. a data loss prevention (DLP) policy that contains a domain exception" },
-  { id:"notion-44", question:"Cloud App Security에서 로그 분석용 데이터 소스·수집기 최소 구성 식별", answer:"• Data Sources: 3\n• Log Collectors: 1" },
-  { id:"notion-46", question:"정보 거버넌스 정책 유형 및 구성 수 식별", answer:"• Policy Type: Retention Policy\n• Number of Policies: 2" },
-  { id:"notion-48", question:"엔드포인트 보호 프로필 지원 장치 및 프로필 수 식별", answer:"• Supported devices: Device1 and Device2 only\n• Number of required profiles: 1" },
-  { id:"notion-50", question:"Safe Attachments 정책 동작 모드 선택", answer:"D. Dynamic Delivery" },
-  { id:"notion-51", question:"Intune 자동 등록 구성 및 그룹 할당 식별", answer:"• What to configure: MDM user Scope\n• Assigned group: Seattle UserGroup2" },
-  { id:"notion-53", question:"DLP 정책 생성 시 최초 구성 항목 식별", answer:"A. Sensitive info types" },
-  { id:"notion-54", question:"웹용 Office 구성 및 기술 요구사항 충족 작업 식별", answer:"B. Enable sensitivity labels for Office files in SharePoint Online and OneDrive" },
-  { id:"notion-55", question:"미정책 장치 → Not Compliant로 표시", answer:"D. Modify the Compliance policy settings" },
-  { id:"notion-56", question:"User2의 감사 로그 검토 권한 구성", answer:"• Role group: Compliance Management\n• Tool:  Exchange admin center" },
-  { id:"notion-58", question:"DLP 정책 알림 설정 구성", answer:"D. From the Microsoft 365 Compliance Center, configure the Endpoint DLP settings" },
-  { id:"notion-59", question:"테넌트 구성정보 분석", answer:"• Box 1 (인증 위치): In the cloud only\n• Box 2 (계정 위치): Only on-premises" },
-  { id:"notion-60", question:"User1의 보안 정책 관리 권한 할당", answer:"C. Security Administrator" },
-  { id:"notion-61", question:"도메인 추가 시 필요한 DNS 레코드 식별", answer:"C. Text (TXT)" },
-  { id:"notion-62", question:"Pilot Project 의 기본 인증 전략", answer:"C. Password Hash Synchronization" },
-  { id:"notion-70", question:"Admin2 전용 알림 및 기능 업데이트 제한 설정", answer:"• To configure the notifications:  Organization information\n• To limit access: Release preferences\n" },
-  { id:"notion-63", question:"Seattle Users OU에 대한 변경사항 지원 방법", answer:"A. From the Microsoft Azure AD Connect wizard, select Customize synchronization options." },
-  { id:"notion-64", question:"인시던트와 권고 사항 접근 가능 관리자 계정 선택", answer:"• Users: Admin1 and Admin3 only\n• Blade: Service Health" },
-  { id:"notion-65", question:"MFA 등록·사용 조건 평가", answer:"✅ Yes, ❌ No, ❌ No" },
-  { id:"notion-67", question:"SSPR 활성화용 설정 구성", answer:"• Tool: Azure AD Connect\n• Action: Enable password writeback" },
-  { id:"notion-68", question:"PIM을 사용한 JIT 액세스", answer:"B. Azure AD Privileged Identity Management (PIM)" },
-  { id:"notion-69", question:"Private Store 접근 권한 평가", answer:"❌ No❌ No✅ Yes" },
-  { id:"notion-72", question:"AD 에 정의된 로그인 제한 시간을 반영하는 AADC 로그인 방법", answer:"A. Pass-through authentication" }
+﻿// ./questions.js
+// 예: Cloudinary/Imgur/jsDelivr 등 외부 CDN의 정적 이미지 URL
+const IMG_SRC = "https://your-cdn.example.com/path/to/q39.png";
+// 예시들:
+// const IMG_SRC = "https://i.imgur.com/yourImageId.png";
+// const IMG_SRC = "https://cdn.jsdelivr.net/gh/<user>/<repo>@main/assets/q39.png";
+
+window.questions = [
+  {
+    id: 39,
+    title: "Private Store 접근 권한 평가",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 tenant that contains the users shown in the following table.</p>
+      <p><img src="${IMG_SRC}" alt="Users and groups table for App1 availability" style="max-width:100%;height:auto;border:1px solid #e5e7eb;border-radius:8px;"></p>
+      <p>You perform the following actions:</p>
+      <ul>
+        <li>Provision the private store in Microsoft Store for Business.</li>
+        <li>Add an app named App1 to the private store.</li>
+        <li>Set Private store availability for App1 to <strong>Specific groups</strong>, and then select <strong>Group3</strong>.</li>
+      </ul>
+      <p>For each of the following statements, select <strong>Yes</strong> if the statement is true. Otherwise, select <strong>No</strong>.<br>
+      NOTE: Each correct selection is worth one point.</p>
+    `,
+    statements: [
+      "User1 can install App1 from the private store.",
+      "User2 can install App1 from the private store.",
+      "User3 can install App1 from the private store."
+    ],
+    correctAnswers: ["No", "No", "Yes"],
+    options: ["Yes", "No"]
+  }
 ];

@@ -1,302 +1,288 @@
-﻿<!doctype html>
+﻿<!-- ./index.html -->
+<!doctype html>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>MS-102 Practice (Random 50 + Grading)</title>
+	<title>Practice Exam – Q39</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
+		:root {
+			--bg: #0b1020;
+			--card: #11182a;
+			--text: #e6e9f2;
+			--muted: #aab2c5;
+			--accent: #4f7cff;
+			--ok: #16a34a;
+			--bad: #ef4444;
+			--border: #22314d;
+		}
+
 		body {
-			font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-			margin: 24px;
-			background: #fafafa;
-			color: #222;
+			margin: 0;
+			padding: 24px;
+			font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+			background: linear-gradient(180deg, #0b1020 0%, #0d1426 100%);
+			color: var(--text);
 		}
 
-		h1 {
-			font-size: 22px;
-			margin: 0 0 10px;
-		}
-
-		.sub {
-			color: #666;
-			margin: 0 0 16px;
-		}
-
-		.toolbar {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 8px;
-			margin: 10px 0 16px;
-		}
-
-		input[type="text"] {
-			padding: 8px;
-			border: 1px solid #e5e7eb;
-			border-radius: 8px;
-		}
-
-		button {
-			background: #111827;
-			color: #fff;
-			border: 0;
-			border-radius: 8px;
-			padding: 8px 12px;
-			cursor: pointer;
-		}
-
-		button.secondary {
-			background: #f3f4f6;
-			color: #111;
-		}
-
-		button.ghost {
-			background: transparent;
-			color: #111;
-			border: 1px solid #e5e7eb;
+		.container {
+			max-width: 860px;
+			margin: 0 auto;
 		}
 
 		.card {
-			background: #fff;
-			border: 1px solid #e5e5e5;
-			border-radius: 10px;
-			padding: 16px;
-			margin: 12px 0;
-			box-shadow: 0 2px 5px rgba(0, 0, 0, .03);
+			background: radial-gradient(1200px 400px at -10% -10%, rgba(79, 124, 255, 0.1), transparent 60%),
+				radial-gradient(1000px 300px at 110% -20%, rgba(16, 185, 129, 0.08), transparent 60%),
+				var(--card);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+			overflow: hidden;
 		}
 
-		.qhead {
+		header {
+			padding: 20px 24px;
+			border-bottom: 1px solid var(--border);
 			display: flex;
-			justify-content: space-between;
 			align-items: center;
-			margin-bottom: 8px;
+			gap: 12px;
 		}
 
-		.qno {
-			color: #6b7280;
-			font-size: 12px;
-		}
-
-		.q {
-			font-weight: 600;
-			margin: 0 0 10px;
-		}
-
-		.choices {
-			margin: 10px 0;
-		}
-
-		.choice {
-			display: block;
-			margin: 6px 0;
-		}
-
-		.ans {
-			display: none;
-			margin-top: 10px;
-			padding: 10px;
-			border-radius: 8px;
-			background: #f9fafb;
-			border: 1px solid #e5e7eb;
-		}
-
-		.correct {
-			border-color: #16a34a;
-			background: #f0fdf4;
-		}
-
-		.incorrect {
-			border-color: #dc2626;
-			background: #fef2f2;
-		}
-
-		.stats {
-			margin: 12px 0;
-			padding: 12px;
-			border: 1px dashed #e5e7eb;
-			border-radius: 10px;
-			background: #fff;
-			display: none;
-		}
-
-		.footer {
-			color: #888;
-			font-size: 12px;
-			margin-top: 24px;
+		header h1 {
+			margin: 0;
+			font-size: 18px;
+			letter-spacing: .2px;
 		}
 
 		.badge {
 			font-size: 12px;
-			background: #eef2ff;
-			color: #3730a3;
-			padding: 2px 8px;
+			color: #dbe3ff;
+			background: rgba(79, 124, 255, .12);
+			padding: 4px 8px;
+			border: 1px solid rgba(79, 124, 255, .3);
 			border-radius: 999px;
-			margin-left: 8px;
+		}
+
+		main {
+			padding: 24px;
+		}
+
+		.prompt {
+			color: var(--text);
+			line-height: 1.65;
+		}
+
+		.prompt p {
+			margin: 0 0 12px;
+		}
+
+		.prompt ul {
+			margin: 8px 0 16px 20px;
+		}
+
+		.divider {
+			height: 1px;
+			background: var(--border);
+			margin: 16px 0 24px;
+		}
+
+		.statement {
+			margin: 14px 0;
+			padding: 14px 12px;
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			background: rgba(255, 255, 255, 0.02);
+		}
+
+		.row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+
+		.row strong {
+			font-weight: 600;
+		}
+
+		.choices {
+			display: flex;
+			gap: 8px;
+		}
+
+		button.choice {
+			padding: 8px 12px;
+			border-radius: 8px;
+			border: 1px solid var(--border);
+			background: rgba(255, 255, 255, 0.02);
+			color: var(--text);
+			cursor: pointer;
+		}
+
+		button.choice.active {
+			border-color: var(--accent);
+			background: rgba(79, 124, 255, 0.15);
+		}
+
+		.result {
+			margin-top: 8px;
+			font-size: 14px;
+			color: var(--muted);
+		}
+
+		.result.ok {
+			color: var(--ok);
+		}
+
+		.result.bad {
+			color: var(--bad);
+		}
+
+		.bar {
+			display: flex;
+			gap: 8px;
+			margin-top: 20px;
+		}
+
+		.action {
+			padding: 10px 14px;
+			border-radius: 10px;
+			border: 1px solid var(--border);
+			color: var(--text);
+			background: rgba(255, 255, 255, 0.03);
+			cursor: pointer;
+		}
+
+		.action.primary {
+			background: linear-gradient(180deg, #4f7cff, #3b68f7);
+			border-color: rgba(79, 124, 255, .6);
+		}
+
+		.muted {
+			color: var(--muted);
+			font-size: 14px;
+			margin-top: 8px;
+		}
+
+		footer {
+			padding: 16px 24px;
+			border-top: 1px solid var(--border);
+			color: var(--muted);
+			font-size: 12px;
+		}
+
+		code {
+			background: rgba(255, 255, 255, 0.05);
+			padding: 2px 6px;
+			border-radius: 6px;
+			border: 1px solid var(--border);
 		}
 	</style>
 </head>
 
 <body>
-	<h1>MS-102 Practice <span class="badge">Random 50 + Grading</span></h1>
-	<p class="sub">Seed를 지정하면 항상 같은 50개가 선택됩니다. 예: ?seed=20251102</p>
-
-	<div class="toolbar">
-		<input id="filter" type="text" placeholder="Filter keyword...">
-		<button class="secondary" onclick="applyFilter()">Filter</button>
-		<button class="secondary" onclick="resetFilter()">Reset</button>
-		<button class="ghost" onclick="reshuffle()">Reshuffle 50</button>
-		<button onclick="grade()">Grade</button>
-		<button class="secondary" onclick="clearAll()">Clear all</button>
+	<div class="container">
+		<div class="card">
+			<header>
+				<span class="badge">Practice Exam</span>
+				<h1>Question 39 — Private Store 접근 권한 평가</h1>
+			</header>
+			<main>
+				<section id="prompt" class="prompt"></section>
+				<div class="divider"></div>
+				<section id="statements"></section>
+				<div class="bar">
+					<button id="check" class="action primary">정답 확인</button>
+					<button id="reset" class="action">초기화</button>
+				</div>
+				<p class="muted">이미지가 보이지 않으면, 레포의 ./assets/q39.png 경로를 확인하세요.</p>
+			</main>
+			<footer>
+				Built for quick MS-102 practice. Files: <code>index.html</code>, <code>questions.js</code>,
+				<code>assets/q39.png</code>
+			</footer>
+		</div>
 	</div>
 
-	<div id="stats" class="stats"></div>
-	<div id="app"></div>
-
-	<hr>
-	<div class="footer">Questions sourced from your MS-102
-		database.[^https://www.notion.so/29adbd591ead8060a819d8aadb7ed416]</div>
-
-	<script src="questions.js"></script>
+	<script src="./questions.js"></script>
 	<script>
-		// 시드 가능한 난수와 셔플
-		function mulberry32(a) { return function () { let t = a += 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; } }
-		function seededShuffle(arr, seed) {
-			const rnd = mulberry32(seed);
-			const a = arr.slice();
-			for (let i = a.length - 1; i > 0; i--) {
-				const j = Math.floor(rnd() * (i + 1));
-				[a[i], a[j]] = [a[j], a[i]];
-			}
-			return a;
-		}
-		function pick50(all, seed) {
-			const pool = Array.isArray(all) ? all : [];
-			if (pool.length <= 50) return pool.slice();
-			const s = Number(seed) || Math.floor(Math.random() * 1e9);
-			const shuffled = seededShuffle(pool, s);
-			return shuffled.slice(0, 50);
-		}
-		function escapeHTML(s) { return String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'); }
+		const q = (window.questions || [])[0];
+		const $prompt = document.getElementById("prompt");
+		const $list = document.getElementById("statements");
+		const picks = new Array(q?.statements?.length || 0).fill(null);
 
-		let master = (typeof data !== 'undefined' && Array.isArray(data)) ? data.slice() : [];
-		let current = [];
-		const app = document.getElementById('app');
-		const stats = document.getElementById('stats');
+		function renderPrompt() {
+			if (!q) return;
+			$prompt.innerHTML = q.promptHtml;
+		}
 
-		function render(list) {
-			app.innerHTML = '';
-			list.forEach((q, idx) => {
-				const card = document.createElement('div');
-				card.className = 'card';
-				card.dataset.qid = q.id;
-				const answerId = 'ans_' + q.id;
-				card.innerHTML = `
-				<div class="qhead">
-					<div class="qno">ID: ${escapeHTML(q.id || String(idx + 1))}</div>
-				</div>
-				<div class="q">${idx + 1}. ${escapeHTML(q.question || '')}</div>
-				<div class="choices">
-					${Array.isArray(q.choices) && q.choices.length
-						? q.choices.map(opt => `
-							<label class="choice">
-								<input type="radio" name="q_${q.id}" value="${escapeHTML(opt)}"> ${escapeHTML(opt)}
-							</label>`).join('')
-						: '<em>No choices provided.</em>'
-					}
-				</div>
-				<div>
-					<button class="ghost" onclick="toggleAnswer('${answerId}')">Show Answer</button>
-					<button class="secondary" onclick="clearSelect('${q.id}')">Clear</button>
-				</div>
-				<div id="${answerId}" class="ans">
-					<strong>Answer:</strong> ${escapeHTML(q.answer || '')}
-					${q.explain ? `<div style="margin-top:6px;"><em>${escapeHTML(q.explain)}</em></div>` : ''}
-				</div>
-			`;
-				app.appendChild(card);
+		function renderStatements() {
+			if (!q) return;
+			$list.innerHTML = "";
+			q.statements.forEach((text, idx) => {
+				const wrap = document.createElement("div");
+				wrap.className = "statement";
+				wrap.innerHTML = `
+          <div class="row">
+            <div><strong>Statement ${idx + 1}.</strong> ${text}</div>
+            <div class="choices">
+              ${q.options.map(opt => {
+					const active = picks[idx] === opt ? "active" : "";
+					return `<button class="choice ${active}" data-idx="${idx}" data-opt="${opt}">${opt}</button>`;
+				}).join("")}
+            </div>
+          </div>
+          <div class="result" id="res-${idx}" aria-live="polite"></div>
+        `;
+				$list.appendChild(wrap);
 			});
-			stats.style.display = 'none';
-			stats.innerHTML = '';
 		}
 
-		function toggleAnswer(id) {
-			const el = document.getElementById(id);
-			if (!el) return;
-			el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-		}
-		function clearSelect(id) {
-			document.querySelectorAll('input[name="q_' + id + '"]').forEach(el => el.checked = false);
-			const card = document.querySelector('.card[data-qid="' + id + '"]');
-			if (card) { card.classList.remove('correct', 'incorrect'); }
-		}
-		function clearAll() {
-			current.forEach(q => clearSelect(q.id));
-			document.querySelectorAll('.ans').forEach(el => el.style.display = 'none');
-			stats.style.display = 'none';
-			stats.innerHTML = '';
+		function updateChoiceButtons() {
+			document.querySelectorAll("button.choice").forEach(btn => {
+				const idx = Number(btn.getAttribute("data-idx"));
+				const opt = btn.getAttribute("data-opt");
+				btn.classList.toggle("active", picks[idx] === opt);
+			});
 		}
 
-		function grade() {
-			let correct = 0;
-			let answered = 0;
-			current.forEach(q => {
-				const selected = document.querySelector('input[name="q_' + q.id + '"]:checked');
-				const card = document.querySelector('.card[data-qid="' + q.id + '"]');
-				if (!card) return;
-				card.classList.remove('correct', 'incorrect');
-				if (selected) {
-					answered++;
-					const val = selected.value.trim();
-					if (q.answer && val === q.answer) {
-						correct++;
-						card.classList.add('correct');
-					} else {
-						card.classList.add('incorrect');
-					}
+		function checkAnswers() {
+			if (!q) return;
+			q.statements.forEach((_, idx) => {
+				const res = document.getElementById(`res-${idx}`);
+				const pick = picks[idx];
+				if (pick == null) {
+					res.textContent = "선택하지 않았어요.";
+					res.className = "result";
+					return;
 				}
+				const ok = pick === q.correctAnswers[idx];
+				res.textContent = ok ? "정답!" : `오답. 정답: ${q.correctAnswers[idx]}`;
+				res.className = "result " + (ok ? "ok" : "bad");
 			});
-			const total = current.length;
-			const score = Math.round((correct / total) * 100);
-			stats.style.display = 'block';
-			stats.innerHTML = `<strong>Result:</strong> ${correct}/${total} correct, Score: ${score}%<br><small>Answered: ${answered}, Skipped: ${total - answered}</small>`;
 		}
 
-		function applyFilter() {
-			const kw = document.getElementById('filter').value.trim().toLowerCase();
-			if (!kw) { render(current); return; }
-			const filtered = current.filter(q =>
-				(q.question || '').toLowerCase().includes(kw) ||
-				(q.answer || '').toLowerCase().includes(kw) ||
-				(q.choices || []).some(c => c.toLowerCase().includes(kw))
-			);
-			render(filtered);
-		}
-		function resetFilter() {
-			document.getElementById('filter').value = '';
-			render(current);
-		}
-		function reshuffle() {
-			const url = new URL(location.href);
-			const seed = url.searchParams.get('seed');
-			current = pick50(master, seed || Math.floor(Math.random() * 1e9));
-			render(current);
+		function resetAll() {
+			for (let i = 0; i < picks.length; i++) picks[i] = null;
+			renderStatements();
 		}
 
-		// 전역에서 접근 가능하도록 연결
-		window.toggleAnswer = toggleAnswer;
-		window.clearSelect = clearSelect;
-		window.applyFilter = applyFilter;
-		window.resetFilter = resetFilter;
-		window.reshuffle = reshuffle;
-		window.grade = grade;
-		window.clearAll = clearAll;
+		document.addEventListener("click", (e) => {
+			const t = e.target;
+			if (t.matches("button.choice")) {
+				const idx = Number(t.getAttribute("data-idx"));
+				const opt = t.getAttribute("data-opt");
+				picks[idx] = opt;
+				updateChoiceButtons();
+			}
+			if (t.id === "check") checkAnswers();
+			if (t.id === "reset") resetAll();
+		});
 
-		(function init() {
-			const url = new URL(location.href);
-			const seed = url.searchParams.get('seed') || undefined;
-			current = pick50(master, seed);
-			render(current);
-		})();
+		renderPrompt();
+		renderStatements();
 	</script>
 </body>
 
