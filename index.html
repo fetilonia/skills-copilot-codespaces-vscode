@@ -220,12 +220,14 @@
 					<select id="qsel"></select>
 				</div>
 			</header>
+
 			<main>
 				<section id="prompt" class="prompt"></section>
 				<div class="divider"></div>
 				<section id="dynamic"></section>
 				<div class="divider"></div>
 				<section id="explanation" class="prompt" style="display:none"></section>
+
 				<div class="bar">
 					<button id="prev" class="action">이전</button>
 					<button id="next" class="action">다음</button>
@@ -234,6 +236,7 @@
 				</div>
 				<p class="muted">이미지가 보이지 않으면 CDN “직접 이미지 링크”인지 확인하세요. 필요 시 ?v=YYYYMMDD 쿼리로 캐시 무효화.</p>
 			</main>
+
 			<footer>Files: index.html, questions.js</footer>
 		</div>
 	</div>
@@ -247,7 +250,12 @@
 		const $dynamic = document.getElementById('dynamic');
 		const $ex = document.getElementById('explanation');
 
-		let state = { current: 0, yn: [], pair: [], single: [], multi: [], sequence: [] };
+		// 상태
+		let state = { current: 0, yn: [], pair: {}, single: [], multi: [], sequence: [] };
+
+		// 유틸
+		function escapeHtml(s = '') { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+		function unescapeHtml(s = '') { const d = document.createElement('textarea'); d.innerHTML = String(s); return d.value; }
 
 		function initSelect() {
 			$sel.innerHTML = qs.map((q, i) => `<option value="${i}">${q.id} — ${q.title}</option>`).join('');
@@ -282,24 +290,46 @@
 				return;
 			}
 
-			// pair two dropdowns
-			if (q.pairLabels && q.pairOptions) {
+			// pair two dropdowns (좌·우 옵션 독립 지원)
+			if (q.pairLabels && (q.pairOptions || (q.pairOptionsLeft && q.pairOptionsRight))) {
 				if (!state.pair[state.current]) state.pair[state.current] = new Array(q.pairLabels.length).fill("");
 				const picks = state.pair[state.current];
-				$dynamic.innerHTML = q.pairLabels.map((label, idx) => `
-          <div class="statement">
-            <div class="row" style="gap:16px;">
-              <div><strong>${label}</strong></div>
-              <div>
-                <select data-type="pair" data-idx="${idx}">
-                  <option value="">-- 선택 --</option>
-                  ${q.pairOptions.map(opt => `<option value="${opt}" ${picks[idx] === opt ? 'selected' : ''}>${opt}</option>`).join('')}
-                </select>
+
+				const leftOpts = q.pairOptionsLeft || q.pairOptions || [];
+				const rightOpts = q.pairOptionsRight || q.pairOptions || [];
+
+				$dynamic.innerHTML = q.pairLabels.map((label, idx) => {
+					const opts = (idx === 0) ? leftOpts : (idx === 1 ? rightOpts : (q.pairOptions || []));
+					const optionsHtml =
+						[`<option value="">-- 선택 --</option>`]
+							.concat(opts.map(opt => {
+								const sel = picks[idx] === opt ? 'selected' : '';
+								return `<option value="${escapeHtml(opt)}" ${sel}>${escapeHtml(opt)}</option>`;
+							}))
+							.join('');
+					return `
+            <div class="statement">
+              <div class="row" style="gap:16px;">
+                <div><strong>${label}</strong></div>
+                <div>
+                  <select data-type="pair" data-idx="${idx}">
+                    ${optionsHtml}
+                  </select>
+                </div>
               </div>
+              <div class="result" id="res-${idx}"></div>
             </div>
-            <div class="result" id="res-${idx}"></div>
-          </div>
-        `).join('');
+          `;
+				}).join('');
+
+				// 변화 감지
+				$dynamic.querySelectorAll('select[data-type="pair"]').forEach(sel => {
+					sel.addEventListener('change', e => {
+						const i = Number(e.target.getAttribute('data-idx'));
+						const val = unescapeHtml(e.target.value);
+						picks[i] = val;
+					});
+				});
 				return;
 			}
 
@@ -344,14 +374,12 @@
 			if (q.type === "sequence" && q.sequenceOptions) {
 				if (!state.sequence[state.current]) state.sequence[state.current] = q.sequenceOptions.slice();
 				const items = state.sequence[state.current];
-
 				const listHtml = items.map((txt, idx) => `
           <li class="drag-item" draggable="true" data-idx="${idx}">
             <span class="drag-handle">≡</span>
             <span class="drag-text">${txt}</span>
           </li>
         `).join('');
-
 				$dynamic.innerHTML = `
           <div class="statement">
             <ul class="draglist" id="draglist">${listHtml}</ul>
@@ -359,10 +387,8 @@
             <div class="result" id="res-0"></div>
           </div>
         `;
-
 				const $list = document.getElementById('draglist');
 				let dragEl = null;
-
 				function rebindDnD() {
 					$list.querySelectorAll('.drag-item').forEach(el => {
 						el.addEventListener('dragstart', (e) => {
@@ -385,7 +411,6 @@
 							const arr = state.sequence[state.current];
 							const moved = arr.splice(fromIdx, 1)[0];
 							arr.splice(toIdx, 0, moved);
-							// 재그리기
 							render();
 						});
 						el.addEventListener('dragend', () => {
@@ -414,15 +439,17 @@
 					res.textContent = ok ? "정답!" : `오답. 정답: ${q.correctAnswers[idx]}`;
 					res.className = "result " + (ok ? "ok" : "bad");
 				});
-			} else if (q.pairLabels && q.pairOptions) {
-				const picks = state.pair[state.current];
+
+			} else if (q.pairLabels && (q.pairOptions || (q.pairOptionsLeft && q.pairOptionsRight))) {
+				const picks = state.pair[state.current] || [];
 				q.pairLabels.forEach((_, idx) => {
 					const res = document.getElementById(`res-${idx}`);
 					if (!picks[idx]) { res.textContent = "선택하지 않았어요."; res.className = "result"; allAnswered = false; return; }
-					const ok = picks[idx] === q.pairAnswer[idx];
+					const ok = picks[idx] === (q.pairAnswer || [])[idx];
 					res.textContent = ok ? "정답!" : `오답. 정답: ${q.pairAnswer[idx]}`;
 					res.className = "result " + (ok ? "ok" : "bad");
 				});
+
 			} else if (q.type === "single" && q.options) {
 				const res = document.getElementById('res-0');
 				const pick = state.single[state.current] || "";
@@ -432,6 +459,7 @@
 					res.textContent = ok ? "정답!" : `오답. 정답: ${(q.correctAnswers || []).join(", ")}`;
 					res.className = "result " + (ok ? "ok" : "bad");
 				}
+
 			} else if (q.type === "multi") {
 				const res = document.getElementById('res-0');
 				const picks = Array.from(state.multi[state.current] || []);
@@ -442,6 +470,7 @@
 					res.textContent = ok ? "정답!" : `오답. 정답: ${Array.from(ans).join(", ")}`;
 					res.className = "result " + (ok ? "ok" : "bad");
 				}
+
 			} else if (q.type === "sequence") {
 				const res = document.getElementById('res-0');
 				const curr = state.sequence[state.current] || [];
@@ -454,17 +483,13 @@
 				}
 			}
 
-			// 해설 표시 + 링크 새 탭/보안 속성 부여
+			// 해설 표시 + 새 탭
 			if (q.explanationHtml && allAnswered) {
 				$ex.innerHTML = q.explanationHtml;
 				$ex.style.display = "block";
-				$ex.querySelectorAll('a[href]').forEach(a => {
-					a.target = '_blank';
-					a.rel = 'noopener noreferrer';
-				});
+				$ex.querySelectorAll('a[href]').forEach(a => { a.target = '_blank'; a.rel = 'noopener noreferrer'; });
 			} else if (q.explanationHtml && !allAnswered) {
-				$ex.style.display = "none";
-				$ex.innerHTML = "";
+				$ex.style.display = "none"; $ex.innerHTML = "";
 			}
 		}
 
@@ -488,7 +513,6 @@
 
 		document.addEventListener('click', (e) => {
 			const t = e.target;
-
 			if (t.matches('button.choice')) {
 				const type = t.getAttribute('data-type');
 				if (type === 'yn') {
@@ -515,7 +539,6 @@
 					t.classList.toggle('active');
 				}
 			}
-
 			if (t.id === 'check') check();
 			if (t.id === 'reset') resetCurrent();
 			if (t.id === 'prev') goto(-1);
@@ -528,7 +551,8 @@
 			if (t.matches('select[data-type="pair"]')) {
 				const idx = Number(t.getAttribute('data-idx'));
 				const picks = state.pair[state.current] || [];
-				picks[idx] = t.value; state.pair[state.current] = picks;
+				picks[idx] = unescapeHtml(t.value);
+				state.pair[state.current] = picks;
 			}
 		});
 
