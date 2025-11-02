@@ -1,0 +1,167 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>MS-102 Practice | Powered by 서꺼만든비서</title>
+	<style>
+		body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 24px; background:#fafafa; color:#222; }
+		h1 { font-size: 22px; margin: 0 0 8px; }
+		.sub { color:#666; margin: 0 0 20px; }
+		.card { background:#fff; border:1px solid #e5e5e5; border-radius:10px; padding:16px; margin:12px 0; box-shadow: 0 2px 5px rgba(0,0,0,.03); }
+		.q { font-weight:600; margin:0 0 10px; }
+		.choices { margin: 10px 0; }
+		.choice { display:block; margin:6px 0; }
+		button { background:#111827; color:#fff; border:0; border-radius:8px; padding:8px 12px; cursor:pointer; }
+		button.secondary { background:#f3f4f6; color:#111; }
+		.ans { display:none; margin-top:10px; padding:10px; border-radius:8px; background:#f9fafb; border:1px solid #e5e7eb; }
+		.tools { display:flex; gap:8px; margin: 4px 0 0; }
+		.footer { color:#888; font-size:12px; margin-top:24px; }
+		hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+		.badge { font-size:12px; background:#eef2ff; color:#3730a3; padding:2px 8px; border-radius:999px; margin-left:8px; }
+		.search { display:flex; gap:8px; margin:12px 0 8px; }
+		input[type="text"] { padding:8px; border:1px solid #e5e7eb; border-radius:8px; flex:1; }
+		.hidden { display:none; }
+	</style>
+</head>
+<body>
+	<h1>MS-102 Practice <span class="badge">Client-side only</span></h1>
+	<p class="sub">Click “Show Answer” to reveal. Add options to any item by filling the <code>choices</code> array in the data below.</p>
+
+	<div class="search">
+		<input id="filter" type="text" placeholder="Filter by keyword...">
+		<button class="secondary" onclick="applyFilter()">Filter</button>
+		<button class="secondary" onclick="resetFilter()">Reset</button>
+	</div>
+
+	<div id="app"></div>
+
+	<hr>
+	<div class="footer">Questions sourced from your MS-102 notes. Edit or extend the questions in the <code>data</code> constant.</div>
+
+<script>
+const data = [
+	{
+		id: "notion-50",
+		question: "Which Safe Attachments action mode delivers the email immediately and shows a placeholder for the attachment until scanning is complete?",
+		answer: "D. Dynamic Delivery",
+		choices: ["A. Block", "B. Replace", "C. Monitor", "D. Dynamic Delivery"]
+	},
+	{
+		id: "notion-61",
+		question: "도메인을 Microsoft 365에 추가할 때 소유권 확인을 위해 먼저 추가하는 DNS 레코드 유형은?",
+		answer: "C. Text (TXT)",
+		choices: ["A. MX", "B. CNAME", "C. Text (TXT)", "D. SRV"]
+	},
+	{
+		id: "notion-42",
+		question: "보안 관리자가 ‘누가 로그인했는지’ 보고서를 바탕으로 고위험 로그인 시 MFA를 요구하는 정책을 만들려면 어떤 솔루션을 사용해야 하나요?",
+		answer: "B. Microsoft Azure Active Directory (Azure AD) Identity Protection",
+		choices: ["A. Microsoft Sentinel", "B. Azure AD Identity Protection", "C. Microsoft Defender for Endpoint", "D. Microsoft Cloud App Security"]
+	},
+	{
+		id: "notion-43",
+		question: "뉴욕 사무소 사용자가 포함된 민감한 미국 PII 데이터를 같은 뉴욕 도메인 사용자에게만 보낼 수 있도록 하려면 가장 적절한 정책 구성은?",
+		answer: "A. a data loss prevention (DLP) policy that contains a domain exception"
+	},
+	{
+		id: "notion-33",
+		question: "User1이 뉴욕 오피스의 모든 모바일 장치를 등록할 수 있도록 하려면 무엇을 해야 하나요?",
+		answer: "C. From the Intune admin center, add User1 as a Device Enrollment Manager."
+	},
+	{
+		id: "notion-41",
+		question: "사용자가 30분 이내에 SharePoint Online에서 1,000개 이상의 파일을 다운로드하려고 하면 관리자가 알림을 받고 계정을 일시 중단하도록 탐지하려면 어떤 정책이 적절한가요?",
+		answer: "D. an activity policy from Microsoft Cloud App Security"
+	},
+	{
+		id: "notion-38",
+		question: "EU 시민의 PII가 포함된 문서와 이메일을 10년 보존하기 위한 적절한 정책 유형은?",
+		answer: "A. a retention policy from the Security & Compliance admin center"
+	},
+	{
+		id: "notion-60",
+		question: "User1에게 보안 정책을 관리할 권한을 부여하려면 어떤 역할을 할당해야 하나요?",
+		answer: "C. Security Administrator",
+		choices: ["A. Global Reader", "B. Compliance Administrator", "C. Security Administrator", "D. Security Reader"]
+	},
+	{
+		id: "notion-72",
+		question: "온프레미스 AD의 로그인 제한 시간이 클라우드 로그인에도 반영되도록 하려면 AAD Connect 인증 방식 중 무엇을 선택해야 하나요?",
+		answer: "A. Pass-through authentication",
+		choices: ["A. Pass-through authentication", "B. Password hash sync", "C. Federation", "D. Seamless SSO only"]
+	},
+	{
+		id: "notion-62",
+		question: "Pilot Project의 기본 인증 전략으로 적절한 것은?",
+		answer: "C. Password Hash Synchronization",
+		choices: ["A. Federation", "B. Pass-through authentication", "C. Password Hash Synchronization", "D. Certificate-based auth"]
+	}
+];
+
+function render(list) {
+	const app = document.getElementById('app');
+	app.innerHTML = '';
+	list.forEach((q, idx) => {
+		const card = document.createElement('div');
+		card.className = 'card';
+		card.innerHTML = `
+			<div class="q">${idx + 1}. ${escapeHTML(q.question)}</div>
+			<div class="choices">
+				${Array.isArray(q.choices) && q.choices.length
+					? q.choices.map((c,i)=>`
+						<label class="choice">
+							<input type="radio" name="q_${q.id}" value="${escapeHTML(c)}"> ${escapeHTML(c)}
+						</label>`).join('')
+					: '<em>No choices provided. Think and then reveal the answer.</em>'
+				}
+			</div>
+			<div class="tools">
+				<button onclick="toggleAnswer('${q.id}')">Show Answer</button>
+				<button class="secondary" onclick="clearSelect('${q.id}')">Clear</button>
+			</div>
+			<div id="ans_${q.id}" class="ans"><strong>Answer:</strong> ${escapeHTML(q.answer)}</div>
+		`;
+		app.appendChild(card);
+	});
+}
+
+function toggleAnswer(id){
+	const el = document.getElementById('ans_' + id);
+	el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
+}
+
+function clearSelect(id){
+	const inputs = document.querySelectorAll('input[name="q_'+id+'"]');
+	inputs.forEach(i => i.checked = false);
+	const ans = document.getElementById('ans_' + id);
+	if (ans) ans.style.display = 'none';
+}
+
+function applyFilter(){
+	const kw = document.getElementById('filter').value.trim().toLowerCase();
+	if(!kw){ render(data); return; }
+	const filtered = data.filter(q =>
+		q.question.toLowerCase().includes(kw) ||
+		(q.answer && q.answer.toLowerCase().includes(kw)) ||
+		(q.choices||[]).some(c => c.toLowerCase().includes(kw))
+	);
+	render(filtered);
+}
+
+function resetFilter(){
+	document.getElementById('filter').value = '';
+	render(data);
+}
+
+function escapeHTML(str){
+	return String(str)
+		.replaceAll('&', '&amp;')
+		.replaceAll('<', '&lt;')
+		.replaceAll('>', '&gt;');
+}
+
+render(data);
+</script>
+</body>
+</html>
