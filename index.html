@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Practice Exam – MS-102 (Drag-enabled)</title>
+	<title>Practice Exam – MS-102</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		:root {
@@ -115,21 +115,6 @@
 			background: rgba(79, 124, 255, .15)
 		}
 
-		.pill {
-			display: inline-block;
-			margin: 4px 6px 0 0;
-			padding: 6px 10px;
-			border: 1px solid var(--border);
-			border-radius: 999px;
-			background: rgba(255, 255, 255, .02);
-			cursor: pointer
-		}
-
-		.pill.active {
-			border-color: var(--accent);
-			background: rgba(79, 124, 255, .15)
-		}
-
 		.result {
 			margin-top: 6px;
 			font-size: 14px;
@@ -165,8 +150,7 @@
 			border-color: rgba(79, 124, 255, .6)
 		}
 
-		select,
-		.selectlike {
+		select {
 			padding: 8px 10px;
 			border-radius: 8px;
 			background: #0f162a;
@@ -185,12 +169,6 @@
 			border-top: 1px solid var(--border);
 			color: var(--muted);
 			font-size: 12px
-		}
-
-		.grid {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 12px
 		}
 
 		/* Drag list (sequence) */
@@ -364,7 +342,6 @@
 
 			// sequence (drag & drop)
 			if (q.type === "sequence" && q.sequenceOptions) {
-				// 초기 시퀀스: 저장된 순서가 없으면 원본 순서로
 				if (!state.sequence[state.current]) state.sequence[state.current] = q.sequenceOptions.slice();
 				const items = state.sequence[state.current];
 
@@ -377,60 +354,50 @@
 
 				$dynamic.innerHTML = `
           <div class="statement">
-            <div class="row">
-              <div style="flex:1">
-                <ul class="draglist" id="draglist">
-                  ${listHtml}
-                </ul>
-                <div class="muted" style="margin-top:8px">드래그해서 순서를 바꾸세요.</div>
-              </div>
-            </div>
+            <ul class="draglist" id="draglist">${listHtml}</ul>
+            <div class="muted" style="margin-top:8px">드래그해서 순서를 바꾸세요.</div>
             <div class="result" id="res-0"></div>
           </div>
         `;
 
-				// Drag events
 				const $list = document.getElementById('draglist');
 				let dragEl = null;
 
-				$list.querySelectorAll('.drag-item').forEach(el => {
-					el.addEventListener('dragstart', (e) => {
-						dragEl = el;
-						e.dataTransfer.effectAllowed = 'move';
-						e.dataTransfer.setData('text/plain', el.dataset.idx);
+				function rebindDnD() {
+					$list.querySelectorAll('.drag-item').forEach(el => {
+						el.addEventListener('dragstart', (e) => {
+							dragEl = el;
+							e.dataTransfer.effectAllowed = 'move';
+							e.dataTransfer.setData('text/plain', el.dataset.idx);
+						});
+						el.addEventListener('dragover', (e) => {
+							e.preventDefault();
+							el.classList.add('drag-over');
+							e.dataTransfer.dropEffect = 'move';
+						});
+						el.addEventListener('dragleave', () => { el.classList.remove('drag-over'); });
+						el.addEventListener('drop', (e) => {
+							e.preventDefault();
+							el.classList.remove('drag-over');
+							const fromIdx = Number(dragEl.dataset.idx);
+							const toIdx = Number(el.dataset.idx);
+							if (fromIdx === toIdx) return;
+							const arr = state.sequence[state.current];
+							const moved = arr.splice(fromIdx, 1)[0];
+							arr.splice(toIdx, 0, moved);
+							// 재그리기
+							render();
+						});
+						el.addEventListener('dragend', () => {
+							dragEl = null;
+							$list.querySelectorAll('.drag-item').forEach(x => x.classList.remove('drag-over'));
+						});
 					});
-					el.addEventListener('dragover', (e) => {
-						e.preventDefault();
-						el.classList.add('drag-over');
-						e.dataTransfer.dropEffect = 'move';
-					});
-					el.addEventListener('dragleave', () => {
-						el.classList.remove('drag-over');
-					});
-					el.addEventListener('drop', (e) => {
-						e.preventDefault();
-						el.classList.remove('drag-over');
-						const fromIdx = Number(dragEl.dataset.idx);
-						const toIdx = Number(el.dataset.idx);
-						if (fromIdx === toIdx) return;
-
-						// 배열 재배치
-						const arr = state.sequence[state.current];
-						const moved = arr.splice(fromIdx, 1)[0];
-						arr.splice(toIdx, 0, moved);
-
-						// 다시 렌더링하여 data-idx 재부여
-						render();
-					});
-					el.addEventListener('dragend', () => {
-						dragEl = null;
-						$list.querySelectorAll('.drag-item').forEach(x => x.classList.remove('drag-over'));
-					});
-				});
+				}
+				rebindDnD();
 				return;
 			}
 
-			// fallback
 			$dynamic.innerHTML = `<div class="muted">이 문항 타입은 아직 구성되지 않았습니다.</div>`;
 		}
 
@@ -461,17 +428,16 @@
 				const pick = state.single[state.current] || "";
 				if (!pick) { res.textContent = "선택하지 않았어요."; res.className = "result"; allAnswered = false; }
 				else {
-					const ok = q.correctAnswers.includes(pick);
-					res.textContent = ok ? "정답!" : `오답. 정답: ${q.correctAnswers.join(", ")}`;
+					const ok = (q.correctAnswers || []).includes(pick);
+					res.textContent = ok ? "정답!" : `오답. 정답: ${(q.correctAnswers || []).join(", ")}`;
 					res.className = "result " + (ok ? "ok" : "bad");
 				}
 			} else if (q.type === "multi") {
 				const res = document.getElementById('res-0');
 				const picks = Array.from(state.multi[state.current] || []);
+				const ans = new Set(q.multiAnswer || q.correctAnswers || []);
 				if (picks.length === 0) { res.textContent = "선택하지 않았어요."; res.className = "result"; allAnswered = false; }
 				else {
-					const ans = new Set(q.multiAnswer || q.correctAnswers || []);
-					const pk = new Set(picks);
 					const ok = picks.length === ans.size && picks.every(x => ans.has(x));
 					res.textContent = ok ? "정답!" : `오답. 정답: ${Array.from(ans).join(", ")}`;
 					res.className = "result " + (ok ? "ok" : "bad");
@@ -488,9 +454,14 @@
 				}
 			}
 
+			// 해설 표시 + 링크 새 탭/보안 속성 부여
 			if (q.explanationHtml && allAnswered) {
 				$ex.innerHTML = q.explanationHtml;
 				$ex.style.display = "block";
+				$ex.querySelectorAll('a[href]').forEach(a => {
+					a.target = '_blank';
+					a.rel = 'noopener noreferrer';
+				});
 			} else if (q.explanationHtml && !allAnswered) {
 				$ex.style.display = "none";
 				$ex.innerHTML = "";
@@ -525,7 +496,6 @@
 					const opt = t.getAttribute('data-opt');
 					const picks = state.yn[state.current];
 					picks[idx] = opt;
-					// toggle active for this idx
 					document.querySelectorAll(`button.choice[data-idx="${idx}"]`).forEach(btn => {
 						btn.classList.toggle('active', btn.getAttribute('data-opt') === opt);
 					});
@@ -533,7 +503,6 @@
 				if (type === 'single') {
 					const opt = t.getAttribute('data-opt');
 					state.single[state.current] = opt;
-					// reset actives
 					document.querySelectorAll('button.choice[data-type="single"]').forEach(btn => {
 						btn.classList.toggle('active', btn.getAttribute('data-opt') === opt);
 					});
