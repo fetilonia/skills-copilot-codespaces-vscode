@@ -1,5 +1,4 @@
-﻿<!-- ./index.html -->
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
 
 <head>
@@ -32,7 +31,10 @@
 		}
 
 		.card {
-			background: var(--card);
+			background:
+				radial-gradient(1200px 400px at -10% -10%, rgba(79, 124, 255, .1), transparent 60%),
+				radial-gradient(1000px 300px at 110% -20%, rgba(16, 185, 129, .08), transparent 60%),
+				var(--card);
 			border: 1px solid var(--border);
 			border-radius: 16px;
 			box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
@@ -188,11 +190,15 @@
 				<section id="prompt" class="prompt"></section>
 				<div class="divider"></div>
 				<section id="dynamic"></section>
+
+				<div class="divider"></div>
+				<section id="explanation" class="prompt" style="display:none;"></section>
+
 				<div class="bar">
 					<button id="check" class="action primary">정답 확인</button>
 					<button id="reset" class="action">초기화</button>
 				</div>
-				<p class="muted">이미지가 보이지 않으면 CDN “직접 이미지 링크”인지 확인하세요. 필요 시 ?v=YYYYMMDD 형식으로 캐시 버전을 붙이세요.</p>
+				<p class="muted">이미지가 보이지 않으면 CDN “직접 이미지 링크”인지 확인하고, 필요 시 ?v=YYYYMMDD 쿼리 파라미터로 캐시를 무효화하세요.</p>
 			</main>
 			<footer>Files: index.html, questions.js</footer>
 		</div>
@@ -205,6 +211,7 @@
 		const $title = document.getElementById('title');
 		const $prompt = document.getElementById('prompt');
 		const $dynamic = document.getElementById('dynamic');
+		const $ex = document.getElementById('explanation');
 
 		// 상태
 		let state = {
@@ -226,9 +233,12 @@
 			$title.textContent = `Question ${q.id} — ${q.title}`;
 			$prompt.innerHTML = q.promptHtml;
 
-			// 문항 유형별 UI
+			// 새 문제를 보여줄 때는 해설 숨김
+			$ex.style.display = "none";
+			$ex.innerHTML = "";
+
 			if (q.statements) {
-				// Yes/No 3문항 (Q39)
+				// Yes/No형
 				if (!state.picksYN[state.current]) state.picksYN[state.current] = new Array(q.statements.length).fill(null);
 				const picks = state.picksYN[state.current];
 				$dynamic.innerHTML = q.statements.map((text, idx) => `
@@ -246,7 +256,7 @@
           </div>
         `).join('');
 			} else if (q.pairLabels) {
-				// 역할 매칭 2개 (Q49)
+				// 페어 매칭형
 				if (!state.picksPair[state.current]) state.picksPair[state.current] = new Array(q.pairLabels.length).fill("");
 				const picks = state.picksPair[state.current];
 				$dynamic.innerHTML = q.pairLabels.map((label, idx) => `
@@ -272,6 +282,8 @@
 			const q = qs[state.current];
 			if (!q) return;
 
+			let allAnswered = true;
+
 			if (q.statements) {
 				const picks = state.picksYN[state.current];
 				q.statements.forEach((_, idx) => {
@@ -279,6 +291,7 @@
 					if (picks[idx] == null) {
 						res.textContent = "선택하지 않았어요.";
 						res.className = "result";
+						allAnswered = false;
 						return;
 					}
 					const ok = picks[idx] === q.correctAnswers[idx];
@@ -292,12 +305,22 @@
 					if (!picks[idx]) {
 						res.textContent = "선택하지 않았어요.";
 						res.className = "result";
+						allAnswered = false;
 						return;
 					}
 					const ok = picks[idx] === q.pairAnswer[idx];
 					res.textContent = ok ? "정답!" : `오답. 정답: ${q.pairAnswer[idx]}`;
-					res.className = "result " + (ok ? "ok" : "bad";
+					res.className = "result " + (ok ? "ok" : "bad");
 				});
+			}
+
+			// 모두 답했을 때 해설 노출
+			if (q.explanationHtml && allAnswered) {
+				$ex.innerHTML = q.explanationHtml;
+				$ex.style.display = "block";
+			} else {
+				$ex.style.display = "none";
+				$ex.innerHTML = "";
 			}
 		}
 
@@ -305,6 +328,8 @@
 			const q = qs[state.current];
 			if (q?.statements) state.picksYN[state.current] = new Array(q.statements.length).fill(null);
 			if (q?.pairLabels) state.picksPair[state.current] = new Array(q.pairLabels.length).fill("");
+			$ex.style.display = "none";
+			$ex.innerHTML = "";
 			render();
 		}
 
@@ -318,7 +343,7 @@
 				if (type === 'yn') {
 					const picks = state.picksYN[state.current];
 					picks[idx] = opt;
-					// 버튼 활성화 토글
+					// 같은 문장 내 버튼 활성화 토글
 					document.querySelectorAll(`button.choice[data-idx="${idx}"]`).forEach(btn => {
 						btn.classList.toggle('active', btn.getAttribute('data-opt') === opt);
 					});
