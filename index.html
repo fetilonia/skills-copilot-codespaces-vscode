@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Practice Exam – Q39 · Q49</title>
+	<title>Practice Exam – MS-102 (Drag-enabled)</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		:root {
@@ -14,7 +14,7 @@
 			--accent: #4f7cff;
 			--ok: #16a34a;
 			--bad: #ef4444;
-			--border: #22314d;
+			--border: #22314d
 		}
 
 		body {
@@ -22,23 +22,20 @@
 			padding: 24px;
 			background: linear-gradient(180deg, #0b1020, #0d1426);
 			color: var(--text);
-			font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+			font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial
 		}
 
 		.container {
-			max-width: 920px;
-			margin: 0 auto;
+			max-width: 980px;
+			margin: 0 auto
 		}
 
 		.card {
-			background:
-				radial-gradient(1200px 400px at -10% -10%, rgba(79, 124, 255, .1), transparent 60%),
-				radial-gradient(1000px 300px at 110% -20%, rgba(16, 185, 129, .08), transparent 60%),
-				var(--card);
+			background: var(--card);
 			border: 1px solid var(--border);
 			border-radius: 16px;
 			box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-			overflow: hidden;
+			overflow: hidden
 		}
 
 		header {
@@ -47,7 +44,7 @@
 			display: flex;
 			gap: 12px;
 			align-items: center;
-			flex-wrap: wrap;
+			flex-wrap: wrap
 		}
 
 		.badge {
@@ -56,31 +53,30 @@
 			background: rgba(79, 124, 255, .12);
 			padding: 4px 8px;
 			border: 1px solid rgba(79, 124, 255, .3);
-			border-radius: 999px;
+			border-radius: 999px
 		}
 
 		h1 {
 			margin: 0;
-			font-size: 18px;
-			letter-spacing: .2px;
+			font-size: 18px
 		}
 
 		.select {
-			margin-left: auto;
+			margin-left: auto
 		}
 
 		main {
-			padding: 24px;
+			padding: 24px
 		}
 
 		.prompt {
-			line-height: 1.65;
+			line-height: 1.65
 		}
 
 		.divider {
 			height: 1px;
 			background: var(--border);
-			margin: 16px 0 20px;
+			margin: 16px 0 20px
 		}
 
 		.statement {
@@ -88,7 +84,7 @@
 			padding: 12px;
 			border: 1px solid var(--border);
 			border-radius: 12px;
-			background: rgba(255, 255, 255, .02);
+			background: rgba(255, 255, 255, .02)
 		}
 
 		.row {
@@ -96,12 +92,13 @@
 			justify-content: space-between;
 			gap: 12px;
 			align-items: center;
-			flex-wrap: wrap;
+			flex-wrap: wrap
 		}
 
 		.choices {
 			display: flex;
 			gap: 8px;
+			flex-wrap: wrap
 		}
 
 		button.choice {
@@ -114,6 +111,21 @@
 		}
 
 		button.choice.active {
+			border-color: var(--accent);
+			background: rgba(79, 124, 255, .15)
+		}
+
+		.pill {
+			display: inline-block;
+			margin: 4px 6px 0 0;
+			padding: 6px 10px;
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			background: rgba(255, 255, 255, .02);
+			cursor: pointer
+		}
+
+		.pill.active {
 			border-color: var(--accent);
 			background: rgba(79, 124, 255, .15)
 		}
@@ -153,7 +165,8 @@
 			border-color: rgba(79, 124, 255, .6)
 		}
 
-		select {
+		select,
+		.selectlike {
 			padding: 8px 10px;
 			border-radius: 8px;
 			background: #0f162a;
@@ -173,6 +186,48 @@
 			color: var(--muted);
 			font-size: 12px
 		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 12px
+		}
+
+		/* Drag list (sequence) */
+		.draglist {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 8px
+		}
+
+		.drag-item {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 10px 12px;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			background: rgba(255, 255, 255, .03)
+		}
+
+		.drag-item[draggable="true"] {
+			cursor: grab
+		}
+
+		.drag-handle {
+			font-size: 14px;
+			color: #9db2ff;
+			border: 1px dashed rgba(79, 124, 255, .5);
+			padding: 2px 6px;
+			border-radius: 6px
+		}
+
+		.drag-over {
+			outline: 2px dashed var(--accent)
+		}
 	</style>
 </head>
 
@@ -183,7 +238,7 @@
 				<span class="badge">Practice Exam</span>
 				<h1 id="title">Question</h1>
 				<div class="select">
-					<label for="qsel" style="font-size:12px;color:var(--muted);margin-right:6px;">문항 선택</label>
+					<label for="qsel" style="font-size:12px;color:var(--muted);margin-right:6px">문항 선택</label>
 					<select id="qsel"></select>
 				</div>
 			</header>
@@ -191,17 +246,15 @@
 				<section id="prompt" class="prompt"></section>
 				<div class="divider"></div>
 				<section id="dynamic"></section>
-
 				<div class="divider"></div>
-				<section id="explanation" class="prompt" style="display:none;"></section>
-
+				<section id="explanation" class="prompt" style="display:none"></section>
 				<div class="bar">
 					<button id="prev" class="action">이전</button>
 					<button id="next" class="action">다음</button>
 					<button id="check" class="action primary">정답 확인</button>
 					<button id="reset" class="action">초기화</button>
 				</div>
-				<p class="muted">이미지가 보이지 않으면 CDN “직접 이미지 링크”인지 확인하고, 필요 시 ?v=YYYYMMDD 쿼리 파라미터로 캐시를 무효화하세요.</p>
+				<p class="muted">이미지가 보이지 않으면 CDN “직접 이미지 링크”인지 확인하세요. 필요 시 ?v=YYYYMMDD 쿼리로 캐시 무효화.</p>
 			</main>
 			<footer>Files: index.html, questions.js</footer>
 		</div>
@@ -216,31 +269,24 @@
 		const $dynamic = document.getElementById('dynamic');
 		const $ex = document.getElementById('explanation');
 
-		let state = {
-			current: 0,
-			picksYN: [],
-			picksPair: []
-		};
+		let state = { current: 0, yn: [], pair: [], single: [], multi: [], sequence: [] };
 
 		function initSelect() {
-			$sel.innerHTML = qs.map((q, i) =>
-				`<option value="${i}">${q.id} — ${q.title}</option>`
-			).join('');
+			$sel.innerHTML = qs.map((q, i) => `<option value="${i}">${q.id} — ${q.title}</option>`).join('');
 			$sel.value = String(state.current);
 		}
 
 		function render() {
-			const q = qs[state.current];
-			if (!q) return;
+			const q = qs[state.current]; if (!q) return;
 			$title.textContent = `Question ${q.id} — ${q.title}`;
-			$prompt.innerHTML = q.promptHtml;
+			$prompt.innerHTML = q.promptHtml || "";
+			$ex.style.display = "none"; $ex.innerHTML = "";
+			$dynamic.innerHTML = "";
 
-			$ex.style.display = "none";
-			$ex.innerHTML = "";
-
-			if (q.statements) {
-				if (!state.picksYN[state.current]) state.picksYN[state.current] = new Array(q.statements.length).fill(null);
-				const picks = state.picksYN[state.current];
+			// Yes/No statements
+			if (q.statements && q.options) {
+				if (!state.yn[state.current]) state.yn[state.current] = new Array(q.statements.length).fill(null);
+				const picks = state.yn[state.current];
 				$dynamic.innerHTML = q.statements.map((text, idx) => `
           <div class="statement">
             <div class="row">
@@ -255,9 +301,13 @@
             <div class="result" id="res-${idx}"></div>
           </div>
         `).join('');
-			} else if (q.pairLabels) {
-				if (!state.picksPair[state.current]) state.picksPair[state.current] = new Array(q.pairLabels.length).fill("");
-				const picks = state.picksPair[state.current];
+				return;
+			}
+
+			// pair two dropdowns
+			if (q.pairLabels && q.pairOptions) {
+				if (!state.pair[state.current]) state.pair[state.current] = new Array(q.pairLabels.length).fill("");
+				const picks = state.pair[state.current];
 				$dynamic.innerHTML = q.pairLabels.map((label, idx) => `
           <div class="statement">
             <div class="row" style="gap:16px;">
@@ -265,58 +315,183 @@
               <div>
                 <select data-type="pair" data-idx="${idx}">
                   <option value="">-- 선택 --</option>
-                  ${qs[state.current].pairOptions.map(opt =>
-					`<option value="${opt}" ${picks[idx] === opt ? 'selected' : ''}>${opt}</option>`
-				).join('')}
+                  ${q.pairOptions.map(opt => `<option value="${opt}" ${picks[idx] === opt ? 'selected' : ''}>${opt}</option>`).join('')}
                 </select>
               </div>
             </div>
             <div class="result" id="res-${idx}"></div>
           </div>
         `).join('');
+				return;
 			}
+
+			// single (one of many)
+			if (q.type === "single" && q.options) {
+				if (!state.single[state.current]) state.single[state.current] = "";
+				const pick = state.single[state.current];
+				$dynamic.innerHTML = `
+          <div class="statement">
+            <div class="choices">
+              ${q.options.map(opt => {
+					const active = pick === opt ? "active" : "";
+					return `<button class="choice ${active}" data-type="single" data-opt="${opt}">${opt}</button>`;
+				}).join('')}
+            </div>
+            <div class="result" id="res-0"></div>
+          </div>
+        `;
+				return;
+			}
+
+			// multi (multiple selections)
+			if (q.type === "multi" && (q.multiOptions || q.options)) {
+				if (!state.multi[state.current]) state.multi[state.current] = new Set();
+				const opts = q.multiOptions || q.options;
+				const picks = state.multi[state.current];
+				$dynamic.innerHTML = `
+          <div class="statement">
+            <div class="choices">
+              ${opts.map(opt => {
+					const active = picks.has(opt) ? "active" : "";
+					return `<button class="choice ${active}" data-type="multi" data-opt="${opt}">${opt}</button>`;
+				}).join('')}
+            </div>
+            <div class="result" id="res-0"></div>
+          </div>
+        `;
+				return;
+			}
+
+			// sequence (drag & drop)
+			if (q.type === "sequence" && q.sequenceOptions) {
+				// 초기 시퀀스: 저장된 순서가 없으면 원본 순서로
+				if (!state.sequence[state.current]) state.sequence[state.current] = q.sequenceOptions.slice();
+				const items = state.sequence[state.current];
+
+				const listHtml = items.map((txt, idx) => `
+          <li class="drag-item" draggable="true" data-idx="${idx}">
+            <span class="drag-handle">≡</span>
+            <span class="drag-text">${txt}</span>
+          </li>
+        `).join('');
+
+				$dynamic.innerHTML = `
+          <div class="statement">
+            <div class="row">
+              <div style="flex:1">
+                <ul class="draglist" id="draglist">
+                  ${listHtml}
+                </ul>
+                <div class="muted" style="margin-top:8px">드래그해서 순서를 바꾸세요.</div>
+              </div>
+            </div>
+            <div class="result" id="res-0"></div>
+          </div>
+        `;
+
+				// Drag events
+				const $list = document.getElementById('draglist');
+				let dragEl = null;
+
+				$list.querySelectorAll('.drag-item').forEach(el => {
+					el.addEventListener('dragstart', (e) => {
+						dragEl = el;
+						e.dataTransfer.effectAllowed = 'move';
+						e.dataTransfer.setData('text/plain', el.dataset.idx);
+					});
+					el.addEventListener('dragover', (e) => {
+						e.preventDefault();
+						el.classList.add('drag-over');
+						e.dataTransfer.dropEffect = 'move';
+					});
+					el.addEventListener('dragleave', () => {
+						el.classList.remove('drag-over');
+					});
+					el.addEventListener('drop', (e) => {
+						e.preventDefault();
+						el.classList.remove('drag-over');
+						const fromIdx = Number(dragEl.dataset.idx);
+						const toIdx = Number(el.dataset.idx);
+						if (fromIdx === toIdx) return;
+
+						// 배열 재배치
+						const arr = state.sequence[state.current];
+						const moved = arr.splice(fromIdx, 1)[0];
+						arr.splice(toIdx, 0, moved);
+
+						// 다시 렌더링하여 data-idx 재부여
+						render();
+					});
+					el.addEventListener('dragend', () => {
+						dragEl = null;
+						$list.querySelectorAll('.drag-item').forEach(x => x.classList.remove('drag-over'));
+					});
+				});
+				return;
+			}
+
+			// fallback
+			$dynamic.innerHTML = `<div class="muted">이 문항 타입은 아직 구성되지 않았습니다.</div>`;
 		}
 
 		function check() {
-			const q = qs[state.current];
-			if (!q) return;
-
+			const q = qs[state.current]; if (!q) return;
 			let allAnswered = true;
 
-			if (q.statements) {
-				const picks = state.picksYN[state.current];
+			if (q.statements && q.options) {
+				const picks = state.yn[state.current];
 				q.statements.forEach((_, idx) => {
 					const res = document.getElementById(`res-${idx}`);
-					if (picks[idx] == null) {
-						res.textContent = "선택하지 않았어요.";
-						res.className = "result";
-						allAnswered = false;
-						return;
-					}
+					if (picks[idx] == null) { res.textContent = "선택하지 않았어요."; res.className = "result"; allAnswered = false; return; }
 					const ok = picks[idx] === q.correctAnswers[idx];
 					res.textContent = ok ? "정답!" : `오답. 정답: ${q.correctAnswers[idx]}`;
 					res.className = "result " + (ok ? "ok" : "bad");
 				});
-			} else if (q.pairLabels) {
-				const picks = state.picksPair[state.current];
+			} else if (q.pairLabels && q.pairOptions) {
+				const picks = state.pair[state.current];
 				q.pairLabels.forEach((_, idx) => {
 					const res = document.getElementById(`res-${idx}`);
-					if (!picks[idx]) {
-						res.textContent = "선택하지 않았어요.";
-						res.className = "result";
-						allAnswered = false;
-						return;
-					}
+					if (!picks[idx]) { res.textContent = "선택하지 않았어요."; res.className = "result"; allAnswered = false; return; }
 					const ok = picks[idx] === q.pairAnswer[idx];
 					res.textContent = ok ? "정답!" : `오답. 정답: ${q.pairAnswer[idx]}`;
 					res.className = "result " + (ok ? "ok" : "bad");
 				});
+			} else if (q.type === "single" && q.options) {
+				const res = document.getElementById('res-0');
+				const pick = state.single[state.current] || "";
+				if (!pick) { res.textContent = "선택하지 않았어요."; res.className = "result"; allAnswered = false; }
+				else {
+					const ok = q.correctAnswers.includes(pick);
+					res.textContent = ok ? "정답!" : `오답. 정답: ${q.correctAnswers.join(", ")}`;
+					res.className = "result " + (ok ? "ok" : "bad");
+				}
+			} else if (q.type === "multi") {
+				const res = document.getElementById('res-0');
+				const picks = Array.from(state.multi[state.current] || []);
+				if (picks.length === 0) { res.textContent = "선택하지 않았어요."; res.className = "result"; allAnswered = false; }
+				else {
+					const ans = new Set(q.multiAnswer || q.correctAnswers || []);
+					const pk = new Set(picks);
+					const ok = picks.length === ans.size && picks.every(x => ans.has(x));
+					res.textContent = ok ? "정답!" : `오답. 정답: ${Array.from(ans).join(", ")}`;
+					res.className = "result " + (ok ? "ok" : "bad");
+				}
+			} else if (q.type === "sequence") {
+				const res = document.getElementById('res-0');
+				const curr = state.sequence[state.current] || [];
+				const ans = q.sequenceAnswer || [];
+				if (curr.length === 0) { res.textContent = "순서를 정하지 않았어요."; res.className = "result"; allAnswered = false; }
+				else {
+					const ok = ans.length > 0 && curr.slice(0, ans.length).every((x, i) => x === ans[i]);
+					res.textContent = ok ? "정답!" : `오답. 정답 순서: ${ans.join(" → ")}`;
+					res.className = "result " + (ok ? "ok" : "bad");
+				}
 			}
 
 			if (q.explanationHtml && allAnswered) {
 				$ex.innerHTML = q.explanationHtml;
 				$ex.style.display = "block";
-			} else {
+			} else if (q.explanationHtml && !allAnswered) {
 				$ex.style.display = "none";
 				$ex.innerHTML = "";
 			}
@@ -324,16 +499,17 @@
 
 		function resetCurrent() {
 			const q = qs[state.current];
-			if (q?.statements) state.picksYN[state.current] = new Array(q.statements.length).fill(null);
-			if (q?.pairLabels) state.picksPair[state.current] = new Array(q.pairLabels.length).fill("");
-			$ex.style.display = "none";
-			$ex.innerHTML = "";
+			if (q?.statements) state.yn[state.current] = new Array(q.statements.length).fill(null);
+			if (q?.pairLabels) state.pair[state.current] = new Array(q.pairLabels.length).fill("");
+			if (q?.type === "single") state.single[state.current] = "";
+			if (q?.type === "multi") state.multi[state.current] = new Set();
+			if (q?.type === "sequence") state.sequence[state.current] = q.sequenceOptions ? q.sequenceOptions.slice() : [];
+			$ex.style.display = "none"; $ex.innerHTML = "";
 			render();
 		}
 
 		function goto(offset) {
-			const n = qs.length;
-			if (n === 0) return;
+			const n = qs.length; if (n === 0) return;
 			state.current = (state.current + offset + n) % n;
 			$sel.value = String(state.current);
 			render();
@@ -341,18 +517,36 @@
 
 		document.addEventListener('click', (e) => {
 			const t = e.target;
+
 			if (t.matches('button.choice')) {
 				const type = t.getAttribute('data-type');
-				const idx = Number(t.getAttribute('data-idx'));
-				const opt = t.getAttribute('data-opt');
 				if (type === 'yn') {
-					const picks = state.picksYN[state.current];
+					const idx = Number(t.getAttribute('data-idx'));
+					const opt = t.getAttribute('data-opt');
+					const picks = state.yn[state.current];
 					picks[idx] = opt;
+					// toggle active for this idx
 					document.querySelectorAll(`button.choice[data-idx="${idx}"]`).forEach(btn => {
 						btn.classList.toggle('active', btn.getAttribute('data-opt') === opt);
 					});
 				}
+				if (type === 'single') {
+					const opt = t.getAttribute('data-opt');
+					state.single[state.current] = opt;
+					// reset actives
+					document.querySelectorAll('button.choice[data-type="single"]').forEach(btn => {
+						btn.classList.toggle('active', btn.getAttribute('data-opt') === opt);
+					});
+				}
+				if (type === 'multi') {
+					const opt = t.getAttribute('data-opt');
+					const set = state.multi[state.current] || new Set();
+					if (set.has(opt)) set.delete(opt); else set.add(opt);
+					state.multi[state.current] = set;
+					t.classList.toggle('active');
+				}
 			}
+
 			if (t.id === 'check') check();
 			if (t.id === 'reset') resetCurrent();
 			if (t.id === 'prev') goto(-1);
@@ -361,14 +555,11 @@
 
 		document.addEventListener('change', (e) => {
 			const t = e.target;
-			if (t.id === 'qsel') {
-				state.current = Number(t.value);
-				render();
-			}
+			if (t.id === 'qsel') { state.current = Number(t.value); render(); }
 			if (t.matches('select[data-type="pair"]')) {
 				const idx = Number(t.getAttribute('data-idx'));
-				const picks = state.picksPair[state.current];
-				picks[idx] = t.value;
+				const picks = state.pair[state.current] || [];
+				picks[idx] = t.value; state.pair[state.current] = picks;
 			}
 		});
 
@@ -377,8 +568,7 @@
 			if (e.key === 'ArrowRight') goto(+1);
 		});
 
-		initSelect();
-		render();
+		initSelect(); render();
 	</script>
 </body>
 
