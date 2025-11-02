@@ -135,7 +135,8 @@
 		.bar {
 			display: flex;
 			gap: 8px;
-			margin-top: 16px
+			margin-top: 16px;
+			flex-wrap: wrap
 		}
 
 		.action {
@@ -195,6 +196,8 @@
 				<section id="explanation" class="prompt" style="display:none;"></section>
 
 				<div class="bar">
+					<button id="prev" class="action">이전</button>
+					<button id="next" class="action">다음</button>
 					<button id="check" class="action primary">정답 확인</button>
 					<button id="reset" class="action">초기화</button>
 				</div>
@@ -213,11 +216,10 @@
 		const $dynamic = document.getElementById('dynamic');
 		const $ex = document.getElementById('explanation');
 
-		// 상태
 		let state = {
 			current: 0,
-			picksYN: [],     // Q39용
-			picksPair: []    // Q49용
+			picksYN: [],
+			picksPair: []
 		};
 
 		function initSelect() {
@@ -233,12 +235,10 @@
 			$title.textContent = `Question ${q.id} — ${q.title}`;
 			$prompt.innerHTML = q.promptHtml;
 
-			// 새 문제를 보여줄 때는 해설 숨김
 			$ex.style.display = "none";
 			$ex.innerHTML = "";
 
 			if (q.statements) {
-				// Yes/No형
 				if (!state.picksYN[state.current]) state.picksYN[state.current] = new Array(q.statements.length).fill(null);
 				const picks = state.picksYN[state.current];
 				$dynamic.innerHTML = q.statements.map((text, idx) => `
@@ -256,7 +256,6 @@
           </div>
         `).join('');
 			} else if (q.pairLabels) {
-				// 페어 매칭형
 				if (!state.picksPair[state.current]) state.picksPair[state.current] = new Array(q.pairLabels.length).fill("");
 				const picks = state.picksPair[state.current];
 				$dynamic.innerHTML = q.pairLabels.map((label, idx) => `
@@ -314,7 +313,6 @@
 				});
 			}
 
-			// 모두 답했을 때 해설 노출
 			if (q.explanationHtml && allAnswered) {
 				$ex.innerHTML = q.explanationHtml;
 				$ex.style.display = "block";
@@ -333,7 +331,14 @@
 			render();
 		}
 
-		// 이벤트
+		function goto(offset) {
+			const n = qs.length;
+			if (n === 0) return;
+			state.current = (state.current + offset + n) % n;
+			$sel.value = String(state.current);
+			render();
+		}
+
 		document.addEventListener('click', (e) => {
 			const t = e.target;
 			if (t.matches('button.choice')) {
@@ -343,7 +348,6 @@
 				if (type === 'yn') {
 					const picks = state.picksYN[state.current];
 					picks[idx] = opt;
-					// 같은 문장 내 버튼 활성화 토글
 					document.querySelectorAll(`button.choice[data-idx="${idx}"]`).forEach(btn => {
 						btn.classList.toggle('active', btn.getAttribute('data-opt') === opt);
 					});
@@ -351,6 +355,8 @@
 			}
 			if (t.id === 'check') check();
 			if (t.id === 'reset') resetCurrent();
+			if (t.id === 'prev') goto(-1);
+			if (t.id === 'next') goto(+1);
 		});
 
 		document.addEventListener('change', (e) => {
@@ -366,7 +372,11 @@
 			}
 		});
 
-		// 초기화
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowLeft') goto(-1);
+			if (e.key === 'ArrowRight') goto(+1);
+		});
+
 		initSelect();
 		render();
 	</script>

@@ -1,10 +1,9 @@
-﻿// 외부 CDN의 "직접 이미지 링크"로 교체하세요.
-// 39번
-const IMG_SRC_39 = "https://i.imgur.com/wDHuHAe.png"; // 예: https://i.imgur.com/abc123.png
+﻿// 외부 CDN "직접 이미지 링크"로 교체하세요.
+const IMG_SRC_39 = "https://i.imgur.com/wDHuHAe.png";
 
 // 49번: 표 이미지와 보기 이미지 분리
-const IMG_SRC_49_TABLE = "https://i.imgur.com/yourTable.png"; // 예: https://i.imgur.com/tableImg.png
-const IMG_SRC_49_CHOICES = "https://i.imgur.com/yourChoices.png"; // 예: https://i.imgur.com/choicesImg.png
+const IMG_SRC_49_TABLE = "https://i.imgur.com/yourTable.png";
+const IMG_SRC_49_CHOICES = "https://i.imgur.com/yourChoices.png";
 
 window.questions = [
     {
@@ -79,7 +78,7 @@ window.questions = [
       <ul>
         <li><strong>Group1</strong>: 서비스 요청 관리, 구독 관리, 구매 등 → <strong>Billing Administrator</strong>가 최소 권한으로 충족.</li>
         <li><strong>Group2</strong>: 사용자 및 그룹 추가, 라이선스 할당, 비밀번호 정책 → <strong>User Administrator</strong>가 적합.</li>
-        <li>Global Administrator는 최소 권한 원칙에 어긋나므로 불필요.</li>
+        <li>Global Administrator는 최소 권한 원칙에 어긋남.</li>
       </ul>
     `
     }
