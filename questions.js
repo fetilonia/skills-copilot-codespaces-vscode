@@ -30,6 +30,26 @@ const IMG_Q54 = "https://i.imgur.com/gWdaJgo.png";
 const IMG_Q58 = "https://i.imgur.com/DwKQvCU.png"; // 58번 스팸 정책/관리자 화면 등
 const IMG_Q59a = "https://i.imgur.com/G7ufBzA.png"; // 59번 Org settings 스크린샷 등
 const IMG_Q59b = "https://i.imgur.com/SN7FsqZ.png"; // 59번 Org settings 스크린샷 등
+const IMG_Q64_1 = "https://i.imgur.com/FGbKv7q.png"; // Compliance policies table (exhibit)
+const IMG_Q64_2 = "https://i.imgur.com/LExblKQ.png"; // Devices table (exhibit)
+const IMG_Q64_3 = "https://i.imgur.com/kEjkhli.png";
+const IMG_Q65_1 = "https://i.imgur.com/2lo8HuW.png"; // Policy priority/group exhibit
+const IMG_Q65_2 = "https://i.imgur.com/a4QK2Jh.png"; // Users/groups exhibit
+const IMG_Q65_3 = "https://i.imgur.com/4P6D6lP.png"; // Yes/No matrix (if any)
+const IMG_Q66_1 = "https://i.imgur.com/0maCayx.png"; // If an exhibit was provided for schedule/result
+const IMG_Q66_2 = "https://i.imgur.com/vqZcWez.png"; // If an exhibit was provided for schedule/result
+const IMG_Q66_3 = "https://i.imgur.com/kOeLEf5.png"; // If an exhibit was provided for schedule/result
+const IMG_Q67_1 = "https://i.imgur.com/oGgOwIk.png"; // Devices table (Windows, Android, macOS, iOS)
+const IMG_Q70_1 = "https://i.imgur.com/wl8u51E.png"; // Policy table exhibit
+const IMG_Q71_1 = "https://i.imgur.com/JIV3kaK.png"; // Data Transfer settings exhibit
+const IMG_Q71_2 = "https://i.imgur.com/TqtkMz7.png"; // Data Transfer settings exhibit
+const IMG_Q72_1 = "https://i.imgur.com/EoPbood.png"; // Groups table exhibit
+const IMG_Q74_1 = "https://i.imgur.com/avQoatk.png"; // (optional) choices screenshot
+const IMG_Q75_1 = "https://i.imgur.com/0o0XK9b.png"; // Users table exhibit
+const IMG_Q75_2 = "https://i.imgur.com/0BcwbUV.png"; // Tenant/domain exhibit
+const IMG_Q77_1 = "https://i.imgur.com/0nT5nYU.png"; // (optional) policies page
+const IMG_Q78_1 = "https://i.imgur.com/ofEpUDO.png"; // Users tables exhibit
+const IMG_Q78_2 = "https://i.imgur.com/CoD4SdY.png"; // Users tables exhibit
 
 
 
@@ -1398,6 +1418,7 @@ window.questions = [
       ${IMG_Q64_1 ? `<p><img src="${IMG_Q64_1}" referrerpolicy="no-referrer" style="max-width:100%"></p>` : ""}
       ${IMG_Q64_2 ? `<p><img src="${IMG_Q64_2}" referrerpolicy="no-referrer" style="max-width:100%"></p>` : ""}
       <p>For each of the following statements, select <strong>Yes</strong> if the statement is true. Otherwise, select <strong>No.</strong> (Each correct selection is worth one point.)</p>
+      ${IMG_Q64_3 ? `<p><img src="${IMG_Q64_3}" referrerpolicy="no-referrer" style="max-width:100%"></p>` : ""}
     `,
         statements: [
             "Device1 is marked as compliant.",
@@ -1446,8 +1467,13 @@ window.questions = [
         title: "앱 배포 결과: 설치/표시 여부 판단",
         promptHtml: `
       <p><strong>Original English Question</strong><br>
-      Given group assignments for three Microsoft 365 Apps (Word required to Group1, Excel required to Group2, PowerPoint available to Group1), with <strong>User1 ∈ Group1</strong> and <strong>Device1 ∈ Group2</strong> (User1 is the owner of Device1). On Thursday, review the deployment results. Select Yes/No for each statement.</p>
+      You have a Microsoft 365 E5 subscription that uses Microsoft intune. The subscription contains the resources shown in the following table.<br>
       ${IMG_Q66_1 ? `<p><img src="${IMG_Q66_1}" style="max-width:100%"></p>` : ""}
+      User1 is the owner of Device1. IT Certification Guaranteed, The Easy Way!  You add Microsoft 365 Apps Windows 10 and later app types to Intune as shown in the following table.<br>
+      ${IMG_Q66_2 ? `<p><img src="${IMG_Q66_2}" style="max-width:100%"></p>` : ""}
+      On Thursday, you review the results of the app deployments.
+      ${IMG_Q66_3 ? `<p><img src="${IMG_Q66_3}" style="max-width:100%"></p>` : ""}
+      </p>
     `,
         statements: [
             "Word is installed on Device1.",
@@ -1520,7 +1546,6 @@ window.questions = [
       You have a Microsoft 365 E5 subscription.<br>
       You need to create <strong>Conditional Access</strong> policies to meet the following requirements: (five items listed).<br>
       What is the <strong>minimum number of Conditional Access policies</strong> required?</p>
-      ${IMG_Q69_1 ? `<p><img src="${IMG_Q69_1}" style="max-width:100%"></p>` : ""}
     `,
         type: "single",
         options: ["A. 3", "B. 4", "C. 5", "D. 6", "E. 7", "F. 8"],
@@ -1565,8 +1590,9 @@ window.questions = [
       <p><strong>Original English Question</strong><br>
       You create an Android app protection policy named <strong>Policy1</strong>, targeted to all Microsoft apps and assigned to all users.<br>
       Policy1 has the <strong>Data Transfer</strong> settings shown in the exhibit.<br>
-      Use the drop-down menus to complete each statement based on the information presented.</p>
       ${IMG_Q71_1 ? `<p><img src="${IMG_Q71_1}" style="max-width:100%"></p>` : ""}
+      Use the drop-down menus to complete each statement based on the information presented.</p>
+      ${IMG_Q71_2 ? `<p><img src="${IMG_Q71_2}" style="max-width:100%"></p>` : ""}
     `,
         type: "pair",
         pairLabels: [
@@ -1625,7 +1651,6 @@ window.questions = [
       You have a Microsoft 365 subscription.<br>
       You need to identify which administrative users performed <strong>eDiscovery searches</strong> during the past week.<br>
       What should you do from the <strong>Security &amp; Compliance admin center</strong>?</p>
-      ${IMG_Q73_1 ? `<p><img src="${IMG_Q73_1}" style="max-width:100%"></p>` : ""}
     `,
         type: "single",
         options: [
@@ -1677,13 +1702,13 @@ window.questions = [
       <p><strong>Original English Question</strong><br>
       Your network contains an on-premises Active Directory domain named <strong>contoso.com</strong>.<br>
       The domain contains the users shown in the table. [Exhibit]<br>
+      ${IMG_Q75_1 ? `<p><img src="${IMG_Q75_1}" style="max-width:100%"></p>` : ""}
       The domain syncs to an Azure AD tenant named <strong>contoso.com</strong> (as shown in the exhibit). [Exhibit]<br>
+      ${IMG_Q75_2 ? `<p><img src="${IMG_Q75_2}" style="max-width:100%"></p>` : ""}
       User2 fails to authenticate to Azure AD when signing in as <strong>user2@fabrikam.com</strong>.<br>
       You need to ensure that User2 can access Azure AD resources.<br>
       <strong>Solution:</strong> From the on-premises Active Directory domain, set User2’s <strong>UPN suffix</strong> to <strong>@contoso.com</strong>, and instruct User2 to sign in as <strong>user2@contoso.com</strong>.<br>
       Does this meet the goal?</p>
-      ${IMG_Q75_1 ? `<p><img src="${IMG_Q75_1}" style="max-width:100%"></p>` : ""}
-      ${IMG_Q75_2 ? `<p><img src="${IMG_Q75_2}" style="max-width:100%"></p>` : ""}
     `,
         type: "single",
         options: ["A. Yes", "B. No"],
@@ -1705,7 +1730,6 @@ window.questions = [
       You need to recommend a solution to <strong>educate users</strong> on topics related to <strong>social engineering risks</strong>.<br>
       The users must receive a <strong>weekly reminder</strong> to complete a learning task.<br>
       What should you use in the Microsoft Defender portal?</p>
-      ${IMG_Q76_1 ? `<p><img src="${IMG_Q76_1}" style="max-width:100%"></p>` : ""}
     `,
         type: "single",
         options: ["A. Campaigns", "B. Attack simulation training", "C. Threat tracker", "D. Learning hub"],
@@ -1752,13 +1776,11 @@ window.questions = [
         title: "Azure AD Connect 동기화 시 사용자 매핑 판별",
         promptHtml: `
       <p><strong>Original English Question</strong><br>
-      Your network contains an AD DS domain. The domain contains users as shown in the table. You have a Microsoft 365 subscription that contains the following user accounts:<br>
-      <em>(Exhibits show DistinguishedName, UPN, Email columns.)</em><br>
-      <strong>Statements</strong><br>
-      - User1 syncs with user1@contoso.com.<br>
-      - User2 syncs with user2@contoso.com.<br>
-      - User3 is created as a new user in Microsoft 365.</p>
+      Your network contains an Active Directory Domain Services (AD DS) domain. The domain contains a server named Server1 that runs Windows Server.</br>
+      The domain contains the users shown in the following table.<br>
       ${IMG_Q78_1 ? `<p><img src="${IMG_Q78_1}" style="max-width:100%"></p>` : ""}
+      You have a Microsoft 365 subscription that contains the following user accounts
+      ${IMG_Q78_2 ? `<p><img src="${IMG_Q78_2}" style="max-width:100%"></p>` : ""}
     `,
         statements: [
             "User1 syncs with user1@contoso.com.",
@@ -1785,7 +1807,6 @@ window.questions = [
       Only 200 vendors receive the email message, and User1 is blocked from sending email until the next day.<br>
       You need to prevent this issue from reoccurring.<br>
       What should you configure?</p>
-      ${IMG_Q79_1 ? `<p><img src="${IMG_Q79_1}" style="max-width:100%"></p>` : ""}
     `,
         type: "single",
         options: [
@@ -1813,7 +1834,6 @@ window.questions = [
       You need to ensure that User1 is assigned the required role to <strong>create file policies and manage alerts</strong> in the <strong>Cloud App Security admin center</strong>.<br>
       <strong>Solution:</strong> From the Azure Active Directory admin center, you assign the <strong>Compliance Administrator</strong> role to User1.<br>
       Does this meet the goal?</p>
-      ${IMG_Q80_1 ? `<p><img src="${IMG_Q80_1}" style="max-width:100%"></p>` : ""}
     `,
         type: "single",
         options: ["A. Yes", "B. No"],
