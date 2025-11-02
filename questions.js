@@ -1,6 +1,6 @@
 ﻿// ./questions.js
 // 예: Cloudinary/Imgur/jsDelivr 등 외부 CDN의 정적 이미지 URL
-const IMG_SRC = "https://your-cdn.example.com/path/to/q39.png";
+const IMG_SRC = "https://i.imgur.com/wDHuHAe.png";
 // 예시들:
 // const IMG_SRC = "https://i.imgur.com/yourImageId.png";
 // const IMG_SRC = "https://cdn.jsdelivr.net/gh/<user>/<repo>@main/assets/q39.png";
