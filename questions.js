@@ -3719,7 +3719,7 @@ window.questions = [
     `,
         type: "single",
         options: [
-            "A. Enable zero-hour auto purge (ZAP).",
+            "A. Enable zero-hour auto purge (ZAP)",
             "B. Modify the common attachments filter.",
             "C. Configure a quarantine policy.",
             "D. Enable enhanced filtering."
