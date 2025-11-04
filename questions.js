@@ -1,6 +1,7 @@
 ﻿// questions.js (batch 1–10)
 // 이미지가 필요한 문제의 경우, i.imgur.com 등의 "직접 이미지 링크"로 교체하세요.
 const IMG_Q2_1 = "https://i.imgur.com/XjDrp3h.png";   // https://www.notion.so/29adbd591ead802a836bd45d47be7082에 표시된 이미지 1[^]
+const IMG_Q8_1 = "https://i.imgur.com/hbrJ45l.png"
 const IMG_Q6_1 = "https://i.imgur.com/ayPIsLw.png";     //  표 이미지[^]
 const IMG_Q7_1 = "https://i.imgur.com/xmXtPD1.png";     //  스크린샷[^]
 const IMG_Q12_1 = "https://i.imgur.com/LAipH86.png"; // 조건부 액세스 추가 설정 스크린샷[^‣]
@@ -369,6 +370,7 @@ window.questions = [
     title: "DEM 1인당 1,000대 → 최소 인원 산출",
     promptHtml: `
       <p>You need to ensure that the support technicians can meet the technical requirement for the Montreal office mobile devices.<br>
+      ${IMG_Q7_1 ? `<p><img src="${IMG_Q7_1}" style="max-width:100%"></p>` : ""}
       What is the minimum of dedicated support technicians required?</p>
     `,
     type: "single",
@@ -2381,7 +2383,7 @@ window.questions = [
     title: "Security Baseline 프로필 할당 가능한 그룹 유형 식별",
     promptHtml: `
       <p> You have a Microsoft 365 tenant that contains the groups shown in the following table.<br>
-      ${IMG_Q71_1 ? `<p><img src="${IMG_Q71_1}" style="max-width:100%"></p>` : ""}
+      ${IMG_Q72_1 ? `<p><img src="${IMG_Q72_1}" style="max-width:100%"></p>` : ""}
       You plan to create a new Windows 10 Security Baseline profile.<br>
       To which groups can you assign to the profile?</p>
     `,
@@ -3294,9 +3296,9 @@ window.questions = [
     `,
     type: "statements",
     statements: [
-      "Device1 → Yes",
-      "Computer1 → No",
-      "Device3 → Yes"
+      "If a high-severity incidient is triggered for Dvice1, an incident email notification will be sent.",
+      "If a low-severity incident is triggered for Computer1, an incident notification email will be sent.",
+      "If a low-secerity incident is triggered for Device3, an incident notification email will be sent."
     ],
     options: ["Yes", "No"],
     correctAnswers: ["Yes", "No", "Yes"],
@@ -3443,14 +3445,22 @@ window.questions = [
       need to drag the split bar between panes or scroll to view content.</p>
       ${IMG_Q110_1 ? `<p><img src="${IMG_Q110_1}" style="max-width:100%"></p>` : ""}
     `,
-    type: "single",
-    options: [
-      "Message delivered with tip only",
-      "Message blocked only",
-      "Policy tip only",
-      "Both The email will be blocked, and the user will receive the policy tip: Message blocked."
+    type: "pair",
+    pairLabels: [
+      "When the user sends an email that contains financial data and health records:",
+      "When the user sends an email that contains only financial data:"
     ],
-    correctAnswers: ["Both The email will be blocked, and the user will receive the policy tip: Message blocked."],
+    pairOptions: [
+      "The email will be blocked, and the user will receive the policy tip: Message blocked.",
+      "The email will be blocked, and the user will receive the policy tip: Message contains sensitive data.",
+      "The email will be allowed, and the user will receive the policy tip: Message blocked.",
+      "The email will be allowed, and the user will receive the policy tip: Message contains sensitive data.",
+      "The email  will be allowed, and a message policy tip: will NOT be displayed."
+    ],
+    pairAnswer: [
+      "The email will be blocked, and the user will receive the policy tip: Message blocked.",
+      "The email will be blocked, and the user will receive the policy tip: Message blocked."
+    ],
     explanationHtml: `
       <h3>Explanation</h3>
       <p>메일 흐름 규칙과 DLP는 서로 다른 엔진으로 동작하지만, 결과적으로 더 제한적인 조치가 우선합니다.</p>
@@ -3464,17 +3474,19 @@ window.questions = [
     id: 111,
     title: "도메인 상태별 UPN 사용 가능 도메인",
     promptHtml: `
-      <p>You must determine which domain suffixes can be used for new users based on domain health/verification status.</p>
+      <p>You have a Microsoft 365 subscription that contains multiple domains.<br>
+      You need to determine which domain name suffixes can be used when creating new users.<br>
+      Available options include combinations of *onmicrosoft.com*, *subdomains*, and *custom verified domains*.</p>
       ${IMG_Q111_1 ? `<p><img src="${IMG_Q111_1}" style="max-width:100%"></p>` : ""}
     `,
     type: "single",
     options: [
-      "A. only contoso.com",
-      "B. only contoso.com and Sub2.contoso221018.onmicrosoft.com",
-      "C. any federated domain",
-      "D. fabrikam.com"
+      "A. only Sub1.contoso221018.onmicrosoft.com",
+      "B. only contoso.com and Sub1.contoso221018.onmicrosoft.com",
+      "C. only contoso221018.onmicrosoft.com, Sub.contoso221018.onmicrosoft.com, and Sub2.contoso221018.onmicrosoft.com"
+      "D. all the domains in the subscription"
     ],
-    correctAnswers: ["B. only contoso.com and Sub2.contoso221018.onmicrosoft.com"],
+    correctAnswers: ["B. onlycontoso.com and Sub1.contoso221018.onmicrosoft.com"],
     explanationHtml: `
       <h3>Explanation</h3>
       <p>UPN에 사용하려면 verified 혹은 기본(onmicrosoft.com) 도메인이어야 합니다.</p>
@@ -5400,6 +5412,26 @@ window.questions = [
       <p>동기화 로그와 Connect Health로 결과를 검증하는 것이 좋습니다.</p>
       <p><a href="https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-configure-filtering">Azure AD Connect: Configure filtering</a></p>
     `
+  },{
+    id: 171,
+    title: "자동 온보딩 조건",
+    promptHtml: `
+    <p>You have a Microsoft J65 E5 subscription.<br>
+    You integrate Microsoft Defender for Endpoint with Microsoft Intune.<br>
+    You need to ensure that devices automatically onboard to Defender for Endpoint when they are enrolled in Intune.<br>
+    Solution: You enable co-management.<br>
+    Does this meet the goal?</p>
+    `,
+    type: "single",
+    options: ["A. Yes", "B. No"],
+    correctAnswers: ["B. No"],,
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>이유: Co-management는 Intune 자동 온보딩 메커니즘이 아니며, 올바른 방법은 Intune의 Device configuration profile을 사용하는 것입니다.</p>
+      <p><a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-endpoint-intune">Microsoft Learn: Configure onboarding for Microsoft Defender for Endpoint with Intune</a></p>
+    `
   }
+  
 
 ] // ref: 
+
