@@ -156,11 +156,22 @@ const IMG_Q165_1 = "https://i.imgur.com/i0BK4p7.png"; // Users/roles + RBAC enab
 const IMG_Q165_2 = "https://i.imgur.com/UUVcs4g.png"; // Users/roles + RBAC enable UI exhibit
 const IMG_Q169_1 = "https://i.imgur.com/N4bksRF.png";
 const IMG_Q169_2 = "https://i.imgur.com/Oxaz4Co.png";
-const IMG_Q170_1 = "https://i.imgur.com/686bwxi.png"; // Users/Groups/OU filtering exhibits
-const IMG_Q170_2 = "https://i.imgur.com/W6RwvBG.png"; // Users/Groups/OU filtering exhibits
-const IMG_Q170_3 = "https://i.imgur.com/4FF31Nu.png"; // Users/Groups/OU filtering exhibits
-const IMG_Q170_4 = "https://i.imgur.com/d4nJ6aX.png"; // Users/Groups/OU filtering exhibits
-const IMG_Q170_5 = "https://i.imgur.com/fMbDpBo.png"; // Users/Groups/OU filtering exhibits
+const IMG_Q170_1 = "https://i.imgur.com/686bwxi.png"; 
+const IMG_Q170_2 = "https://i.imgur.com/W6RwvBG.png"; 
+const IMG_Q170_3 = "https://i.imgur.com/4FF31Nu.png"; 
+const IMG_Q170_4 = "https://i.imgur.com/d4nJ6aX.png"; 
+const IMG_Q170_5 = "https://i.imgur.com/fMbDpBo.png"; 
+const IMG_Q173_1 = "https://i.imgur.com/BEVZSIA.png"; 
+const IMG_Q175_1 = "https://i.imgur.com/aWZu5ek.png"; 
+const IMG_Q177_1 = "https://i.imgur.com/lt6rbNu.png"; 
+const IMG_Q180_1 = "https://i.imgur.com/kjq8jSA.png"; 
+const IMG_Q180_2 = "https://i.imgur.com/gxPYKfH.png"; 
+const IMG_Q181_1 = "https://i.imgur.com/PhCVJHE.png"; 
+const IMG_Q182_1 = "https://i.imgur.com/5sJ9Kd0.png"; 
+const IMG_Q183_1 = "https://i.imgur.com/Kebqh3U.png"; 
+const IMG_Q184_1 = "https://i.imgur.com/pIFvGOq.png"; 
+const IMG_Q185_1 = "https://i.imgur.com/AyWuNCF.png"; 
+
 
 // 공통 헬퍼
 function choicePromptHtml(stem, img = null) {
@@ -5412,7 +5423,8 @@ window.questions = [
       <p>동기화 로그와 Connect Health로 결과를 검증하는 것이 좋습니다.</p>
       <p><a href="https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-configure-filtering">Azure AD Connect: Configure filtering</a></p>
     `
-  },{
+  },
+  {
     id: 171,
     title: "자동 온보딩 조건",
     promptHtml: `
@@ -5430,8 +5442,637 @@ window.questions = [
       <p>이유: Co-management는 Intune 자동 온보딩 메커니즘이 아니며, 올바른 방법은 Intune의 Device configuration profile을 사용하는 것입니다.</p>
       <p><a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-endpoint-intune">Microsoft Learn: Configure onboarding for Microsoft Defender for Endpoint with Intune</a></p>
     `
+  },
+    // 172
+  {
+    id: 172,
+    title: "PII 문서 식별 및 보고",
+    promptHtml: `
+      <p>You plan to implement Microsoft Purview policies to meet the following requirements:<br>
+      Identify documents that are stored in Microsoft Teams and SharePoint that contain Personally Identifiable Information (PII).<br>
+      Report on shared documents that contain PII.<br>
+      What should you create?</p>
+    `,
+    type: "single",
+    options: [
+      "A. a data loss prevention (DLP) policy",
+      "B. a retention policy",
+      "C. a sensitivity label policy",
+      "D. a supervision policy"
+    ],
+    correctAnswers: ["A. a data loss prevention (DLP) policy"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>DLP 정책은 미리 정의된 민감 정보 유형(SIT)을 사용해 PII가 포함된 콘텐츠를 탐지하고 정책 팁, 경고, 보고를 제공합니다.</p>
+      <p>Exchange, SharePoint, OneDrive, Teams 등 여러 위치에서 일관된 감지를 수행할 수 있습니다.</p>
+      <p>감사/경보와 결합하면 탐지 내역을 추적하고 대응 흐름을 만들 수 있습니다.</p>
+      <p>보존 정책은 보관/삭제 수명주기 관리용이며 탐지/차단 목적이 아닙니다.</p>
+      <p>라벨은 분류/보호에 초점으로, PII 보고와 직접 일치하지 않습니다.</p>
+      <p><a href="https://www.notion.so/29edbd591ead8056b27cfcbb48aac914">Create DLP policies and use built-in sensitive info types</a></p>
+    `
+  },
+
+  // 173
+  {
+    id: 173,
+    title: "Service Health 조회 권한 부여",
+    promptHtml: `
+      <p>You have a Microsoft 365 subscription.<br>
+      You view the Service health Overview as shown in the following exhibit.</p>
+      ${IMG_Q173_1 ? `<p><img src="${IMG_Q173_1}" style="max-width:100%"></p>` : ""}
+      You need to ensure that a user named User1 can view the advisories to investigate service health issues.<br>
+      Which role should you assign to User1?</p>
+    `,
+    type: "single",
+    options: [
+      "A. Message Center Reader",
+      "B. Reports Reader",
+      "C. Service Support Administrator",
+      "D. Compliance Administrator"
+    ],
+    correctAnswers: ["C. Service Support Administrator"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>Service Support Administrator는 서비스 상태(Advisories, Incidents) 보기와 지원 요청 생성 권한을 보유합니다.</p>
+      <p>Message Center Reader는 변경 공지만, Reports Reader는 사용/활동 보고만 열람합니다.</p>
+      <p>규정 준수 관리자는 Purview 영역 권한으로 서비스 상태 열람과 다릅니다.</p>
+      <p>역할 부여 후 권한 전파까지 몇 분이 걸릴 수 있습니다.</p>
+      <p><a href="https://www.notion.so/29edbd591ead8083b82ac78141de45e7">About admin roles in Microsoft 365</a></p>
+    `
+  },
+
+  // 174
+  {
+    id: 174,
+    title: "자동 레이블링 정책 배포 전 단계",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 tenant.<br>
+      You create an auto-labeling policy to encrypt emails that contain a sensitive info type. You specify the locations where the policy will be applied.<br>
+      You need to deploy the policy.<br>
+      What should you do first?</p>
+    `,
+    type: "single",
+    options: [
+      "A. Review the sensitive information in Activity explorer",
+      "B. Turn on the policy",
+      "C. Run the policy in simulation mode",
+      "D. Configure Azure Information Protection analytics"
+    ],
+    correctAnswers: ["C. Run the policy in simulation mode"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>자동 레이블링을 바로 적용하면 대량의 문서에 즉시 영향이 발생할 수 있으므로 시뮬레이션 모드로 탐지 결과를 먼저 검증합니다.</p>
+      <p>시뮬레이션은 라벨·규칙이 정확한지, 과잉 라벨링이 없는지 확인하는 안전한 방법입니다.</p>
+      <p>검증 후 Enforce로 전환해 실제 라벨을 적용합니다.</p>
+      <p>라벨 발행이나 분류기 학습은 전제 조건일 수 있으나 강제 전 시뮬레이션이 권장 절차입니다.</p>
+      <p><a href="https://www.notion.so/29edbd591ead80b69f02fa006927c781">Auto-labeling policies — simulation mode</a></p>
+    `
+  },
+
+  // 175 — pair
+  {
+    id: 175,
+    title: "Co-management 지원을 위한 구성",
+    promptHtml: `
+      <p>Your on-premises network contains an Active Directory domain and a Microsoft Endpoint Configuration Manager site.<br>
+      You have a Microsoft 365 E5 subscription that uses Microsoft Intune.<br>
+      You use Azure AD Connect to sync user objects and group objects to Azure Directory (Azure AD) Password hash synchronization is disabled.<br>
+      You plan to implement co-management.<br>
+      You need to configure Azure AD Connect and the domain to support co-management.<br>
+      What should you do? To answer, select the appropriate options in the answer area.<br>
+      NOTE: Each correct selection is worth one point.</p>
+      ${IMG_Q175_1 ? `<p><img src="${IMG_Q175_1}" style="max-width:100%"></p>` : ""}
+    `,
+    type: "pair",
+    pairLabels: [
+      "To configure Azure AD Connect",
+      "To configure the domain"
+    ],
+    pairOptionsLeft: [
+      "Configure hybrid Azure AD join",
+      "enable device writeback",
+      "Enable password hash synchronization"
+    ],
+    pairOptionsRight: [
+      "Add an alternative UPN suffix",
+      "Register a service connection point(SCP)",
+      "Register a service principal Name(SPN)"
+    ],
+    pairAnswer: [
+      "Configure hybrid Azure AD join",
+      "Register a service connection point(SCP)"
+    ],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>공동 관리를 위해 도메인 장치를 하이브리드 Azure AD 조인 상태로 만들고, AAD Connect에서 SCP를 구성해야 합니다.</p>
+      <p>SCP는 장치가 Azure AD에 자신의 테넌트를 인지하도록 돕습니다.</p>
+      <p>단순 AAD 등록은 코매니지먼트 전제 조건을 충족하지 못합니다.</p>
+      <p>감사·디바이스 상태는 dsregcmd /status와 Intune 리포트로 검증하세요.</p>
+      <p><a href="https://www.notion.so/29edbd591ead80e6b4c3d3512825b256">Plan hybrid Azure AD join for co-management</a></p>
+    `
+  },
+
+  // 176
+  {
+    id: 176,
+    title: "사용자 메일함 활동 모니터링 설정",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 subscription.<br>
+      You need to use Microsoft Defender for Cloud Apps to monitor user mailbox activities.<br>
+      What should you do?</p>
+    `,
+    type: "single",
+    options: [
+      "A. Create an activity policy.",
+      "B. Enable mailbox audit logging.",
+      "C. Create an app connector for Microsoft 365.",
+      "D. Create an access policy."
+    ],
+    correctAnswers: ["C. Create an app connector for Microsoft 365"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>Defender for Cloud Apps(DCAS)에 Microsoft 365 앱 커넥터를 추가하면 Exchange/SharePoint/OneDrive 활동이 수집됩니다.</p>
+      <p>메일박스 감사는 감사 이벤트 저장을 위한 전제일 수 있으나 DCAS로 연동하려면 커넥터 구성이 필요합니다.</p>
+      <p>Safe Links나 보존 레이블은 탐지·수집과 목적이 다릅니다.</p>
+      <p>커넥터 연결 후 활동 정책/경고를 정의하여 이상 징후를 탐지하세요.</p>
+      <p><a href="https://www.notion.so/29edbd591ead80628bcfd9a07c42295a">Connect Microsoft 365 apps to Defender for Cloud Apps</a></p>
+    `
+  },
+
+  // 177
+  {
+    id: 177,
+    title: "Endpoint DLP 지원 플랫폼",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 subscription and use Microsoft Purview.<br>
+      The subscription contains the devices shown in the following table.<br>
+      ${IMG_Q177_1 ? `<p><img src="${IMG_Q177_1}" style="max-width:100%"></p>` : ""}
+      All the devices are onboarded to Microsoft Defender for Endpoint.<br>
+      You plan to deploy Endpoint data loss prevention (Endpoint DLP) policies.<br>
+      Which devices can be protected by using the DLP policies?</p>
+    `,
+    type: "single",
+    options: [
+      "A. Device1 only",
+      "B. Device1 and Device2 only",
+      "C. Device1, Device2, and Device 3 only",
+      "D. Device1, Device3, and Device 4 only",
+      "E. Device1, Device2, Device3, and Device4"
+    ],
+    correctAnswers: ["B. Device1 and Device2 only"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>Endpoint DLP는 Windows 10/11 및 macOS(Catalina 10.15+)를 지원합니다.</p>
+      <p>Linux는 현재 Endpoint DLP 대상이 아닙니다.</p>
+      <p>에이전트/신호 연결 요건과 브라우저 플러그인 정책을 함께 준비해야 합니다.</p>
+      <p>테넌트 연결(Defender 통합)과 롤아웃 범위를 점진적으로 늘리세요.</p>
+      <p><a href="https://www.notion.so/29edbd591ead80bc84dce07e6bd2d135">Endpoint DLP supported platforms</a></p>
+    `
+  },
+
+  // 178
+  {
+    id: 178,
+    title: "Intune 비활성 장치 자동 정리 최소 일수",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 subscription that uses Microsoft intune.<br>
+      in the Microsoft Endpoint Manager admin center, you discover many stale and inactive devices, <br>
+      You enable device clean-up rules What can you configure as the minimum number of days before a device a removed automatically?</p>
+    `,
+    type: "single",
+    options: [
+      "A. 10",
+      "B. 30",
+      "C. 45",
+      "D. 90"
+    ],
+    correctAnswers: ["B. 30"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>Intune의 자동 정리(Auto clean-up) 기능은 최소 30일 비활성 조건부터 설정이 가능합니다.</p>
+      <p>값을 너무 낮추면 일시적 비활성 장치도 삭제될 수 있어 주의해야 합니다.</p>
+      <p>삭제는 Intune 개체에 한하며 AAD 디바이스 삭제와 동기화 여부를 별도로 확인해야 합니다.</p>
+      <p>운영 환경에서 파일럿으로 영향 범위를 검증하세요.</p>
+      <p><a href="https://www.notion.so/29edbd591ead803ab6f2cca452e6ae51">Automatically delete stale devices in Intune</a></p>
+    `
+  },
+
+  // 179
+  {
+    id: 179,
+    title: "최근 30일간 사용된 클라우드 앱 식별",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 subscription that contains devices onboarded to Microsoft Defender for Endpoint.<br>
+      You integrate Microsoft Defender for Cloud Apps with Defender for Endpoint.<br>
+      You need identify which cloud apps and services were used most during the last 30 days What should you do?</p>
+    `,
+    type: "single",
+    options: [
+      "A. Generate a Cloud Discovery snapshot report.",
+      "B. Generate a monthly security summary report",
+      "C. Create a threat analytics alert notification.",
+      "D. Generate a Cloud Discovery executive report"
+    ],
+    correctAnswers: ["D. Generate a Cloud Discovery executive report"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>Defender for Cloud Apps의 Cloud Discovery executive report는 최근 30일 기준 앱 사용 요약을 제공합니다.</p>
+      <p>Shadow IT, 카테고리, 위험 등급 등을 한눈에 파악할 수 있습니다.</p>
+      <p>로그 수집 방식은 HTTP 로그 업로드 또는 네이티브 커넥터를 사용할 수 있습니다.</p>
+      <p>정책으로 위험 앱을 차단하거나 모니터링할 수 있습니다.</p>
+      <p><a href="https://www.notion.so/29edbd591ead80529ad4cbb00647e909">Cloud Discovery overview and executive report</a></p>
+    `
+  },
+
+  // 180 — pair
+  {
+    id: 180,
+    title: "Group1, Group4의 그룹 구성원 자격 판별",
+    promptHtml: `
+      <p> You have a Microsoft 365 E5 subscription that contains the groups shown in the following table.
+      ${IMG_Q180_1 ? `<p><img src="${IMG_Q180_1}" style="max-width:100%"></p>` : ""}
+      Which groups can be members of Group1 and Group4? To answer, select the appropriate options in the answer area.<br>
+      NOTE: Each correct selection is worth one point.</p>
+      ${IMG_Q180_2 ? `<p><img src="${IMG_Q180_2}" style="max-width:100%"></p>` : ""}
+    `,
+    type: "pair",
+    pairLabels: [
+      "Group1",
+      "Group4"
+    ],
+    pairOptionsLeft: [
+      "None of the groups",
+      "Group2 only",
+      "Group2 and Group4 only",
+      "Group2, Group4, Group5, and Group6 only",
+      "Group2, Group3, Group4, Group5, and Group6"
+    ],
+    pairOptionsRight: [
+      "None of the groups",
+      "Group5 only",
+      "Group3 and Group5 only",
+      "Group1, Group2, Group3, and Group5 only",
+      "Group1, Group2, Group3, Group5, and Group6"
+    ],
+    pairAnswer: [
+      "None",
+      "Group3, Group5"
+    ],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>표의 관계도를 해석하면 Group1은 다른 그룹의 멤버가 아니며, Group4는 Group3과 Group5의 멤버입니다.</p>
+      <p>그룹 중첩은 권한 전파에 영향을 주므로 최소 권한으로 설계해야 합니다.</p>
+      <p>동적 그룹은 규칙 평가 시 지연이 있을 수 있습니다.</p>
+      <p>정기적으로 멤버십 검토(Access review)를 수행하세요.</p>
+      <p><a href="https://www.notion.so/29edbd591ead80baa5e7c3a953353a8c">Evaluate group membership</a></p>
+    `
+  },
+
+  // 181 — pair
+  {
+    id: 181,
+    title: "민감 정보 유형 생성 및 워터마크 추가",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 subscription that contains a Microsoft SharePoint site named Sitel.<br>
+      You need to perform the following tasks:<br>
+      &nbsp;* Create a sensitive info type named SIT1 based on a regular expression.<br>
+      &nbsp;* Add a watermark to all new documents that are matched by SIT1.<br>
+      Which two settings should you use in the Microsoft Purview compliance portal? To answer, select the appropriate settings in the answer area.<br>
+      NOTE: Each correct selection is worth one point.</p>
+      ${IMG_Q181_1 ? `<p><img src="${IMG_Q181_1}" style="max-width:100%"></p>` : ""}
+    `,
+    type: "pair",
+    pairLabels: [
+      "Create SIT1",
+      "Add watermark"
+    ],
+    pairOptions: [
+      "Compliance Manager",
+      "Data classification",
+      "Data connectors",
+      "Reports",
+      "Catalog",
+      "App governance",
+      "Audit",
+      "Content search",
+      "Data loss prevention",
+      "eDiscovery",
+      "Data lifecycle management",
+      "Information protection",
+      "Information barriers",
+      "Insider risk management",
+      "Records management",
+      "Privacy risk management",
+      "Subject rights requests"
+    ],
+    pairAnswer: [
+      "Data classification",
+      "Information protection"
+    ],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>사용자 지정 민감 정보 유형은 Purview의 Data classification에서 생성/관리합니다.</p>
+      <p>워터마크/헤더/푸터는 민감도 레이블의 보호 설정으로, Information protection에서 구성합니다.</p>
+      <p>둘은 서로 다른 워크스페이스에 존재하므로 작업 위치를 구분해야 합니다.</p>
+      <p>새 SIT는 자동/수동 라벨링 규칙에서 조건으로 사용됩니다.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead804f93dde831ad609899">Create custom SIT and configure label content marking</a></p>
+    `
+  },
+
+  // 182 — pair
+  {
+    id: 182,
+    title: "파일 삭제 원인 식별용 필터 구성",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 subscription that contains a user named User1.<br>
+      User1 has a Windows 11 device named Device1 that is onboarded to Microsoft Defender for Endpoint.<br>
+      User1 reports that various files were deleted from Device1.<br>
+      You need to create a filter to identify which service deleted the files.<br>
+      Which settings should you configure, and which type of filter should you create in the Microsoft Defender portal? To answer, select the appropriate options in the answer area.<br>
+      NOTE: Each correct selection is worth one point.</p>
+      ${IMG_Q182_1 ? `<p><img src="${IMG_Q182_1}" style="max-width:100%"></p>` : ""}
+    `,
+    type: "pair",
+    pairLabels: [
+      "Settings",
+      "Filter type"
+    ],
+    pairOptionsLeft: [
+      "Devices",
+      "Identities",
+      "Threat analytics"
+    ],
+    pairOptionsRight: [
+      "Timeline for Device1",
+      "Activity log for User1",
+      "Attack surfaces"
+    ],
+    pairAnswer: [
+      "Devices",
+      "Timeline for Device1"
+    ],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>특정 디바이스에서 발생한 삭제 원인을 좁히려면 ‘Devices’ 뷰에서 해당 디바이스의 타임라인을 확인하는 것이 효과적입니다.</p>
+      <p>타임라인은 이벤트 순서를 시간축으로 보여주어 원인 행위를 추적하기 쉽습니다.</p>
+      <p>파일 이벤트 전용 필터는 범위를 좁히지만 타임라인 연관성을 보기 어렵습니다.</p>
+      <p>정책 일치만으로는 사용자 행위/프로세스 맥락을 충분히 판단하기 어렵습니다.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead80e39d12d8c2bd123420">Use activity explorer to investigate file activities</a></p>
+    `
+  },
+
+  // 183 — pair
+  {
+    id: 183,
+    title: "Group별 인증 방식 추천",
+    promptHtml: `
+      <p>You have a Microsoft 365 E5 subscription that contains two security groups named Group1 and Group2.<br>
+      You need to recommend an authentication solution that meets the following requirements:<br>
+      &nbsp;* Members of Group1 must be able to authenticate by using a hardware token.<br>
+      &nbsp;* Members of Group2 must be able to authenticate by using a public key infrastructure (PKI).<br>
+      Which authentication method should you recommend for each group? To answer, drag the appropriate methods to the correct groups.<br>
+      Each method may be used once, more than once, or not at all.<br>
+      You may need to drag the split bar between panes or scroll to view content.<br>
+      NOTE: Each correct selection is worth one point.</p>
+      ${IMG_Q183_1 ? `<p><img src="${IMG_Q183_1}" style="max-width:100%"></p>` : ""}
+    `,
+    type: "pair",
+    pairLabels: [
+      "Group1",
+      "Group2"
+    ],
+    pairOptions: [
+      "Passkey (FIDO2)",
+      "Certificate-based authentication",
+      "Email OTP",
+      "Microsoft Authenticator",
+      "Temporary Access Pass",
+      "Third-party software OATH tokens",
+      ],
+    pairAnswer: [
+      "Third-party software OATH tokens",
+      "Certificate-based authentication"
+    ],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>보안/환경 요구에 따라 그룹별로 권장 인증 수단이 다릅니다.</p>
+      <p>오프라인/모바일 제약 환경에서는 소프트웨어 OATH 토큰이 현실적입니다.</p>
+      <p>디바이스와 신뢰 루트가 있는 엔터프라이즈 환경에서는 CBA가 강력한 피싱 저항을 제공합니다.</p>
+      <p>SMS/이메일 OTP는 피싱·가로채기 위험이 커 우선권이 낮습니다.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead807c8070e30636535e28">Choose authentication methods in Microsoft Entra</a></p>
+    `
+  },
+
+  // 184 — multi(정답 케이스 2개 제시된 문제)
+  {
+    id: 184,
+    title: "User5의 사용자 관리 및 암호 재설정 권한 식별",
+    promptHtml: `
+      <p>You have a Microsoft 365 subscription that uses an Azure AD tenant named contoso.com.<br>
+      The tenant contains the users shown in the following table.<br>
+      ${IMG_Q184_1 ? `<p><img src="${IMG_Q184_1}" style="max-width:100%"></p>` : ""}
+      You add another user named User5 to the User Administrator role.<br>
+      You need to identify which two management tasks User5 can perform.<br>
+      <strong>Which two tasks should you identify?</strong> Each correct answer presents a complete solution.<br>
+      NOTE: Each correct selection is worth one point.</p>
+    `,
+    type: "multi",
+    multiOptions: [
+      "A. Delete User2 and User4 only.",
+      "B. Reset the password of User4 only",
+      "C. Reset the password of any user in Azure AD.",
+      "D. Delete User1, User2, and User4 only.",
+      "E. Reset the password of User2 and User4 only.",
+      "F. Delete any user in Azure AD"
+    ],
+    multiAnswer: [
+      "B. Reset the password of User4 only",
+      "E. Reset the password of User2 and User4 only"
+    ],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>주어진 역할 조합에서 User5는 특정 사용자 암호 재설정은 가능하지만 전역 관리자 역할 부여 같은 권한 상승은 허용되지 않습니다.</p>
+      <p>역할의 범위(scope)와 제한을 정확히 확인해야 합니다.</p>
+      <p>비상 계정과 관리자 계정에 대한 재설정 권한은 엄격히 통제해야 합니다.</p>
+      <p>감사 로그와 승인 워크플로를 적용해 변경을 추적하세요.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead80d39b11d5d7dca4e3e7">Admin role capabilities and restrictions</a></p>
+    `
+  },
+
+  // 185
+  {
+    id: 185,
+    title: "Device1에 적용되는 정책 우선순위 판별",
+    promptHtml: `
+      <p>You have a Microsoft 365 tenant that contains a Windows 10 device named Device1 and the Microsoft Endpoint Manager policies shown in the following table.<br>
+      ${IMG_Q185_1 ? `<p><img src="${IMG_Q185_1}" style="max-width:100%"></p>` : ""}
+      The policies are assigned to Device1.<br>
+      Which policy settings will be applied to Device1?</p>
+    `,
+    type: "single",
+    options: [
+      "A. only the settings of Policy1",
+      "B. only the settings of Policy2",
+      "C. only the settings of Policy3",
+      "D. no settings"
+    ],
+    correctAnswers: ["B. only the settings of Policy2"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>동일 설정 충돌 시 Intune은 병합하지 않고 우선순위가 높은 하나의 정책만 적용합니다.</p>
+      <p>따라서 Policy2가 우선이면 해당 설정만 최종 반영됩니다.</p>
+      <p>대상 분리/필터를 활용해 충돌을 줄이는 것이 바람직합니다.</p>
+      <p>결과 적용값은 리포트의 Resultant settings에서 확인할 수 있습니다.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead80288acafa26fd05f050">Policy precedence in Intune</a></p>
+    `
+  },
+
+  // 186
+  {
+    id: 186,
+    title: "Azure AD Connect 자격 증명 수정이 동기화 문제를 해결하는지 여부",
+    promptHtml: `
+      <p>You have synchronization issues with Azure AD Connect.<br>
+      You consider updating the Azure AD Connect credentials.<br>
+      Will this fix issues caused by OU filtering or scoping configuration?</p>
+    `,
+    type: "single",
+    options: ["A. Yes","B. No"],
+    correctAnswers: ["B. No"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>OU 필터링/스코프 구성 오류는 자격 증명 변경으로 해결되지 않습니다.</p>
+      <p>동기화 규칙과 필터를 조정해야 하며, 자격 증명은 연결 실패나 인증 오류에만 관련됩니다.</p>
+      <p>동기화 규칙 편집기에서 precedence와 범위를 확인하세요.</p>
+      <p>변경 후 초기 동기화를 수행해 결과를 검증합니다.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead8027a153f6f871ce26f0">Troubleshoot missing users after directory synchronization</a></p>
+    `
+  },
+
+  // 187 — yn matrix
+  {
+    id: 187,
+    title: "관리 단위(AU) 및 역할별 권한 판별",
+    promptHtml: `
+      <p>You evaluate the following statements about Administrative Units (AUs) and role assignments.<br>
+      For each statement, select Yes if the statement is true; otherwise, select No.</p>
+    `,
+    statements: [
+      "Statement 1 is true.",
+      "Statement 2 is true.",
+      "Statement 3 is true."
+    ],
+    options: ["Yes","No"],
+    correctAnswers: ["Yes","No","Yes"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>관리 단위는 테넌트 내 일부 사용자/그룹/디바이스를 세분화해 위임 관리에 사용됩니다.</p>
+      <p>특정 조합의 진위는 표의 전제에 따라 1과 3만 참으로 평가됩니다.</p>
+      <p>역할은 AU 범위로 제한하여 최소 권한 원칙을 달성할 수 있습니다.</p>
+      <p>테넌트 전역 역할과 AU 범위 역할을 혼동하지 않도록 주의해야 합니다.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead80a2906bf41b9a7328b9">Administrative units and scoped role assignments</a></p>
+    `
+  },
+
+  // 188 — pair
+  {
+    id: 188,
+    title: "Group1·Group2별 MFA 적용 조건 구성",
+    promptHtml: `
+      <p>You need to configure Conditional Access so that both Group1 and Group2 are required to use multi-factor authentication under the specified conditions.<br>
+      Select the policy area for each group.</p>
+    `,
+    type: "pair",
+    pairLabels: ["Group1","Group2"],
+    pairOptionsLeft: [
+      "Conditional Access",
+      "Identity Protection",
+      "Security defaults"
+    ],
+    pairOptionsRight: [
+      "Conditional Access",
+      "Identity Protection",
+      "Security defaults"
+    ],
+    pairAnswer: [
+      "Conditional Access",
+      "Conditional Access"
+    ],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>두 그룹의 특정 조건(MFA 요구)을 정확히 구현하려면 조건부 액세스 정책이 필요합니다.</p>
+      <p>Identity Protection은 위험 기반 정책이며, Security defaults는 세밀한 조건 제어가 어렵습니다.</p>
+      <p>그룹/앱/위치/디바이스 준수 상태 등을 조건으로 조합하세요.</p>
+      <p>보고서 전용 모드로 검증 후 강제로 전환하는 것이 안전합니다.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead80b6b5f4eaf791d5b177">Require MFA with Conditional Access</a></p>
+    `
+  },
+
+  // 189
+  {
+    id: 189,
+    title: "1분 내 50개 이상 파일 다운로드 시 알림 구성",
+    promptHtml: `
+      <p>You need to generate an alert when a user downloads more than 50 files within one minute from sanctioned apps.<br>
+      What should you create?</p>
+    `,
+    type: "single",
+    options: [
+      "A. a file policy",
+      "B. an alert policy",
+      "C. an activity policy",
+      "D. a DLP policy"
+    ],
+    correctAnswers: ["C. an activity policy"],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>대량 다운로드는 사용자 동작 기준이므로 Defender for Cloud Apps의 Activity policy로 임계값/시간 창을 설정합니다.</p>
+      <p>File policy는 파일 속성/공유 상태 평가에 적합합니다.</p>
+      <p>DLP 정책은 콘텐츠 기반 유출 방지에 초점입니다.</p>
+      <p>알림 정책은 근본 조건 정의 없이 단순 알림에 그칠 수 있습니다.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead809a9c2de312b12bfc5a">Create activity policies (mass download)</a></p>
+    `
+  },
+
+  // 190 — pair
+  {
+    id: 190,
+    title: "Defender Vulnerability Management 플랫폼별 적용 범위",
+    promptHtml: `
+      <p>You plan to use Microsoft Defender Vulnerability Management (MDVM).<br>
+      For each platform, identify whether detection and configuration assessment are supported.</p>
+      ${IMG_Q190_1 ? `<p><img src="${IMG_Q190_1}" style="max-width:100%"></p>` : ""}
+    `,
+    type: "pair",
+    pairLabels: [
+      "Detection coverage",
+      "Configuration assessment"
+    ],
+    pairOptionsLeft: [
+      "Device1, Device2, and Device3 only",
+      "Device1 and Device2 only",
+      "All listed devices"
+    ],
+    pairOptionsRight: [
+      "Device1 and Device2 only",
+      "Device1, Device2, and Device3 only",
+      "All listed devices"
+    ],
+    pairAnswer: [
+      "Device1, Device2, and Device3 only",
+      "Device1 and Device2 only"
+    ],
+    explanationHtml: `
+      <h3>Explanation</h3>
+      <p>MDVM은 Windows, macOS, 일부 Linux에 대한 취약점 탐지를 제공하지만 구성 평가 범위는 플랫폼 별로 제한됩니다.</p>
+      <p>표의 시나리오에서는 탐지는 세 플랫폼에 적용되나 구성 평가는 Windows/macOS까지만 가능하다는 가정입니다.</p>
+      <p>지원 범위는 에디션/커널 버전/에이전트 채널에 따라 달라질 수 있습니다.</p>
+      <p>최신 지원 표를 검토해 정확한 적용 범위를 확인하세요.</p>
+      <p><a href="https://www.notion.so/29fdbd591ead80bab225f89b5350ed1a">Defender Vulnerability Management — supported platforms</a></p>
+    `
   }
   
 
 ] // ref: 
+
 
