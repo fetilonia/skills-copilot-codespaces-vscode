@@ -1,4 +1,4 @@
-﻿// questions.js (batch 1–10)
+// questions.js (batch 1–10)
 // 이미지가 필요한 문제의 경우, i.imgur.com 등의 "직접 이미지 링크"로 교체하세요.
 const IMG_Q2_1 = "https://i.imgur.com/XjDrp3h.png";   // https://www.notion.so/29adbd591ead802a836bd45d47be7082에 표시된 이미지 1[^]
 const IMG_Q8_1 = "https://i.imgur.com/hbrJ45l.png"
@@ -156,28 +156,28 @@ const IMG_Q165_1 = "https://i.imgur.com/i0BK4p7.png"; // Users/roles + RBAC enab
 const IMG_Q165_2 = "https://i.imgur.com/UUVcs4g.png"; // Users/roles + RBAC enable UI exhibit
 const IMG_Q169_1 = "https://i.imgur.com/N4bksRF.png";
 const IMG_Q169_2 = "https://i.imgur.com/Oxaz4Co.png";
-const IMG_Q170_1 = "https://i.imgur.com/686bwxi.png"; 
-const IMG_Q170_2 = "https://i.imgur.com/W6RwvBG.png"; 
-const IMG_Q170_3 = "https://i.imgur.com/4FF31Nu.png"; 
-const IMG_Q170_4 = "https://i.imgur.com/d4nJ6aX.png"; 
-const IMG_Q170_5 = "https://i.imgur.com/fMbDpBo.png"; 
-const IMG_Q173_1 = "https://i.imgur.com/BEVZSIA.png"; 
-const IMG_Q175_1 = "https://i.imgur.com/aWZu5ek.png"; 
-const IMG_Q177_1 = "https://i.imgur.com/lt6rbNu.png"; 
-const IMG_Q180_1 = "https://i.imgur.com/kjq8jSA.png"; 
-const IMG_Q180_2 = "https://i.imgur.com/gxPYKfH.png"; 
-const IMG_Q181_1 = "https://i.imgur.com/PhCVJHE.png"; 
-const IMG_Q182_1 = "https://i.imgur.com/5sJ9Kd0.png"; 
-const IMG_Q183_1 = "https://i.imgur.com/Kebqh3U.png"; 
-const IMG_Q184_1 = "https://i.imgur.com/pIFvGOq.png"; 
-const IMG_Q185_1 = "https://i.imgur.com/AyWuNCF.png"; 
-const IMG_Q187_1 = "https://i.imgur.com/wiAGZEu.png"; 
-const IMG_Q187_2 = "https://i.imgur.com/d1FUN9m.png"; 
-const IMG_Q187_3 = "https://i.imgur.com/di4bEnv.png"; 
-const IMG_Q187_4 = "https://i.imgur.com/wdOPFxx.png"; 
-const IMG_Q188_1 = "https://i.imgur.com/lKcinqh.png"; 
-const IMG_Q190_1 = "https://i.imgur.com/bm7gSHJ.png"; 
-const IMG_Q190_2 = "https://i.imgur.com/NhWLg11.png"; 
+const IMG_Q170_1 = "https://i.imgur.com/686bwxi.png";
+const IMG_Q170_2 = "https://i.imgur.com/W6RwvBG.png";
+const IMG_Q170_3 = "https://i.imgur.com/4FF31Nu.png";
+const IMG_Q170_4 = "https://i.imgur.com/d4nJ6aX.png";
+const IMG_Q170_5 = "https://i.imgur.com/fMbDpBo.png";
+const IMG_Q173_1 = "https://i.imgur.com/BEVZSIA.png";
+const IMG_Q175_1 = "https://i.imgur.com/aWZu5ek.png";
+const IMG_Q177_1 = "https://i.imgur.com/lt6rbNu.png";
+const IMG_Q180_1 = "https://i.imgur.com/kjq8jSA.png";
+const IMG_Q180_2 = "https://i.imgur.com/gxPYKfH.png";
+const IMG_Q181_1 = "https://i.imgur.com/PhCVJHE.png";
+const IMG_Q182_1 = "https://i.imgur.com/5sJ9Kd0.png";
+const IMG_Q183_1 = "https://i.imgur.com/Kebqh3U.png";
+const IMG_Q184_1 = "https://i.imgur.com/pIFvGOq.png";
+const IMG_Q185_1 = "https://i.imgur.com/AyWuNCF.png";
+const IMG_Q187_1 = "https://i.imgur.com/wiAGZEu.png";
+const IMG_Q187_2 = "https://i.imgur.com/d1FUN9m.png";
+const IMG_Q187_3 = "https://i.imgur.com/di4bEnv.png";
+const IMG_Q187_4 = "https://i.imgur.com/wdOPFxx.png";
+const IMG_Q188_1 = "https://i.imgur.com/lKcinqh.png";
+const IMG_Q190_1 = "https://i.imgur.com/bm7gSHJ.png";
+const IMG_Q190_2 = "https://i.imgur.com/NhWLg11.png";
 
 
 // 공통 헬퍼
@@ -3501,7 +3501,7 @@ window.questions = [
     options: [
       "A. only Sub1.contoso221018.onmicrosoft.com",
       "B. only contoso.com and Sub1.contoso221018.onmicrosoft.com",
-      "C. only contoso221018.onmicrosoft.com, Sub.contoso221018.onmicrosoft.com, and Sub2.contoso221018.onmicrosoft.com"
+      "C. only contoso221018.onmicrosoft.com, Sub.contoso221018.onmicrosoft.com, and Sub2.contoso221018.onmicrosoft.com",
       "D. all the domains in the subscription"
     ],
     correctAnswers: ["B. onlycontoso.com and Sub1.contoso221018.onmicrosoft.com"],
@@ -5443,14 +5443,14 @@ window.questions = [
     `,
     type: "single",
     options: ["A. Yes", "B. No"],
-    correctAnswers: ["B. No"],,
+    correctAnswers: ["B. No"],
     explanationHtml: `
       <h3>Explanation</h3>
       <p>이유: Co-management는 Intune 자동 온보딩 메커니즘이 아니며, 올바른 방법은 Intune의 Device configuration profile을 사용하는 것입니다.</p>
       <p><a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-endpoint-intune">Microsoft Learn: Configure onboarding for Microsoft Defender for Endpoint with Intune</a></p>
     `
   },
-    // 172
+  // 172
   {
     id: 172,
     title: "PII 문서 식별 및 보고",
@@ -5855,7 +5855,7 @@ window.questions = [
       "Microsoft Authenticator",
       "Temporary Access Pass",
       "Third-party software OATH tokens",
-      ],
+    ],
     pairAnswer: [
       "Third-party software OATH tokens",
       "Certificate-based authentication"
@@ -5950,7 +5950,7 @@ window.questions = [
       Does this meet the goal?</p>
     `,
     type: "single",
-    options: ["A. Yes","B. No"],
+    options: ["A. Yes", "B. No"],
     correctAnswers: ["B. No"],
     explanationHtml: `
       <h3>Explanation</h3>
@@ -5982,8 +5982,8 @@ window.questions = [
       "User2 can reset the password of User4",
       "User3 can assign licenses to User1"
     ],
-    options: ["Yes","No"],
-    correctAnswers: ["Yes","No","Yes"],
+    options: ["Yes", "No"],
+    correctAnswers: ["Yes", "No", "Yes"],
     explanationHtml: `
       <h3>Explanation</h3>
       <p>관리 단위는 테넌트 내 일부 사용자/그룹/디바이스를 세분화해 위임 관리에 사용됩니다.</p>
@@ -6010,7 +6010,7 @@ window.questions = [
       ${IMG_Q188_1 ? `<p><img src="${IMG_Q188_1}" style="max-width:100%"></p>` : ""}
     `,
     type: "pair",
-    pairLabels: ["Group1","Group2"],
+    pairLabels: ["Group1", "Group2"],
     pairOptions: [
       "Microsoft Entra ID Protection",
       "Microsoft Entra Privileged Identity Management",
@@ -6077,13 +6077,13 @@ window.questions = [
     ],
     pairOptionsLeft: [
       "Device1 only",
-      "Device1 and Device2 only",      
+      "Device1 and Device2 only",
       "Device1, Device2, and Device3 only",
       "Device1, Device2, and Device4 only"
     ],
     pairOptionsRight: [
       "Device1 only",
-      "Device1 and Device2 only",      
+      "Device1 and Device2 only",
       "Device1, Device2, and Device3 only",
       "Device1, Device2, and Device4 only",
       "Device1, Device2, Device3, and Device4"
@@ -6101,9 +6101,8 @@ window.questions = [
       <p><a href="https://www.notion.so/29fdbd591ead80bab225f89b5350ed1a">Defender Vulnerability Management — supported platforms</a></p>
     `
   }
-  
+
 
 ] // ref: 
-
 
 
