@@ -171,6 +171,13 @@ const IMG_Q182_1 = "https://i.imgur.com/5sJ9Kd0.png";
 const IMG_Q183_1 = "https://i.imgur.com/Kebqh3U.png"; 
 const IMG_Q184_1 = "https://i.imgur.com/pIFvGOq.png"; 
 const IMG_Q185_1 = "https://i.imgur.com/AyWuNCF.png"; 
+const IMG_Q187_1 = "https://i.imgur.com/wiAGZEu.png"; 
+const IMG_Q187_2 = "https://i.imgur.com/d1FUN9m.png"; 
+const IMG_Q187_3 = "https://i.imgur.com/di4bEnv.png"; 
+const IMG_Q187_4 = "https://i.imgur.com/wdOPFxx.png"; 
+const IMG_Q188_1 = "https://i.imgur.com/lKcinqh.png"; 
+const IMG_Q190_1 = "https://i.imgur.com/bm7gSHJ.png"; 
+const IMG_Q190_2 = "https://i.imgur.com/NhWLg11.png"; 
 
 
 // 공통 헬퍼
@@ -5932,9 +5939,15 @@ window.questions = [
     id: 186,
     title: "Azure AD Connect 자격 증명 수정이 동기화 문제를 해결하는지 여부",
     promptHtml: `
-      <p>You have synchronization issues with Azure AD Connect.<br>
-      You consider updating the Azure AD Connect credentials.<br>
-      Will this fix issues caused by OU filtering or scoping configuration?</p>
+      <p>Your network contains an Active Directory domain.<br>
+      You deploy an Azure AD tenant.<br>
+      Another administrator configures the domain to synchronize to Azure AD.<br>
+      You discover that 10 user accounts in an organizational unit (OU) are NOT synchronized to Azure AD.<br>
+      All the other user accounts synchronized successfully.<br>
+      You review Azure AD Connect Health and discover that all the user account synchronizations completed successfully.<br>
+      You need to ensure that the 10 user accounts are synchronized to Azure AD.<br>
+      Solution: From Azure AD Connect, you modify the Azure AD credentials.<br>
+      Does this meet the goal?</p>
     `,
     type: "single",
     options: ["A. Yes","B. No"],
@@ -5954,13 +5967,20 @@ window.questions = [
     id: 187,
     title: "관리 단위(AU) 및 역할별 권한 판별",
     promptHtml: `
-      <p>You evaluate the following statements about Administrative Units (AUs) and role assignments.<br>
-      For each statement, select Yes if the statement is true; otherwise, select No.</p>
+      <p>You have a Microsoft 365 subscription that contains the administrative units shown in the following table.<br>
+      ${IMG_Q187_1 ? `<p><img src="${IMG_Q187_1}" style="max-width:100%"></p>` : ""}
+      The groups contain the members shown in the following table.
+      ${IMG_Q187_2 ? `<p><img src="${IMG_Q187_2}" style="max-width:100%"></p>` : ""}
+      The users are assigned the roles shown in the following table.
+      ${IMG_Q187_3 ? `<p><img src="${IMG_Q187_3}" style="max-width:100%"></p>` : ""}
+      For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>
+      NOTE; Each correct selection is worth one point.</p>
+      ${IMG_Q187_4 ? `<p><img src="${IMG_Q187_4}" style="max-width:100%"></p>` : ""}
     `,
     statements: [
-      "Statement 1 is true.",
-      "Statement 2 is true.",
-      "Statement 3 is true."
+      "User2 can reset the password of User1",
+      "User2 can reset the password of User4",
+      "User3 can assign licenses to User1"
     ],
     options: ["Yes","No"],
     correctAnswers: ["Yes","No","Yes"],
@@ -5979,20 +5999,24 @@ window.questions = [
     id: 188,
     title: "Group1·Group2별 MFA 적용 조건 구성",
     promptHtml: `
-      <p>You need to configure Conditional Access so that both Group1 and Group2 are required to use multi-factor authentication under the specified conditions.<br>
-      Select the policy area for each group.</p>
+      <p>You have a Microsoft 365 E5 subscription that contains two security groups named Group1 and Group2.<br>
+      You need to enable multi-factor authentication (MFA) for the members of Group1 and Group2.<br>
+      The solution must meet the following requirements:<br>
+      &nbsp;* The Group1 members must be prompted for MFA only when authenticating to Microsoft Entra ID from Android devices.<br>
+      &nbsp;* The Group2 members must be prompted for MFA only when accessing Microsoft Exchange Online from outside the corporate network.<br>
+      &nbsp;* Administrative effort must be minimized.<br>
+      What should you configure for each group? To answer, select the appropriate options in the answer area.<br>
+      NOTE: Each correct selection is worth one point.</p>
+      ${IMG_Q188_1 ? `<p><img src="${IMG_Q188_1}" style="max-width:100%"></p>` : ""}
     `,
     type: "pair",
     pairLabels: ["Group1","Group2"],
-    pairOptionsLeft: [
+    pairOptions: [
+      "Microsoft Entra ID Protection",
+      "Microsoft Entra Privileged Identity Management",
       "Conditional Access",
-      "Identity Protection",
-      "Security defaults"
-    ],
-    pairOptionsRight: [
-      "Conditional Access",
-      "Identity Protection",
-      "Security defaults"
+      "Per-user MFA",
+      "Microsoft Entra Security defaults"
     ],
     pairAnswer: [
       "Conditional Access",
@@ -6013,15 +6037,16 @@ window.questions = [
     id: 189,
     title: "1분 내 50개 이상 파일 다운로드 시 알림 구성",
     promptHtml: `
-      <p>You need to generate an alert when a user downloads more than 50 files within one minute from sanctioned apps.<br>
-      What should you create?</p>
+      <p>You have a Microsoft 365 E5 subscription that uses Microsoft Defender for Cloud Apps.<br>
+      You need to be notified when a single user downloads more than 50 files during any 60-second period.<br>
+      What should you configure?</p>
     `,
     type: "single",
     options: [
-      "A. a file policy",
-      "B. an alert policy",
+      "A. a session policy",
+      "B. a file policy",
       "C. an activity policy",
-      "D. a DLP policy"
+      "D. an anomaly detection policy"
     ],
     correctAnswers: ["C. an activity policy"],
     explanationHtml: `
@@ -6039,24 +6064,29 @@ window.questions = [
     id: 190,
     title: "Defender Vulnerability Management 플랫폼별 적용 범위",
     promptHtml: `
-      <p>You plan to use Microsoft Defender Vulnerability Management (MDVM).<br>
-      For each platform, identify whether detection and configuration assessment are supported.</p>
+      <p>You have a Microsoft 365 E5 subscription that contains the devices shown in the following table.<br>
       ${IMG_Q190_1 ? `<p><img src="${IMG_Q190_1}" style="max-width:100%"></p>` : ""}
+      All the devices are onboarded To Microsoft Defender for Endpoint You plan to use Microsoft Defender Vulnerability Management to meet the following requirements:<br>
+      &nbsp;* Detect operating system vulnerabilities.</p>
+      ${IMG_Q190_2 ? `<p><img src="${IMG_Q190_2}" style="max-width:100%"></p>` : ""}      
     `,
     type: "pair",
     pairLabels: [
-      "Detection coverage",
-      "Configuration assessment"
+      "Detect operating system vulnerabilities",
+      "Preform a configuration assessment of the operating system"
     ],
     pairOptionsLeft: [
+      "Device1 only",
+      "Device1 and Device2 only",      
       "Device1, Device2, and Device3 only",
-      "Device1 and Device2 only",
-      "All listed devices"
+      "Device1, Device2, and Device4 only"
     ],
     pairOptionsRight: [
-      "Device1 and Device2 only",
+      "Device1 only",
+      "Device1 and Device2 only",      
       "Device1, Device2, and Device3 only",
-      "All listed devices"
+      "Device1, Device2, and Device4 only",
+      "Device1, Device2, Device3, and Device4"
     ],
     pairAnswer: [
       "Device1, Device2, and Device3 only",
@@ -6074,5 +6104,6 @@ window.questions = [
   
 
 ] // ref: 
+
 
 
