@@ -1,4 +1,4 @@
-// questions.js (batch 1–10)
+﻿// questions.js (batch 1–10)
 // 이미지가 필요한 문제의 경우, i.imgur.com 등의 "직접 이미지 링크"로 교체하세요.
 const IMG_Q2_1 = "https://i.imgur.com/XjDrp3h.png";   // https://www.notion.so/29adbd591ead802a836bd45d47be7082에 표시된 이미지 1[^]
 const IMG_Q8_1 = "https://i.imgur.com/hbrJ45l.png"
@@ -178,6 +178,22 @@ const IMG_Q187_4 = "https://i.imgur.com/wdOPFxx.png";
 const IMG_Q188_1 = "https://i.imgur.com/lKcinqh.png";
 const IMG_Q190_1 = "https://i.imgur.com/bm7gSHJ.png";
 const IMG_Q190_2 = "https://i.imgur.com/NhWLg11.png";
+const IMG_Q191_1 = "https://i.imgur.com/V4r6Jkz.png";
+const IMG_Q194_1 = "https://i.imgur.com/dvjlrka.png";
+const IMG_Q194_2 = "https://i.imgur.com/GN41kPC.png";
+const IMG_Q195_1 = "https://i.imgur.com/zLUTTve.png";
+const IMG_Q197_1 = "https://i.imgur.com/NMFMhmj.png";
+const IMG_Q197_2 = "https://i.imgur.com/YSN2z9d.png";
+const IMG_Q197_3 = "https://i.imgur.com/jKeP21b.png";
+const IMG_Q198_1 = "https://i.imgur.com/TXl6iwC.png";
+const IMG_Q198_2 = "https://i.imgur.com/AoYnZCw.png";
+const IMG_Q202_1 = "https://i.imgur.com/lk3BBqs.png";
+const IMG_Q202_2 = "https://i.imgur.com/zmpaFsh.png";
+const IMG_Q205_1 = "https://i.imgur.com/cO7bMoM.png";
+const IMG_Q208_1 = "https://i.imgur.com/r6iZOTa.png";
+const IMG_Q210_1 = "https://i.imgur.com/gRRvF36.png";
+const IMG_Q212_1 = "https://i.imgur.com/xUIaIqC.png";
+const IMG_Q215_1 = "https://i.imgur.com/xdPfl76.png";
 
 
 // 공통 헬퍼
@@ -6098,11 +6114,734 @@ window.questions = [
       <p>표의 시나리오에서는 탐지는 세 플랫폼에 적용되나 구성 평가는 Windows/macOS까지만 가능하다는 가정입니다.</p>
       <p>지원 범위는 에디션/커널 버전/에이전트 채널에 따라 달라질 수 있습니다.</p>
       <p>최신 지원 표를 검토해 정확한 적용 범위를 확인하세요.</p>
-      <p><a href="https://www.notion.so/29fdbd591ead80bab225f89b5350ed1a">Defender Vulnerability Management — supported platforms</a></p>
+      <p><a href="https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-supported-os#capabilities-per-supported-operating-systems-os-and-platforms">Capabilities per supported operating systems (OS) and platforms</a></p>
     `
+  },
+  {
+    id: 191,
+    title: "Delivery Optimization support",
+    promptHtml: `<p>You have a Microsoft 365 E5 tenant that contains the devices shown in the following table.</p>
+  ${IMG_Q191_1 ? `<p><img src="${IMG_Q191_1}" style="max-width:100%"></p>` : ""}
+  <p>The devices are managed by using Microsoft Intune.<br>
+  You plan to use a configuration profile to assign the Delivery Optimization settings.<br>
+  Which devices will support the settings?</p>`,
+    type: "single",
+    options: [
+      "A. Device1 only",
+      "B. Device1 and Device2 only",
+      "C. Device2 and Device3 only",
+      "D. Device1, Device2, and Device3"
+    ],
+    correctAnswers: ["A. Device1 only"],
+    explanationHtml: `<h4>해설</h4>
+  <p>Delivery Optimization(전달 최적화)은 Windows 10/11 장치에서만 지원됩니다.<br>
+  따라서 Intune의 구성 프로필을 통해 DO 설정을 적용할 수 있는 장치는 Windows 기반 장치뿐이며, 
+  이 문항의 경우 Device1만 해당됩니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/en-us/intune/intune-service/configuration/delivery-optimization-settings'>
+  Configure Delivery Optimization settings in Intune</a></p>`
+  },
+  {
+    id: 192,
+    title: "Manage ATP settings for Teams, SharePoint, and OneDrive",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription.<br>
+  You create an account for a new security administrator named SecAdmin1.<br>
+  You need to ensure that SecAdmin1 can manage Office 365 Advanced Threat Protection (ATP)
+  settings and policies for Microsoft Teams, SharePoint, and OneDrive.<br>
+  Solution: From the Microsoft 365 admin center, you assign SecAdmin1 the SharePoint admin role.<br>
+  Does this meet the goal?</p>`,
+    type: "single",
+    options: [
+      "A. Yes",
+      "B. No"
+    ],
+    correctAnswers: ["B. No"],
+    explanationHtml: `<h4>해설</h4>
+  <p>SharePoint 관리자 역할은 사이트 및 콘텐츠 관리 권한만 제공하며, Microsoft Defender for Office 365(ATP) 정책 설정 권한은 포함하지 않습니다.<br>
+  Teams, SharePoint, OneDrive의 ATP 설정을 관리하려면 <b>Security Administrator</b> 또는 <b>Threat Management</b> 역할을 부여해야 합니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/microsoft-365/security/office-365-security/permissions-in-the-security-and-compliance-center'>
+  Permissions in the Microsoft 365 Defender portal</a></p>`
+  },
+  {
+    id: 193,
+    title: "Configure Defender for Endpoint on macOS devices",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription.<br>
+  All users have Mac computers. All the computers are enrolled in Microsoft Endpoint Manager and
+  onboarded to Microsoft Defender for Endpoint.<br>
+  You need to configure Microsoft Defender for Endpoint on the computers.<br>
+  What should you create from the Endpoint Management admin center?</p>`,
+    type: "single",
+    options: [
+      "A. a Microsoft Defender for Endpoint baseline profile",
+      "B. an update policy for iOS",
+      "C. a device configuration profile",
+      "D. a mobile device management (MDM) security baseline profile"
+    ],
+    correctAnswers: ["C. a device configuration profile"],
+    explanationHtml: `<h4>해설</h4>
+  <p>macOS 장치에서 Microsoft Defender for Endpoint를 구성하려면 Intune에서 <b>Device configuration profile</b>을 생성해야 합니다.<br>
+  macOS용 보안 기준(baseline)은 제공되지 않으며, 구성 프로필을 통해 Defender 설정을 정의할 수 있습니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/microsoft-365/security/defender-endpoint/mac-preferences'>
+  Set preferences for Microsoft Defender for Endpoint on macOS</a></p>`
+  },
+  {
+    id: 194,
+    title: "Auto-labeling retention policy behavior",
+    promptHtml: `<p>Your company has a Microsoft 365 subscription that uses an Azure AD tenant named contoso.com.<br>
+  The tenant contains the users shown in the following table.</p>
+  ${IMG_Q194_1 ? `<p><img src="${IMG_Q194_1}" style="max-width:100%"></p>` : ""}
+  <p>You create a retention label named Label1 that has the following configurations:</p>
+  <ul>
+    <li>Retains content for five years</li>
+    <li>Automatically deletes all content that is older than five years</li>
+  </ul>
+  <p>You turn on Auto labeling for Label1 by using a policy named Policy1. Policy1 has the following configurations:</p>
+  <ul>
+    <li>Applies to content that contains the word Merger</li>
+    <li>Specifies the OneDrive accounts and SharePoint sites locations</li>
+  </ul>
+  <p>You run the following command:<br>
+  <code>Set-RetentionCompliancePolicy Policy1 -RestrictiveRetention $true -Force</code></p>
+  <p>For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>
+  NOTE: Each correct selection is worth one point.</p>
+  ${IMG_Q194_2 ? `<p><img src="${IMG_Q194_2}" style="max-width:100%"></p>` : ""}
+  `,
+    statements: [
+      "User1 can add Exchange emailas a location to Policy1",
+      "User2 can remove SharePoint site from Policy1",
+      "User2 can add the word Acquisition to Policy1"
+    ],
+    options: [
+      "Yes", "No"
+    ],
+    correctAnswers: [
+      "No", "Yes", "Yes"
+    ],
+    explanationHtml: `<h4>해설</h4>
+  <p><code>-RestrictiveRetention $true</code> 옵션은 보존 정책이 적용된 콘텐츠의 삭제를 제한하는 설정으로,<br>
+  사용자가 수동으로 삭제할 수 없도록 보호합니다. 따라서 콘텐츠는 수정이 제한되고, 정책에서 지정한 위치(SharePoint 및 OneDrive)에만 적용됩니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/microsoft-365/compliance/retention-settings'>
+  Retention settings in Microsoft Purview</a></p>`
+  },
+  {
+    id: 195,
+    title: "DLP policy conditions based on locations",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription.<br>
+  You are creating a data loss prevention (DLP) policy applied to the locations as shown in the following exhibit.</p>
+  ${IMG_Q195_1 ? `<p><img src="${IMG_Q195_1}" style="max-width:100%"></p>` : ""}
+  <p>Which condition can you use in the DLP rules of the policy?</p>`,
+    type: "single",
+    options: [
+      "A. sensitive info types",
+      "B. sensitivity labels",
+      "C. content search queries",
+      "D. keywords"
+    ],
+    correctAnswers: ["A. sensitive info types"],
+    explanationHtml: `<h4>해설</h4>
+  <p>DLP 정책의 규칙 조건으로 사용할 수 있는 대표 요소는 <b>Sensitive info types</b>입니다.<br>
+  이는 Microsoft Purview DLP에서 콘텐츠 내의 민감 정보(예: 신용카드 번호, 주민등록번호 등)를 자동으로 식별하기 위해 사용됩니다.<br>
+  Sensitivity label이나 Content search query는 DLP 규칙의 직접적인 조건으로 사용할 수 없습니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/microsoft-365/compliance/dlp-learn-about-dlp'>
+  Learn about data loss prevention (DLP)</a></p>`
+  },
+  {
+    id: 196,
+    title: "Upgrade Windows 10 Pro to Enterprise using Microsoft 365 E3",
+    promptHtml: `<p>You have an Azure AD tenant.<br>
+  You have 1,000 computers that run Windows 10 Pro and are joined to Azure AD.<br>
+  You purchase a Microsoft 365 E3 subscription.<br>
+  You need to deploy Windows 10 Enterprise to the computers. The solution must minimize administrative effort.<br>
+  What should you do?</p>`,
+    type: "single",
+    options: [
+      "A. From the Microsoft Endpoint Manager admin center, create a Windows Autopilot deployment profile. Assign the profile to all the computers. Instruct users to restart their computer and perform a network restart.",
+      "B. Enroll the computers in Microsoft Intune. Create a configuration profile by using the Edition upgrade and mode switch template. From the Microsoft Endpoint Manager admin center, assign the profile to all the computers and instruct users to restart their computer.",
+      "C. From Windows Configuration Designer, create a provisioning package that has an EditionUpgrade configuration and upload the package to a Microsoft SharePoint Online site. Instruct users to run the provisioning package from SharePoint Online.",
+      "D. From the Azure Active Directory admin center, create a security group that has dynamic device membership. Assign licenses to the group and instruct users to sign in to their computer."
+    ],
+    correctAnswers: ["B. Enroll the computers in Microsoft Intune. Create a configuration profile by using the Edition upgrade and mode switch template. From the Microsoft Endpoint Manager admin center, assign the profile to all the computers and instruct users to restart their computer."],
+    explanationHtml: `<h4>해설</h4>
+  <p>Windows 10 Pro 장치를 Enterprise로 업그레이드하려면 Microsoft 365 E3 라이선스와 함께 Intune의 
+  <b>Edition upgrade and mode switch</b> 구성 프로필을 사용하는 것이 가장 효율적입니다.<br>
+  이 프로필을 통해 중앙에서 자동으로 버전 업그레이드를 수행할 수 있으며, 관리자의 개입이 최소화됩니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/ko-kr/intune/intune-service/configuration/edition-upgrade-configure-windows-10'>
+  Upgrade Windows editions or switch out of S mode on devices using Microsoft Intune</a></p>`
+  },
+  {
+    id: 197,
+    title: "Evaluate label behavior in Microsoft 365",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains the users shown in the following table.</p>
+  ${IMG_Q197_1 ? `<p><img src="${IMG_Q197_1}" style="max-width:100%"></p>` : ""}
+  <p>You have labels in Microsoft 365 as shown in the following table.</p>
+  ${IMG_Q197_2 ? `<p><img src="${IMG_Q197_2}" style="max-width:100%"></p>` : ""}
+  <p>The content in Microsoft 365 is assigned labels as shown in the following table.</p>
+  ${IMG_Q197_3 ? `<p><img src="${IMG_Q197_3}" style="max-width:100%"></p>` : ""}
+  <p>For each of the following statements, select Yes if the statement is true. Otherwise, select No.</p>`,
+    type: "multi",
+    statements: [
+      "Admin1 can view the contents of File1 by using Content explorer.",
+      "Admin2 can view the contents of File1 by using Content explorer.",
+      "Admin2 can use Content explorer to verify that Label2 is assigned to Mail1."
+    ],
+    options: ["Yes", "No"],
+    correctAnswers: ["Yes", "No", "No"],
+    explanationHtml: `<h4>해설</h4>
+  <p>Microsoft Purview의 민감도 레이블(Sensitivity Label)은 기본적으로 수동 적용이 우선하며, 자동 레이블은 수동 설정을 덮어쓰지 않습니다.<br>
+  또한, Label Editor 역할을 가진 사용자는 관리자가 허용한 경우 레이블을 수정할 수 있습니다. 단, 정당화(Justification) 설정이 없는 경우 하향 조정은 불가능합니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/en-us/purview/data-classification-data-explorer'>
+  Learn about Get started with data explorer</a></p>`
+  },
+  {
+    id: 198,
+    title: "Azure AD authentication issue for synced user",
+    promptHtml: `<p>Your network contains an on-premises Active Directory domain named contoso.com.<br>
+  The domain contains the users shown in the following table.</p>
+  ${IMG_Q198_1 ? `<p><img src="${IMG_Q198_1}" style="max-width:100%"></p>` : ""}
+  <p>The domain syncs to an Azure AD tenant named contoso.com as shown in the exhibit.</p>
+  ${IMG_Q198_2 ? `<p><img src="${IMG_Q198_2}" style="max-width:100%"></p>` : ""}
+  <p>User2 fails to authenticate to Azure AD when signing in as <b>user2@fabrikam.com</b>.<br>
+  You need to ensure that User2 can access the resources in Azure AD.</p>
+  <p><b>Solution:</b> From the on-premises Active Directory domain, you assign User2 the <i>Allow logon locally</i> user right. You instruct User2 to sign in as <b>user2@fabrikam.com</b>.<br>
+  Does this meet the goal?</p>`,
+    type: "single",
+    options: [
+      "A. Yes",
+      "B. No"
+    ],
+    correctAnswers: ["B. No"],
+    explanationHtml: `<h4>해설</h4>
+  <p><b>Allow logon locally</b> 권한은 로컬 컴퓨터 로그인 권한만 부여하며, Azure AD 인증과는 관련이 없습니다.<br>
+  User2의 Azure AD 로그인 문제는 <b>UPN(사용자 주체 이름)</b>이 Azure AD와 일치하지 않기 때문으로, 
+  Azure AD Connect 동기화 시 올바른 UPN 접미사를 매핑해야 합니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/entra/identity/hybrid/connect/plan-connect-userprincipalname'>
+  Plan for user principal name (UPN) in Azure AD Connect</a></p>`
+  },
+  {
+    id: 199,
+    title: "Sync on-premises AD with Microsoft 365 and enforce password policy",
+    promptHtml: `<p>Your on-premises network contains an Active Directory domain.<br>
+  You have a Microsoft 365 subscription.<br>
+  You need to sync the domain with the subscription. The solution must meet the following requirements:</p>
+  <ul>
+    <li>On-premises Active Directory password complexity policies must be enforced.</li>
+    <li>Users must be able to use self-service password reset (SSPR) in Azure AD.</li>
+  </ul>
+  <p>What should you use?</p>`,
+    type: "single",
+    options: [
+      "A. password hash synchronization",
+      "B. Azure AD Identity Protection",
+      "C. Azure AD Seamless Single Sign-On (Azure AD Seamless SSO)",
+      "D. pass-through authentication"
+    ],
+    correctAnswers: ["D. pass-through authentication"],
+    explanationHtml: `<h4>해설</h4>
+  <p>온-프레미스 Active Directory의 암호 복잡도 정책을 강제로 적용하려면 Azure AD 로그인 시에도 
+  로컬 도메인 컨트롤러에서 인증을 수행해야 합니다.<br>
+  <b>Pass-through Authentication (PTA)</b>는 이러한 요구를 충족하며, 
+  동시에 Azure AD Self-Service Password Reset(SSPR)과 통합되어 암호 동기화가 가능합니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/entra/identity/hybrid/connect/whatis-azure-ad-connect-pass-through-authentication'>
+  What is Azure AD Pass-through Authentication?</a></p>`
+  },
+  {
+    id: 200,
+    title: "Enforce Windows 10 device security requirements in Microsoft 365",
+    promptHtml: `<p>You have a Microsoft 365 tenant.<br>
+  Company policy requires that all Windows 10 devices meet the following minimum requirements:</p>
+  <ul>
+    <li>Require complex passwords.</li>
+    <li>Require the encryption of data storage devices.</li>
+    <li>Have Microsoft Defender Antivirus real-time protection enabled.</li>
+  </ul>
+  <p>You need to prevent devices that do not meet the requirements from accessing resources in the tenant.<br>
+  Which two components should you create? Each correct answer presents part of the solution.<br>
+  NOTE: Each correct selection is worth one point.</p>`,
+    type: "multi",
+    options: [
+      "A. a configuration policy",
+      "B. a compliance policy",
+      "C. a security baseline profile",
+      "D. a conditional access policy",
+      "E. a configuration profile"
+    ],
+    correctAnswers: ["B. a compliance policy", "D. a conditional access policy"],
+    explanationHtml: `<h4>해설</h4>
+  <p><b>Compliance policy</b>는 장치가 요구되는 보안 조건(예: 암호 복잡도, 암호화, Defender 활성화 등)을 충족하는지 평가합니다.<br>
+  <b>Conditional Access policy</b>는 이 규정 준수 상태(Compliant 여부)를 기반으로 리소스 접근을 허용하거나 차단합니다.<br>
+  따라서 두 정책을 함께 사용해야 회사 정책을 만족합니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/mem/intune/protect/device-compliance-get-started'>
+  Get started with device compliance policies in Intune</a><br>
+  <a href='https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access'>
+  What is Conditional Access?</a></p>`
+  },
+  {
+    id: 201,
+    title: "Restrict Intune admin permissions by office location",
+    promptHtml: `<p>Your company has multiple offices.<br>
+  You have a Microsoft 365 E5 tenant that uses Microsoft Intune for device management.<br>
+  Each office has a local administrator.<br>
+  You need to ensure that the local administrators can manage only the devices in their respective office.<br>
+  What should you use?</p>`,
+    type: "single",
+    options: [
+      "A. scope tags",
+      "B. configuration profiles",
+      "C. device categories",
+      "D. conditional access policies"
+    ],
+    correctAnswers: ["A. scope tags"],
+    explanationHtml: `<h4>해설</h4>
+  <p><b>Scope tags</b>는 Intune에서 리소스(정책, 장치 등)에 대한 관리자 접근 권한을 구분하는 기능입니다.<br>
+  각 지사(Office)별로 Scope tag를 정의하고, 해당 태그를 로컬 관리자에게 할당하면 관리 권한이 해당 장치 그룹으로 제한됩니다.<br>
+  Device categories는 분류용이며, 권한 분리는 제공하지 않습니다.</p>
+  <p><b>참고 문서:</b> 
+  <a href='https://learn.microsoft.com/mem/intune/fundamentals/scope-tags'>
+  Use role-based access control (RBAC) and scope tags in Intune</a></p>`
+  },
+  {
+    id: 202,
+    title: "Determine which Intune configuration profiles apply to each device",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that uses Microsoft Intune.<br>
+  You have devices enrolled in Intune as shown in the following table.</p>
+  ${IMG_Q202_1 ? `<p><img src="${IMG_Q202_1}" style="max-width:100%"></p>` : ""}
+  <p>You create the device configuration profiles shown in the following table.</p>
+  ${IMG_Q202_2 ? `<p><img src="${IMG_Q202_2}" style="max-width:100%"></p>` : ""}
+  <p>Which profiles will be applied to each device? To answer, select the appropriate options in the answer area.<br>
+  NOTE: Each correct selection is worth one point.</p>`,
+    type: "pair",
+    pairLabels: ["Device1", "Device2"],
+    pairOptionsLeft: [
+      "No profiles",
+      "Profile1 only",
+      "Profile4 only",
+      "Profile1 and Profile4 only",
+      "Profile1, Profile2, and Profile4 only"
+    ],
+    pairOptionsRight: [
+      "No profiles",
+      "Profile1 only",
+      "Profile2 only",
+      "Profile3 only",
+      "Profile1 and Profile2 only",
+      "Profile2 and Profile3 only",
+    ],
+    pairAnswer: [
+      "Profile1 and Profile4 only",
+      "Profile2 and Profile3 only"
+    ],
+    explanationHtml: `<h4>해설</h4>
+  <p>Intune 구성 프로필은 플랫폼, 등록 유형, 그룹 할당 조건에 따라 적용됩니다.<br>
+  이 시나리오에서는 Device1이 Windows 기반으로 Profile1과 Profile4가 적용되고,<br>
+  Device2는 iOS/Android 기반으로 Profile2와 Profile3이 적용됩니다.</p>
+  <p><b>참고 문서:</b>
+  <a href='https://learn.microsoft.com/mem/intune/configuration/device-profile-assign'>
+  Assign and monitor device profiles in Microsoft Intune</a></p>`
+  },
+  {
+    id: 203,
+    title: "Assign improvement action for SSPR in Compliance Manager",
+    promptHtml: `<p>Your company has a Microsoft 365 E5 tenant that contains a user named User1.<br>
+  You review the company's compliance score.<br>
+  You need to assign the following improvement action to User1: <b>Enable self-service password reset.</b><br>
+  What should you do first?</p>`,
+    type: "single",
+    options: [
+      "A. From Compliance Manager, turn off automated testing.",
+      "B. From the Azure Active Directory admin center, enable self-service password reset (SSPR).",
+      "C. From the Microsoft 365 admin center, modify the self-service password reset (SSPR) settings.",
+      "D. From the Azure Active Directory admin center, add User1 to the Compliance administrator role."
+    ],
+    correctAnswers: ["B. From the Azure Active Directory admin center, enable self-service password reset (SSPR)."],
+    explanationHtml: `<h4>해설</h4>
+  <p>Compliance Manager의 개선 조치 중 ‘Enable self-service password reset’ 항목은 Azure AD의 기능 설정과 직접 연동됩니다.<br>
+  따라서 이 조치를 수행하려면 먼저 <b>Azure Active Directory(Entra ID) 관리자 센터</b>에서 SSPR 기능을 활성화해야 합니다.<br>
+  이후 해당 설정이 Compliance Manager의 개선 항목으로 반영되어 Compliance Score가 향상됩니다.</p>
+  <p><b>참고 문서:</b><br> 
+  <a href='https://learn.microsoft.com/entra/identity/authentication/tutorial-enable-sspr'>
+  Enable and configure self-service password reset in Microsoft Entra ID</a><br>
+  <a href='https://learn.microsoft.com/microsoft-365/compliance/compliance-manager-improvement-actions'>
+  Improvement actions in Compliance Manager</a></p>`
+  },
+  {
+    id: 204,
+    title: "Onboard iOS devices to Microsoft Defender for Endpoint via Intune",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that includes Microsoft Intune.<br>
+  You manage all iOS devices by using Intune.<br>
+  You plan to protect corporate-owned iOS devices by using Microsoft Defender for Endpoint.<br>
+  You configure a connection between Intune and Defender for Endpoint.<br>
+  You need to onboard the devices to Defender for Endpoint.<br>
+  What should you do?</p>`,
+    type: "single",
+    options: [
+      "A. Enable Microsoft Defender for Cloud.",
+      "B. Create an app protection policy.",
+      "C. Download an onboarding package.",
+      "D. Add an app to Intune."
+    ],
+    correctAnswers: ["D. Add an app to Intune."],
+    explanationHtml: `<h4>해설</h4>
+  <p>iOS 장치는 Windows나 macOS처럼 온보딩 패키지를 사용하는 구조가 아니라,<br>
+  Intune을 통해 Microsoft Defender for Endpoint 앱을 배포해야 합니다.<br>
+  따라서 Intune에서 <b>Microsoft Defender for Endpoint 앱을 추가</b>하여 배포해야 장치가 Defender로 온보딩됩니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/en-us/defender-endpoint/ios-install#deployment-steps-applicable-for-both-supervised-and-unsupervised-devices'>
+  Deploy Microsoft Defender for Endpoint on iOS with Microsoft Intune</a></p>`
+  },
+  {
+    id: 205,
+    title: "Recipients of Azure AD Identity Protection weekly digest email",
+    promptHtml: `<p>You enable the Azure AD Identity Protection weekly digest email.<br>
+  You create the users shown in the following table.</p>
+  ${IMG_Q205_1 ? `<p><img src="${IMG_Q205_1}" style="max-width:100%"></p>` : ""}
+  <p>Which users will receive the weekly digest email automatically?</p>`,
+    type: "single",
+    options: [
+      "A. Admin2, Admin3, and Admin4 only",
+      "B. Admin1, Admin2, Admin3, and Admin4",
+      "C. Admin2 and Admin3 only",
+      "D. Admin3 only",
+      "E. Admin1 and Admin3 only"
+    ],
+    correctAnswers: ["E. Admin1 and Admin3 only"],
+    explanationHtml: `<h4>해설</h4>
+  <p>Azure AD Identity Protection의 주간 요약 이메일(Weekly Digest Email)은 기본적으로 다음 역할의 사용자에게 자동 발송됩니다:<br>
+  • <b>Global Administrator</b><br>
+  • <b>Security Administrator</b><br>
+  • <b>Security Reader</b><br>
+  따라서 이러한 역할을 가진 Admin1과 Admin3만 주간 요약 메일을 자동으로 받습니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-notifications'>
+  Microsoft Entra ID Protection notifications</a></p>`
+  },
+  {
+    id: 206,
+    title: "Identify who created a role in Exchange Online using audit log search",
+    promptHtml: `<p>You have a Microsoft 365 subscription.<br>
+  Your network uses an IP address space of <b>51.40.15.0/24</b>.<br>
+  An Exchange Online administrator recently created a role named <b>Role1</b> from a computer on the network.<br>
+  You need to identify the name of the administrator by using an audit log search.<br>
+  For which activities should you search and by which field should you filter in the audit log search?<br>
+  NOTE: Each correct selection is worth one point.</p>`,
+    type: "pair",
+    pairLabels: ["Activity to search", "Field to filter"],
+    pairOptionsLeft: [
+      "Exchange mailbox activities",
+      "Site administration activities",
+      "Show results for all activities",
+      "Role administration activities"
+    ],
+    pairOptionsRight: [
+      "Item",
+      "User",
+      "Detail",
+      "IP address"
+    ],
+    pairAnswer: [
+      "Role administration activities",
+      "IP address"
+    ],
+    explanationHtml: `<h4>해설</h4>
+  <p>Exchange Online에서 새로운 역할(Role)이 생성될 때 감사 로그에 기록되는 활동은 <b>New-ManagementRole</b>입니다.<br>
+  해당 작업이 수행된 관리자를 식별하려면, 로그를 <b>IP address</b> 필드에서 내부 네트워크 대역(51.40.15.0/24)에 따라 필터링해야 합니다.<br>
+  이를 통해 어떤 관리자가 해당 네트워크 내에서 역할을 생성했는지를 확인할 수 있습니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance'>
+  
+  `
+  },
+  {
+    id: 207,
+    title: "Prevent malicious file downloads in Teams, OneDrive, and SharePoint",
+    promptHtml: `<p>You have a Microsoft 365 subscription that uses Microsoft Defender for Office 365.<br>
+  You need to ensure that users are prevented from opening or downloading malicious files from Microsoft Teams, OneDrive, or SharePoint Online.<br>
+  What should you do?</p>`,
+    type: "single",
+    options: [
+      "A. Create a new Anti-malware policy",
+      "B. Configure the Safe Links global settings.",
+      "C. Create a new Anti-phishing policy",
+      "D. Configure the Safe Attachments global settings."
+    ],
+    correctAnswers: ["D. Configure the Safe Attachments global settings."],
+    explanationHtml: `<h4>해설</h4>
+  <p>Microsoft Defender for Office 365에서는 SharePoint, OneDrive, Teams에서 악성 파일이 열리거나 다운로드되지 않도록 
+  <b>Safe Attachments</b> 기능을 사용합니다.<br>
+  이 기능을 <b>Global settings</b>에서 활성화하면, 해당 서비스 전반에서 탐지된 악성 파일을 자동으로 차단합니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/en-us/defender-office-365/safe-attachments-for-spo-odfb-teams-about'>
+  Safe Attachments for SharePoint, OneDrive, and Microsoft Teams</a><br>
+  <a href='https://learn.microsoft.com/microsoft-365/security/office-365-security/set-up-safe-attachments-policies'>
+  Set up Safe Attachments policies in Microsoft Defender for Office 365</a></p>`
+  },
+  {
+    id: 208,
+    title: "Modify Defender for Identity sensor configuration permissions",
+    promptHtml: `<p>You have a Microsoft Azure Active Directory (Azure AD) tenant named <b>Contoso.com</b>.<br>
+  You create a Microsoft Defender for Identity instance named <b>Contoso</b>.<br>
+  The tenant contains the users shown in the following table.</p>
+  ${IMG_Q208_1 ? `<p><img src="${IMG_Q208_1}" style="max-width:100%"></p>` : ""}
+  <p>You need to modify the configuration of the Defender for Identity sensors.<br>
+  <b>Solution:</b> You instruct User4 to modify the Defender for Identity sensor configuration.<br>
+  Does this meet the goal?</p>`,
+    type: "single",
+    options: [
+      "A. Yes",
+      "B. No"
+    ],
+    correctAnswers: ["A. Yes"],
+    explanationHtml: `<h4>해설</h4>
+  <p>Microsoft Defender for Identity 센서 구성을 변경하려면 <b>Global Administrator</b> 또는 
+  <b>Security Administrator</b> 권한이 필요합니다.<br>
+  User4가 <b>Global Administrator</b> 역할을 보유하고 있으므로, Defender for Identity 센서 구성을 
+  수정할 수 있으며, 해당 솔루션은 목표를 충족합니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/ko-kr/defender-for-identity/sensor-settings'>
+  Manage Microsoft Defender for Identity sensors</a></p>`
+  },
+  {
+    id: 209,
+    title: "Evaluate tenant compliance with ISO 27001 standard",
+    promptHtml: `<p>You have a Microsoft 365 E5 tenant.<br>
+  Industry regulations require that the tenant comply with the <b>ISO 27001</b> standard.<br>
+  You need to evaluate the tenant based on the standard.<br>
+  What should you do?</p>`,
+    type: "single",
+    options: [
+      "A. From Policy in the Azure portal, select Compliance, and then assign a policy.",
+      "B. From Compliance Manager, create an assessment.",
+      "C. From the Microsoft 365 compliance center, create an audit retention policy.",
+      "D. From the Microsoft 365 admin center, enable the Productivity Score."
+    ],
+    correctAnswers: ["B. From Compliance Manager, create an assessment."],
+    explanationHtml: `<h4>해설</h4>
+  <p>ISO 27001 등 규제 표준에 따른 Microsoft 365 테넌트의 컴플라이언스 상태를 평가하려면 
+  <b>Microsoft Purview Compliance Manager</b>를 사용해야 합니다.<br>
+  Compliance Manager에서 <b>Assessment(평가)</b>를 생성하면, 
+  표준(예: ISO 27001)에 맞춰 통제 항목별 점검 및 개선 조치를 확인할 수 있습니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/microsoft-365/compliance/compliance-manager-assessments'>
+  Create and manage assessments in Compliance Manager</a><br>
+  <a href='https://learn.microsoft.com/microsoft-365/compliance/compliance-manager'>
+  Microsoft Purview Compliance Manager overview</a></p>`
+  },
+  {
+    id: 210,
+    title: "Effect of marking an action as Risk accepted in Microsoft Secure Score",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription.<br>
+  Your company’s Microsoft Secure Score recommends the actions shown in the following exhibit.</p>
+  ${IMG_Q210_1 ? `<p><img src="${IMG_Q210_1}" style="max-width:100%"></p>` : ""}
+  <p>You select <b>Create Safe Links policies for email messages</b> and change <b>Status</b> to <b>Risk accepted</b> in the Status &amp; action plan settings.<br>
+  How does the change affect the Secure Score?</p>`,
+    type: "single",
+    options: [
+      "A. remains the same",
+      "B. increases by 1 point",
+      "C. increases by 9 points",
+      "D. decreases by 1 point",
+      "E. decreases by 9 points"
+    ],
+    correctAnswers: ["A. remains the same"],
+    explanationHtml: `<h4>해설</h4>
+  <p>Microsoft Secure Score에서 항목의 상태를 <b>Risk accepted</b>로 변경하면, 해당 권장 조치를 수행하지 않더라도 
+  위험을 인지하고 허용한 것으로 간주되어 점수 계산에서 제외됩니다.<br>
+  즉, 이 조치는 <b>점수에 긍정적 또는 부정적 영향을 미치지 않으며</b> Secure Score는 현재 상태 그대로 유지됩니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/microsoft-365/security/defender/microsoft-secure-score-improvement-actions'>
+  Microsoft Secure Score improvement actions</a><br>
+  <a href='https://learn.microsoft.com/en-us/defender-xdr/microsoft-secure-score'>
+  Microsoft Secure Score overview</a></p>`
+  },
+  {
+    id: 211,
+    title: "Select Windows 10 version that supports App-V and 24-month servicing",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription.<br>
+  You plan to deploy 100 new Windows 10 devices.<br>
+  You need to order the appropriate version of Windows 10 for the new devices. The version must meet the following requirements:</p>
+  <ul>
+    <li>Be serviced for a minimum of 24 months.</li>
+    <li>Support Microsoft Application Virtualization (App-V).</li>
+  </ul>
+  <p>Which version should you identify?</p>`,
+    type: "single",
+    options: [
+      "A. Windows 10 Pro, version 1909",
+      "B. Windows 10 Pro, version 2004",
+      "C. Windows 10 Pro, version 21H1",
+      "D. Windows 10 Enterprise, version 2004"
+    ],
+    correctAnswers: ["D. Windows 10 Enterprise, version 2004"],
+    explanationHtml: `<h4>해설</h4>
+  <p>Microsoft Application Virtualization (App-V)은 Windows 10 Enterprise 에디션에서만 지원됩니다.<br>
+  또한 Windows 10 Enterprise의 H2 릴리스(예: 2004, 20H2 등)는 최소 24개월의 서비스 주기를 가지므로 요구사항을 충족합니다.<br>
+  Pro 버전은 App-V를 지원하지 않으며, 서비스 주기도 18개월로 제한됩니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/ko-kr/microsoft-desktop-optimization-pack/app-v/appv-getting-started'>
+  Microsoft Application Virtualization (App-V) overview</a><br>
+  `
+  },
+  {
+    id: 212,
+    title: "Require FIDO2 key authentication when joining devices to Entra ID",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription.<br>
+  You need to create a Conditional Access policy that will require the use of FIDO2 security keys only when users join their Windows devices to Microsoft Entra ID.<br>
+  How should you configure the policy? To answer, select the appropriate options in the answer area.<br>
+  NOTE: Each correct selection is worth one point.</p>
+  ${IMG_Q212_1 ? `<p><img src="${IMG_Q212_1}" style="max-width:100%"></p>` : ""}`,
+    type: "pair",
+    pairLabels: ["Target resources", "Conditions", "Grant access control"],
+    pairOptionsLeft: [
+      "Cloud apps",
+      "User actions",
+      "Authentication context"
+    ],
+    pairOptionsRight: [
+      "Device platforms",
+      "Sign-in risk",
+      "User risk"
+    ],
+    pairOptions: [
+      "Require authentication strength",
+      "Require multi-factor authentication",
+      "Require device to be marked as compliant"
+    ],
+    pairAnswer: [
+      "User actions",
+      "Device platforms",
+      "Require authentication strength"
+    ],
+    explanationHtml: `<h4>해설</h4>
+  <p>이 정책의 목적은 사용자가 Windows 장치를 Microsoft Entra ID(Azure AD)에 조인할 때만 
+FIDO2 Security Key를 사용하도록 강제하는 것입니다.<br>
+이를 위해 Conditional Access 정책을 다음과 같이 구성해야 합니다.</p>
+<ul>
+  <li><b>Target resources:</b> User actions — 장치 조인(Join device to Entra ID)은 사용자 동작으로 분류됩니다.</li>
+  <li><b>Conditions:</b> Device platforms — Windows 플랫폼에만 적용하기 위한 조건입니다.</li>
+  <li><b>Grant access:</b> Require authentication strength — FIDO2 보안키를 통한 인증 강도를 요구하기 위한 설정입니다.</li>
+</ul>
+<p>이 구성을 통해 사용자는 Windows 장치를 조직의 Entra ID에 등록할 때 반드시 
+FIDO2 Security Key를 사용해야 하며, 다른 인증 수단은 허용되지 않습니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-cloud-apps#user-actions'>
+  Conditional Access: User actions</a><br>
+  <a href='https://learn.microsoft.com/entra/identity/authentication/concept-authentication-strengths'>
+  Authentication strengths in Microsoft Entra ID</a></p>`
+  },
+  {
+    id: 213,
+    title: "Prepare Cloud Discovery snapshot report in Defender for Cloud Apps",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription and use Microsoft Defender for Cloud Apps.<br>
+  The subscription contains users that have Windows 11 devices.<br>
+  You need to use the Cloud Discovery snapshot report to analyze cloud app usage on the devices.<br>
+  What should you do before generating a report?</p>`,
+    type: "single",
+    options: [
+      "A. Create an activity policy.",
+      "B. Deploy the Azure Monitor Agent on the devices.",
+      "C. Create an app discovery policy.",
+      "D. Export traffic logs from firewalls and proxies."
+    ],
+    correctAnswers: ["D. Export traffic logs from firewalls and proxies."],
+    explanationHtml: `<h4>해설</h4>
+  <p>Cloud Discovery 스냅샷 보고서는 Defender for Cloud Apps에서 네트워크 트래픽 로그를 분석하여 
+  조직의 클라우드 앱 사용 현황을 파악하는 기능입니다.<br>
+  보고서를 생성하기 전, 방화벽 또는 프록시에서 트래픽 로그를 <b>내보내고(Export)</b> 해당 로그를 Defender for Cloud Apps 포털에 업로드해야 합니다.<br>
+  실시간 통합(App connector 또는 continuous report) 방식과 달리, 스냅샷 보고서는 로그 파일 기반 분석에 의존합니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/defender-cloud-apps/create-snapshot-reports'>
+  Create Cloud Discovery snapshot reports in Microsoft Defender for Cloud Apps</a><br>`
+  },
+  {
+    id: 214,
+    title: "Prevent sharing of sensitive data using sample-based detection",
+    promptHtml: `<p>You have a Microsoft 365 subscription.<br>
+  You need to configure a compliance solution that meets the following requirements:</p>
+  <ul>
+    <li>Defines sensitive data based on existing data samples.</li>
+    <li>Automatically prevents data that matches the samples from being shared externally in Microsoft SharePoint or email messages.</li>
+  </ul>
+  <p>Which two components should you configure? Each correct answer presents part of the solution.<br>
+  NOTE: Each correct selection is worth one point.</p>`,
+    type: "multi",
+    options: [
+      "A. a trainable classifier",
+      "B. a sensitive info type",
+      "C. an insider risk policy",
+      "D. an adaptive policy scope",
+      "E. a data loss prevention (DLP) policy"
+    ],
+    correctAnswers: ["A. a trainable classifier", "E. a data loss prevention (DLP) policy"],
+    explanationHtml: `<h4>해설</h4>
+  <p><b>Trainable classifier</b>는 샘플 데이터 기반으로 학습하여 민감한 콘텐츠를 자동으로 식별할 수 있도록 설계된 AI 기반 분류 도구입니다.<br>
+  이를 통해 조직은 고유한 데이터 패턴을 정의할 수 있으며, <b>DLP(데이터 손실 방지) 정책</b>과 결합하면 
+  SharePoint, Exchange, Teams 등에서 외부 공유를 자동으로 차단할 수 있습니다.<br>
+  따라서 두 구성요소를 함께 사용해야 요구사항을 충족합니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/microsoft-365/compliance/classifier-learn-about'>
+  Learn about trainable classifiers</a><br>
+  <a href='https://learn.microsoft.com/microsoft-365/compliance/dlp-learn-about-dlp'>
+  Learn about data loss prevention (DLP)</a></p>`
+  },
+  {
+    id: 215,
+    title: "Require MFA when user risk level is high in Conditional Access policy",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription.<br>
+  You create a Conditional Access policy named <b>Policy1</b> and assign Policy1 to all users.<br>
+  You need to configure Policy1 to enforce multi-factor authentication (MFA) if the user risk level is high.<br>
+  Which two settings should you configure in Policy1? To answer, select the appropriate settings in the answer area.<br>
+  NOTE: Each correct selection is worth one point.</p>
+  ${IMG_Q215_1 ? `<p><img src="${IMG_Q215_1}" style="max-width:100%"></p>` : ""}`,
+    type: "pair",
+    pairLabels: ["Conditions", "Grant access control"],
+    pairOptionsLeft: [
+      "Sign-in risk",
+      "User risk",
+      "Device platforms",
+      "Locations"
+    ],
+    pairOptionsRight: [
+      "Require multi-factor authentication",
+      "Require device to be marked as compliant",
+      "Require password change",
+      "Require authentication strength"
+    ],
+    pairAnswer: [
+      "User risk",
+      "Require multi-factor authentication"
+    ],
+    explanationHtml: `<h4>해설</h4>
+  <p>Conditional Access 정책에서 사용자의 위험 수준(User risk level)이 높을 경우 MFA를 강제하려면 다음 구성이 필요합니다:</p>
+  <ul>
+    <li><b>Conditions:</b> User risk — Entra ID(기존 Azure AD) Identity Protection이 계산한 사용자 위험 수준을 기반으로 정책이 적용됩니다.</li>
+    <li><b>Grant:</b> Require multi-factor authentication — 높은 위험이 탐지되면 MFA를 요구하여 보안을 강화합니다.</li>
+  </ul>
+  <p>이 조합을 통해 위험이 높은 사용자 로그인에만 MFA를 요구하는 정책을 구현할 수 있습니다.</p>
+  <p><b>참고 문서:</b><br>
+  <a href='https://learn.microsoft.com/entra/identity/conditional-access/howto-conditional-access-policy-risk'>
+  Configure risk-based Conditional Access policies in Microsoft Entra ID</a><br>`
   }
 
 
+
+
+
+
+
+
+
+
+
+
 ] // ref: 
+
 
 

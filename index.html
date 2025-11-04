@@ -146,7 +146,8 @@
 			border-color: rgba(79, 124, 255, .6)
 		}
 
-		select {
+		select,
+		input[type="number"] {
 			padding: 8px 10px;
 			border-radius: 8px;
 			background: #0f162a;
@@ -259,18 +260,32 @@
 				<section id="home" class="home">
 					<div>
 						<h2 style="margin:0 0 6px 0; font-size:16px">퀴즈 시작</h2>
-						<p class="muted" style="margin:0">문제 수를 선택하고 시작하세요. 전체 라이브러리에서 무작위로 추출합니다.</p>
+						<p class="muted" style="margin:0">문제 수를 선택하거나 특정 문항 ID로 바로 시작할 수 있습니다.</p>
 					</div>
+
+					<!-- 문제 수 선택 -->
 					<div class="slider-row">
 						<label for="qcount" style="font-size:14px;color:var(--muted)">문제 수</label>
-						<input id="qcount" type="range" min="5" max="50" step="1" value="10">
+						<!-- max 값을 100으로 확장 -->
+						<input id="qcount" type="range" min="5" max="100" step="1" value="10">
 						<span id="qcountLabel" class="pill">10</span>
 					</div>
+
+					<!-- 무작위 추출 -->
 					<div class="slider-row">
 						<label for="shuffle" style="font-size:14px;color:var(--muted)">무작위 추출</label>
 						<input id="shuffle" type="checkbox" checked>
 						<span class="muted">체크 시 문제를 섞어서 출제</span>
 					</div>
+
+					<!-- 문항 ID 바로 시작 기능 (신규) -->
+					<div class="slider-row">
+						<label for="byId" style="font-size:14px;color:var(--muted)">문항 ID 바로 시작</label>
+						<input id="byId" type="checkbox">
+						<input id="qid" type="number" placeholder="문항 ID" style="width:140px" min="1" disabled>
+						<span class="muted">체크하면 슬라이더/섞기 설정을 무시하고 해당 ID로 바로 시작</span>
+					</div>
+
 					<div class="bar">
 						<button id="start" class="action primary">Start</button>
 					</div>
@@ -296,7 +311,7 @@
 						<button id="reset" class="action">현재 문제 초기화</button>
 						<button id="quit" class="action" style="margin-left:auto">종료</button>
 					</div>
-					<p class="muted">이미지가 보이지 않으면 CDN 직접 링크인지 확인하세요. 필요 시 ?v=YYYYMMDD 캐시 무효화.</p>
+					<p class="muted">이 테스트 프로그램은 개인적인 목적으로 사용하도록 작성되었습니다.</p>
 				</section>
 
 				<!-- Result screen -->
@@ -336,6 +351,10 @@
 		const $scoreLive = document.getElementById('scoreLive');
 		const $title = document.getElementById('title');
 
+		// 신규: 문항 ID 바로 시작
+		const $byId = document.getElementById('byId');
+		const $qid = document.getElementById('qid');
+
 		// 선택된 세트
 		let RUN = {
 			set: [],            // 선택된 문제 배열
@@ -353,6 +372,25 @@
 
 		// 기존 렌더를 약간 개조해서 "RUN.set"만을 대상으로 동작
 		function chooseSet() {
+			// 문항 ID 바로 시작 모드
+			if ($byId.checked) {
+				const id = parseInt($qid.value, 10);
+				if (!id) { alert('문항 ID를 입력해 주세요.'); return; }
+				const idx = ALL.findIndex(q => q.id === id);
+				if (idx === -1) { alert(`ID ${id} 문항을 찾을 수 없습니다.`); return; }
+				RUN.set = [ALL[idx]];
+				RUN.mapIdx = [idx];
+				RUN.current = 0;
+				RUN.startAt = Date.now();
+				RUN.endAt = 0;
+				RUN.yn = {}; RUN.pair = {}; RUN.single = {}; RUN.multi = {}; RUN.sequence = {};
+				RUN.checkedCorrect = {};
+				RUN.wrongOrder = [];
+				updateMeta();
+				return;
+			}
+
+			// 기본 무작위/슬라이더 모드
 			const n = Math.min(parseInt($qcount.value, 10), ALL.length);
 			let idxs = [...Array(ALL.length).keys()];
 			if ($shuffle.checked) idxs.sort(() => Math.random() - 0.5);
@@ -379,7 +417,7 @@
 			return { got, total, pct: total ? Math.round(got * 100 / total) : 0 };
 		}
 
-		// ===== 기존 렌더·채점 로직 (필요 부분만 이식/경량화) =====
+		// ===== 기존 렌더·채점 로직 =====
 		function render() {
 			const q = RUN.set[RUN.current]; if (!q) return;
 			$title.textContent = `Question ${q.id} — ${q.title}`;
@@ -625,6 +663,13 @@
 		document.getElementById('qcount').addEventListener('input', e => {
 			$qcountLabel.textContent = e.target.value;
 		});
+
+		// 신규: 문항 ID 체크박스 on/off에 따라 입력 활성화
+		$byId.addEventListener('change', () => {
+			const on = $byId.checked;
+			$qid.disabled = !on;
+		});
+
 		document.getElementById('start').addEventListener('click', () => {
 			chooseSet();
 			$home.style.display = 'none'; $quiz.style.display = 'block'; $result.style.display = 'none';
@@ -633,6 +678,8 @@
 		document.getElementById('again').addEventListener('click', () => {
 			$home.style.display = 'block'; $quiz.style.display = 'none'; $result.style.display = 'none';
 			$runMeta.style.display = 'none';
+			// 홈으로 돌아올 때 ID모드 초기화 UX(선택적)
+			// $byId.checked = false; $qid.disabled = true; $qid.value = "";
 		});
 		document.getElementById('review').addEventListener('click', () => {
 			// 오답만 다시 보기
@@ -699,7 +746,6 @@
 				if (RUN.current === RUN.set.length - 1) showResult(); else goto(+1);
 			}
 		});
-
 	</script>
 </body>
 
