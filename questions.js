@@ -233,6 +233,14 @@ const IMG_Q256_1 = "https://i.imgur.com/eOq9ZGD.png";
 const IMG_Q256_2 = "https://i.imgur.com/PSJ3HmI.png";
 const IMG_Q256_3 = "https://i.imgur.com/QCauw3t.png";
 const IMG_Q257_1 = "https://i.imgur.com/4jHVqBW.png";
+const IMG_Q259_1 = "https://i.imgur.com/SMPij9m.png";
+const IMG_Q260_1 = "https://i.imgur.com/L0NbgIG.png";
+const IMG_Q264_1 = "https://i.imgur.com/3xWGQxP.png";
+const IMG_Q268_1 = "https://i.imgur.com/czBfdIO.png";
+const IMG_Q269_1 = "https://i.imgur.com/QvKtpSW.png";
+const IMG_Q269_2 = "https://i.imgur.com/2J3k1Q2.png";
+const IMG_Q271_1 = "https://i.imgur.com/Edbdn02.png";
+const IMG_Q271_2 = "https://i.imgur.com/xlKEjHu.png";
 
 // 공통 헬퍼
 function choicePromptHtml(stem, img = null) {
@@ -2230,9 +2238,9 @@ window.questions = [
       ${IMG_Q65_3 ? `<p><img src="${IMG_Q65_3}" style="max-width:100%"></p>` : ""}
     `,
     statements: [
-      "Restriction A applies to User1.",
-      "Restriction B applies to User2.",
-      "Restriction C applies to User3."
+      "User1 can enroll Windows devices in Endpoint Manager.",
+      "User2 can enroll Android devices in Endpoint Manager.",
+      "User3 can enroll iOS devices in Endpoint Manager."
     ],
     options: ["Yes", "No"],
     correctAnswers: ["No", "No", "No"],
@@ -2936,13 +2944,16 @@ window.questions = [
       You need to create an <strong>iOS/iPadOS enrollment profile</strong> in Intune. Arrange the three actions in the correct order.</p>
       ${IMG_Q88_1 ? `<p><img src="${IMG_Q88_1}" style="max-width:100%"></p>` : ""}
     `,
-    type: "sequence",
-    sequenceOptions: [
-      "From Microsoft Endpoint Manager admin center, download a certificate signing request.",
+    type: "dragdrop",
+    dropLabels: ["Step 1", "Step 2", "Step 3"],
+    dragItems: [
+      "From the Microsoft Endpoint Manager admin center, add a device enrollment manager.",
+      "From the Microsoft Endpoint Manager admin center, download a certificate signing request.",
       "Create a certificate from the Apple Push Certificates Portal.",
-      "Upload an Apple MDM push certificate to Microsoft Endpoint Manager."
+      "Upload an Apple MDM push certificate to Microsoft Endpoint Manager.",
+      "From the Microsoft Endpoint Manager admin center, configure device enrollment restrictions."
     ],
-    sequenceAnswer: [
+    correctAnswers: [
       "From Microsoft Endpoint Manager admin center, download a certificate signing request.",
       "Create a certificate from the Apple Push Certificates Portal.",
       "Upload an Apple MDM push certificate to Microsoft Endpoint Manager."
@@ -3120,11 +3131,18 @@ window.questions = [
       "Devices that can be onboarded to MDE",
       "Policies required to onboard"
     ],
-    pairOptions: [
+    pairOptionsLeft: [
       "Device1, Device2, Device3, and Device4",
       "Device1 and Device3 only",
       "A device configuration profile only",
       "Compliance + Conditional Access policies"
+    ],
+    pairOptionsRight: [
+      "A conditional acess policy only",
+      "A device compliance policy only",
+      "A device configuration profile only",
+      "A device configuration profile and conditional access policy only",
+      "Device configuration profile, device compliance policy, and conditional access policy"
     ],
     pairAnswer: [
       "Device1, Device2, Device3, and Device4",
@@ -3558,7 +3576,7 @@ window.questions = [
       "C. only contoso221018.onmicrosoft.com, Sub.contoso221018.onmicrosoft.com, and Sub2.contoso221018.onmicrosoft.com",
       "D. all the domains in the subscription"
     ],
-    correctAnswers: ["B. onlycontoso.com and Sub1.contoso221018.onmicrosoft.com"],
+    correctAnswers: ["B. only contoso.com and Sub1.contoso221018.onmicrosoft.com"],
     explanationHtml: `
       <h3>Explanation</h3>
       <p>UPN에 사용하려면 verified 혹은 기본(onmicrosoft.com) 도메인이어야 합니다.</p>
@@ -3814,7 +3832,7 @@ window.questions = [
     pairOptionsLeft: [
       "Default Shared Folder (User1): https://sharepoint.contoso.com/addins_all_users_",
       "Default Shared Folder (User1): https://sharepoint.contoso.com/addins_office_users",
-      "Default Shared Folder (User1): https://sharepoint.contoso.com/addins_sales_team_users"
+      "Default Shared Folder (User1): https://sharepoint.contoso.com/addins_sales_team_users_"
     ],
     pairOptionsRight: [
       "Default Office Theme (User2): White",
@@ -3983,22 +4001,22 @@ window.questions = [
 
   // 126
   {
-  id: 126,
-  title: "Groups eligible for publishing sensitivity labels",
-  promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains the groups shown in the following table.</p>
+    id: 126,
+    title: "Groups eligible for publishing sensitivity labels",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains the groups shown in the following table.</p>
 ${IMG_Q126_1 ? `<p><img src="${IMG_Q126_1}" style="max-width:100%"></p>` : ""}
 <p>You plan to publish a sensitivity label named <b>Label1</b>.<br>
 To which groups can you publish Label1?</p>`,
-  type: "single",
-  options: [
-    "A. Group1 only",
-    "B. Group1 and Group2 only",
-    "C. Group1 and Group4 only",
-    "D. Group1, Group2, and Group3 only",
-    "E. Group1, Group2, Group3, and Group4"
-  ],
-  correctAnswers: ["A. Group1 only"],
-  explanationHtml: `<h3>해설</h3>
+    type: "single",
+    options: [
+      "A. Group1 only",
+      "B. Group1 and Group2 only",
+      "C. Group1 and Group4 only",
+      "D. Group1, Group2, and Group3 only",
+      "E. Group1, Group2, Group3, and Group4"
+    ],
+    correctAnswers: ["A. Group1 only"],
+    explanationHtml: `<h3>해설</h3>
 <p>민감도 레이블(Sensitivity label)을 게시(publish)할 때는 <b>Microsoft 365 그룹(Microsoft 365)</b> 또는 <b>보안(Security) 그룹</b>을 대상으로 지정할 수 있습니다.</p>
 <ul>
 <li><b>Microsoft 365 그룹</b> → 지원됨 ✅ (예: Group1)</li>
@@ -4010,8 +4028,8 @@ To which groups can you publish Label1?</p>`,
 <p><b>정답:</b> A. Group1</p>
 <p><b>참고 문서:</b><br>
 <a href="https://learn.microsoft.com/en-us/entra/identity/users/groups-assign-sensitivity-labels?tabs=microsoft#sensitivity-labels-arent-available-for-assignment-on-a-group">Sensitivity labels aren't available for assignment on a group</a></p>`
-}
-,
+  }
+  ,
 
   // 127
   {
@@ -4844,7 +4862,7 @@ To which groups can you publish Label1?</p>`,
       "From the Microsoft Entra admin center, configure othe authentication methods for SSPR.",
       "from the Microsoft Entra admin center, configure the registration for SSPR.",
       "Select Group writeback in Microsoft Entra Connect.",
-      "Select Password writeback in Microsoft Entra Connect." 
+      "Select Password writeback in Microsoft Entra Connect."
     ],
     correctAnswers: [
       "Validate permissions for the Microsoft Entra Connect account.",
@@ -5788,8 +5806,8 @@ To which groups can you publish Label1?</p>`,
       "Group1, Group2, Group3, Group5, and Group6"
     ],
     pairAnswer: [
-      "None",
-      "Group3, Group5"
+      "None of the groups",
+      "Group3 and Group5 only"
     ],
     explanationHtml: `
       <h3>Explanation</h3>
@@ -8231,19 +8249,426 @@ What should you use?</p>`,
 <p><b>참고 문서:</b><br>
 <a href="https://learn.microsoft.com/entra/identity/users/licensing-groups-assign">Group-based licensing in Microsoft Entra ID</a><br>
 <a href="https://learn.microsoft.com/entra/identity/users/licensing-service-plan-information">View and manage license assignments in Microsoft Entra admin center</a></p>`
+  },
+  {
+    id: 259,
+    title: "Configure incident email notifications for Windows 10 devices",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains the devices shown in the following table.</p>
+${IMG_Q260_1 ? `<p><img src="${IMG_Q260_1}" style="max-width:100%"></p>` : ""}
+<p>You need to configure an incident email notification rule that will be triggered when an alert occurs only on a Windows 10 device. The solution must minimize administrative effort.<br>
+What should you do first?</p>`,
+    type: "single",
+    options: [
+      "A. From the Microsoft 365 admin center, create a mail-enabled security group.",
+      "B. From the Microsoft 365 Defender portal, create a device group.",
+      "C. From the Microsoft Endpoint Manager admin center, create a device category.",
+      "D. From the Azure Active Directory admin center, create a dynamic device group."
+    ],
+    correctAnswers: ["B. From the Microsoft 365 Defender portal, create a device group."],
+    explanationHtml: `<h3>해설</h3>
+<p>Microsoft Defender 포털에서 <b>Device group</b>을 생성하면, 운영 체제(예: Windows 10) 기준으로 경고(Alerts) 또는 인시던트 알림 규칙을 세분화할 수 있습니다.</p>
+<p>이 방식은 Azure AD 동적 그룹이나 Intune 카테고리보다 관리 오버헤드가 낮고, 보안 이벤트 트리거와 직접 연동되므로 가장 효율적입니다.</p>
+<ul>
+<li><b>Device group</b>은 Defender for Endpoint 장치 관리 기반으로 필터링을 제공합니다.</li>
+<li>특정 OS(Windows 10) 조건을 사용하여 그룹을 생성한 후, 해당 그룹에만 이메일 알림 규칙을 적용할 수 있습니다.</li>
+<li>별도의 AAD 동적 그룹(D)이나 Intune 카테고리(C)는 보안 경고 트리거와 직접 연계되지 않습니다.</li>
+</ul>
+<p><b>정답:</b> B. From the Microsoft 365 Defender portal, create a device group.</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/device-groups">Manage device groups in Microsoft Defender for Endpoint</a></p>`
+  },
+  {
+    id: 260,
+    title: "Anti-malware policy behavior for quarantined email with attachments",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains a user named User1.<br>
+The subscription has a single anti-malware policy as shown in the following exhibit.</p>
+${IMG_Q260_1 ? `<p><img src="${IMG_Q260_1}" style="max-width:100%"></p>` : ""}
+<p>An email message that contains text and two attachments is sent to User1. One attachment is infected with malware.<br>
+How will the email message and the attachments be processed?</p>`,
+    type: "single",
+    options: [
+      "A. Both attachments will be removed. The email message will be quarantined, and User1 will receive an email message without any attachments and an email message that includes the following text: 'Malware was removed.'",
+      "B. The email message will be quarantined, and the message will remain undelivered.",
+      "C. Both attachments will be removed. The email message will be quarantined, and User1 will receive a copy of the message containing the original text and a new attachment that includes the following text: 'Malware was removed.'",
+      "D. The malware-infected attachment will be removed. The email message will be quarantined, and User1 will receive a copy of the message containing only the uninfected attachment."
+    ],
+    correctAnswers: ["B. The email message will be quarantined, and the message will remain undelivered."],
+    explanationHtml: `<h3>해설</h3>
+<p>제시된 Anti-malware 정책 설정에서, <b>Malware Detection Response</b> 옵션이 <b>No</b>로 되어 있으므로, 
+메일에 악성코드가 포함된 첨부파일이 감지되면 해당 메시지는 <b>격리(Quarantine)</b>되며 사용자에게는 전달되지 않습니다.</p>
+<ul>
+<li>‘No’ 설정은 수신자에게 격리된 메시지에 대한 알림이 발송되지 않음을 의미합니다.</li>
+<li>Common Attachment Types Filter도 <b>Off</b> 상태이므로, 파일 확장자 기반 차단은 적용되지 않습니다.</li>
+<li>결과적으로, User1은 메시지를 전혀 받지 못하고, 메일은 전적으로 관리자 검토를 위해 격리됩니다.</li>
+</ul>
+<p><b>정답:</b> B. The email message will be quarantined, and the message will remain undelivered.</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/security/office-365-security/configure-anti-malware-policies">Configure anti-malware policies in EOP</a></p>`
+  },
+  {
+    id: 261,
+    title: "Create policy to detect banned app permissions in Defender for Cloud Apps",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that uses Microsoft Defender for Cloud Apps.<br>
+You need to create a policy that will generate an email alert when a banned app is detected requesting permission to access user information or data in the subscription.<br>
+What should you configure? To answer, select the appropriate options in the answer area.<br>
+NOTE: Each correct selection is worth one point.</p>
+`,
+    type: "pair",
+    pairLabels: ["Policy type", "Filter type"],
+    pairOptionsLeft: [
+      "Activity",
+      "App discovery",
+      "OAuth app",
+      "Session"
+    ],
+    pairOptionsRight: [
+      "App",
+      "App state",
+      "App tag",
+      "Permission Level"
+    ],
+    pairAnswer: [
+      "OAuth app",
+      "Permission level"
+    ],
+    explanationHtml: `<h3>해설</h3>
+<p>금지된 앱이 사용자 데이터에 접근하려고 할 때 경고를 발생시키려면 <b>Microsoft Defender for Cloud Apps</b>에서 <b>OAuth app policy</b>를 구성해야 합니다.</p>
+<ul>
+<li><b>Policy type</b>은 앱 권한 요청을 감시하므로 <b>OAuth app</b>을 선택합니다.</li>
+<li><b>Filter type</b>은 허가 수준(permissions level)에 기반해 트리거되므로 <b>Permission level</b>을 선택합니다.</li>
+<li>App discovery나 Activity policy는 네트워크 트래픽 또는 사용자 동작을 모니터링하는 용도로 사용되며, OAuth 권한 요청에는 적합하지 않습니다.</li>
+</ul>
+<p><b>정답:</b><br>
+Policy type → OAuth app<br>
+Filter type → Permission level</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/en-us/defender-cloud-apps/manage-app-permissions">Manage OAuth app permissions in Microsoft Defender for Cloud Apps</a></p>`
+  },
+  {
+    id: 262,
+    title: "Create a policy for unusual Office 365 usage patterns",
+    promptHtml: `<p>You have a Microsoft 365 E5 tenant.<br><br>
+You need to create a policy that will trigger an alert when unusual Microsoft Office 365 usage patterns are detected.<br>
+What should you use to create the policy?</p>`,
+    type: "single",
+    options: [
+      "A. the Microsoft 365 admin center",
+      "B. the Microsoft Purview compliance portal",
+      "C. the Microsoft Defender for Cloud Apps portal",
+      "D. the Microsoft Apps admin center"
+    ],
+    correctAnswers: ["C. the Microsoft Defender for Cloud Apps portal"],
+    explanationHtml: `<h3>해설</h3>
+<p>비정상적이거나 이상한 Office 365 사용 패턴(예: 로그인 위치, 대량 다운로드, 비정상 API 호출 등)을 탐지하기 위해서는 
+<b>Microsoft Defender for Cloud Apps (MDCA)</b>에서 <b>Activity policy</b> 또는 <b>Anomaly detection policy</b>를 구성해야 합니다.</p>
+<ul>
+<li>MDCA는 클라우드 애플리케이션 사용 패턴을 분석하여 비정상적인 활동(예: 사용자별 기준을 초과한 액세스 시도)을 탐지합니다.</li>
+<li>Purview는 규정 준수 및 데이터 거버넌스 목적의 정책을 관리하며, 보안 경고 트리거에는 사용되지 않습니다.</li>
+<li>Microsoft 365 Admin Center는 기본 서비스 관리용이며, 보안 또는 행동 분석 정책을 직접 생성할 수 없습니다.</li>
+</ul>
+<p><b>정답:</b> C. the Microsoft Defender for Cloud Apps portal</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/en-us/defender-cloud-apps/anomaly-detection-policy">Create and manage anomaly detection policies in Microsoft Defender for Cloud Apps</a></p>`
+  },
+  {
+    id: 263,
+    title: "Enable Sensitivity labels in Word for the web",
+    promptHtml: `<p>You have a Microsoft 365 E5 tenant.<br>
+You configure sensitivity labels.<br>
+Users report that the <b>Sensitivity</b> button is unavailable in Microsoft Word for the web. The sensitivity button is available in Word for Microsoft 365.<br>
+You need to ensure that the users can apply the sensitivity labels when they use Word for the web.<br>
+What should you do?</p>`,
+    type: "single",
+    options: [
+      "A. Copy policies from Azure Information Protection to the Microsoft 365 Compliance center",
+      "B. Publish the sensitivity labels.",
+      "C. Create an auto-labeling policy",
+      "D. Enable sensitivity labels for files in Microsoft SharePoint Online and OneDrive."
+    ],
+    correctAnswers: ["B. Publish the sensitivity labels."],
+    explanationHtml: `<h3>해설</h3>
+<p>민감도 레이블(Sensitivity Labels)을 생성한 후, 실제 사용자가 Word, Excel, PowerPoint 또는 Outlook 등에서 사용할 수 있으려면 반드시 <b>Publish (레이블 정책 배포)</b>를 수행해야 합니다.</p>
+<ul>
+<li>레이블을 만들기만 하면 표시되지 않으며, “Publish Labels” 단계에서 사용자 또는 그룹에 배포해야 클라이언트(예: Word for web)에서 표시됩니다.</li>
+<li>SharePoint Online 및 OneDrive에 대한 민감도 레이블 기능(D)은 파일 보호와 관련된 설정이며, Word for the web에서의 레이블 표시와는 관련이 없습니다.</li>
+<li>Auto-labeling(C)은 자동 적용 정책으로 수동 버튼 활성화 문제 해결과는 무관합니다.</li>
+</ul>
+<p><b>정답:</b> B. Publish the sensitivity labels.</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/compliance/sensitivity-labels-office-apps">Enable sensitivity labels for Office apps</a></p>`
+  },
+  {
+    id: 264,
+    title: "Modify alert properties in Microsoft 365 Defender",
+    promptHtml: `<p>You have a Microsoft 365 subscription that contains the alerts shown in the following table.</p>
+${IMG_Q264_1 ? `<p><img src="${IMG_Q264_1}" style="max-width:100%"></p>` : ""}
+<p>Which properties of the alerts can you modify?</p>`,
+    type: "single",
+    options: [
+      "A. Status only",
+      "B. Status and Comment only",
+      "C. Status and Severity only",
+      "D. Status, Severity, and Comment only",
+      "E. Status, Severity, Comment and Category"
+    ],
+    correctAnswers: ["D. Status, Severity, and Comment only"],
+    explanationHtml: `<h3>해설</h3>
+<p>Microsoft 365 Defender 또는 Microsoft 365 Security & Compliance Center의 <b>Alerts</b> 섹션에서 
+관리자가 변경할 수 있는 항목은 다음과 같습니다.</p>
+<ul>
+<li><b>Status</b>: Active, Resolved 등으로 변경 가능</li>
+<li><b>Severity</b>: Low, Medium, High 등으로 재분류 가능</li>
+<li><b>Comment</b>: 조사나 대응과 관련된 설명 추가 가능</li>
+</ul>
+<p><b>Category</b>는 시스템이 자동 분류하며, 수동으로 수정할 수 없습니다.</p>
+<p><b>정답:</b> D. Status, Severity, and Comment only</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/security/defender/manage-alerts">Manage alerts in the Microsoft 365 Defender portal</a></p>`
+  },
+  {
+    id: 265,
+    title: "Configure device discovery mode in Microsoft Defender for Endpoint",
+    promptHtml: `<p>Your company has a Microsoft 365 E5 subscription.<br>
+You onboard a device on the company's network to Microsoft Defender for Endpoint.<br>
+In the Microsoft Defender portal, you notice that the device inventory displays many devices that have an Onboarding status of <b>Can be onboarded</b>.<br>
+You need to ensure that onboarded devices are prevented from polling the network for device discovery but can still discover devices with which they communicate directly.<br>
+What should you configure in the Microsoft Defender portal?</p>`,
+    type: "single",
+    options: [
+      "A. device discovery exclusions",
+      "B. standard discovery",
+      "C. basic discovery",
+      "D. a network assessment job"
+    ],
+    correctAnswers: ["C. basic discovery"],
+    explanationHtml: `<h3>해설</h3>
+<p>Microsoft Defender for Endpoint의 <b>Device discovery</b>에는 세 가지 수준이 있습니다.</p>
+<ul>
+<li><b>Basic discovery</b>: 네트워크 폴링을 수행하지 않고, <b>직접 통신한 장치만</b> 감지합니다.</li>
+<li><b>Standard discovery</b>: 네트워크 스캔(polling)을 수행하여 인접 장치까지 탐색합니다.</li>
+<li><b>Expanded discovery</b>: 네트워크 내 더 넓은 범위의 장치까지 감지합니다.</li>
+</ul>
+<p>문제의 요구사항인 “네트워크 폴링은 금지하면서 직접 통신한 장치는 감지”해야 하므로, <b>Basic discovery</b>를 설정해야 합니다.</p>
+<p><b>정답:</b> C. basic discovery</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/security/defender-endpoint/device-discovery">Device discovery in Microsoft Defender for Endpoint</a></p>`
+  },
+  {
+    id: 266,
+    title: "Modify the city attribute for synced users to airport codes",
+    promptHtml: `<p>Your network contains an Active Directory domain named <b>adatum.com</b> that is synced to Azure AD.<br>
+The domain contains 100 user accounts.<br>
+The <b>city</b> attribute for all the users is set to the city where the user resides.<br>
+You need to modify the value of the city attribute to the three-letter airport code of each city.<br>
+What should you do?</p>`,
+    type: "single",
+    options: [
+      "A. From Windows PowerShell on a domain controller, run the Get-ADUser and Set-ADUser cmdlets.",
+      "B. From Azure Cloud Shell, run the Get-ADUser and Set-ADUser cmdlets.",
+      "C. From Windows PowerShell on a domain controller, run the Get-MgUser and Update-MgUser cmdlets.",
+      "D. From Azure Cloud Shell, run the Get-MgUser and Update-MgUser cmdlets."
+    ],
+    correctAnswers: ["A. From Windows PowerShell on a domain controller, run the Get-ADUser and Set-ADUser cmdlets."],
+    explanationHtml: `<h3>해설</h3>
+<p>Active Directory(온프레미스)와 Azure AD가 동기화되는 환경에서는 사용자 속성의 원본은 <b>온프레미스 AD</b>입니다. 따라서 <b>city</b> 속성은 Azure AD가 아니라 로컬 AD에서 수정해야 합니다.</p>
+<ul>
+<li><b>Get-ADUser</b>와 <b>Set-ADUser</b> cmdlet은 Active Directory 사용자 속성을 가져오고 수정할 때 사용됩니다.</li>
+<li>수정된 값은 다음 Azure AD Connect 동기화 주기에서 Azure AD로 반영됩니다.</li>
+<li><b>Get-MgUser / Update-MgUser</b>는 클라우드 전용 사용자 계정(Azure AD native accounts) 관리용 cmdlet로, 하이브리드 환경의 속성 원본에는 적용되지 않습니다.</li>
+</ul>
+<p><b>정답:</b> A. From Windows PowerShell on a domain controller, run the Get-ADUser and Set-ADUser cmdlets.</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/powershell/module/activedirectory/set-aduser">Set-ADUser (ActiveDirectory PowerShell Module)</a></p>`
+  },
+  {
+    id: 267,
+    title: "Notify when SharePoint sharing policy is modified",
+    promptHtml: `<p>You have a Microsoft 365 subscription.<br>
+You discover that some external users accessed content for a Microsoft SharePoint site.<br>
+You modify the SharePoint sharing policy to prevent sharing outside your organization.<br>
+You need to be notified if the SharePoint sharing policy is modified in the future.<br>
+<b>Solution:</b> From the Security & Compliance admin center, you create a threat management policy.<br>
+Does this meet the goal?</p>`,
+    type: "single",
+    options: [
+      "A. Yes",
+      "B. No"
+    ],
+    correctAnswers: ["B. No"],
+    explanationHtml: `<h3>해설</h3>
+<p>SharePoint 또는 OneDrive의 공유 정책 변경과 같은 구성 변경 사항을 모니터링하려면 <b>Alert policy</b>를 사용해야 합니다.</p>
+<ul>
+<li><b>Threat management policy</b>는 악성 메일, 피싱, 멀웨어 탐지 등 보안 위협 대응과 관련된 정책으로, 관리 구성을 추적하는 용도가 아닙니다.</li>
+<li>공유 설정 변경을 탐지하려면 Microsoft Purview(기존 Security & Compliance 센터)의 <b>Activity alerts</b> 또는 <b>Alert policies</b>에서 “Sharing policy changed” 이벤트를 트리거로 설정해야 합니다.</li>
+</ul>
+<p><b>정답:</b> B. No</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/compliance/alert-policies">Alert policies in the Microsoft Purview compliance portal</a></p>`
+  },
+  {
+    id: 268,
+    title: "Identify who can complete DNS domain setup in Microsoft 365",
+    promptHtml: `<p>You have a Microsoft 365 subscription that contains the users shown in the following table.</p>
+${IMG_Q268_1 ? `<p><img src="${IMG_Q268_1}" style="max-width:100%"></p>` : ""}
+<p>You plan to use Exchange Online to manage email for a DNS domain.<br>
+An administrator adds the DNS domain to the subscription.<br>
+The DNS domain has a status of <b>Incomplete setup</b>.<br>
+You need to identify which user can complete the setup of the DNS domain. The solution must use the principle of least privilege.<br>
+Which user should you identify?</p>`,
+    type: "single",
+    options: [
+      "A. User1",
+      "B. User2",
+      "C. User3",
+      "D. User4"
+    ],
+    correctAnswers: ["A. User1"],
+    explanationHtml: `<h3>해설</h3>
+<p>도메인 추가 및 DNS 레코드 검증 작업은 Microsoft 365 테넌트 수준의 구성 요소로서, 
+<b>Global Administrator</b>만이 수행할 수 있습니다.</p>
+<ul>
+<li><b>Exchange Administrator</b>는 Exchange Online 내의 메일 흐름, 사서함, 커넥터 관리 등 서비스 내부 설정만 담당합니다.</li>
+<li>도메인 상태(<i>Incomplete setup</i>)를 <i>Complete setup</i>으로 변경하려면 
+Microsoft 365 관리 센터 또는 Entra ID에서 도메인 소유권을 검증해야 하므로 전역 관리자 권한이 필요합니다.</li>
+<li>따라서 원칙적으로 도메인 구성 완료 작업은 <b>User1 (Global Administrator)</b>가 수행할 수 있습니다.</li>
+</ul>
+<p><b>정답:</b> A. User1</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/admin/setup/add-domain">Add and verify a domain in Microsoft 365</a></p>`
+  },
+  {
+    id: 269,
+    title: "Assign early access to Microsoft 365 features using release preferences",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains the users shown in the following table.</p>
+${IMG_Q269_1 ? `<p><img src="${IMG_Q269_1}" style="max-width:100%"></p>` : ""}
+<p>You plan to provide User4 with early access to Microsoft 365 features and service updates.<br>
+You need to identify which Microsoft 365 setting must be configured, and which user can modify the setting.<br>
+The solution must use the principle of least privilege.<br>
+What should you identify? To answer, select the appropriate options in the answer area.<br>
+NOTE: Each correct selection is worth one point.</p>`,
+    type: "pair",
+    pairLabels: ["Microsoft 365 setting", "User"],
+    pairOptionsLeft: [
+      "Office installation options",
+      "Privileged access",
+      "Release preferences"
+    ],
+    pairOptionsRight: [
+      "User1 only",
+      "User2 only",
+      "User3 only",
+      "User1 and User2 only",
+      "User1 and User3 only"
+    ],
+    pairAnswer: [
+      "Release preferences",
+      "User1 and User3 only"
+    ],
+    explanationHtml: `<h3>해설</h3>
+<p>Microsoft 365 기능 및 서비스의 <b>조기 액세스(Early access)</b>를 제공하려면 관리 센터의 <b>Release preferences</b> 설정을 구성해야 합니다.</p>
+<ul>
+<li><b>Release preferences</b> 설정은 조직 단위 또는 특정 사용자 그룹에 대해 Targeted release(조기 릴리스)를 활성화하는 기능입니다.</li>
+<li>이 설정을 변경할 수 있는 최소 권한 역할은 <b>Global Administrator</b> 또는 <b>Cloud Application Administrator</b>입니다.</li>
+<li><b>Service Support Administrator</b>는 기술 지원 요청 관리 권한만 가지며, 릴리스 정책 수정은 불가능합니다.</li>
+</ul>
+<p>따라서 조기 액세스를 위한 Microsoft 365 설정은 <b>Release preferences</b>이고, 해당 변경을 수행할 수 있는 사용자는 <b>User1 (Global Administrator)</b> 및 <b>User3 (Cloud Application Administrator)</b>입니다.</p>
+<p><b>정답:</b><br>
+Microsoft 365 setting → Release preferences<br>
+User → User1 and User3 only</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/admin/manage/release-options-in-office-365">Set up the Standard or Targeted release options in Microsoft 365</a></p>`
+  },
+  {
+    id: 270,
+    title: "Compare device configurations against industry benchmarks",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains Windows 11 devices. All the devices are onboarded to Microsoft Defender for Endpoint.<br>
+You need to compare the configuration of the devices against industry standard benchmarks.<br>
+What should you use?</p>`,
+    type: "single",
+    options: [
+      "A. Events",
+      "B. Initiatives",
+      "C. Attack surface map",
+      "D. Security baselines assessment"
+    ],
+    correctAnswers: ["D. Security baselines assessment"],
+    explanationHtml: `<h3>해설</h3>
+<p>Microsoft Defender for Endpoint 및 Microsoft Secure Score에서는 디바이스 구성과 정책이 산업 표준(예: CIS, NIST, Microsoft 보안 권장 설정 등)과 얼마나 일치하는지를 평가할 수 있습니다.</p>
+<ul>
+<li><b>Security baselines assessment</b>는 장치의 보안 구성 상태를 기준선(Baseline)과 비교하여 취약점을 식별합니다.</li>
+<li><b>Attack surface map</b>은 공격 경로를 시각화하는 기능으로, 구성 기준 평가 목적과는 다릅니다.</li>
+<li><b>Initiatives</b>는 Defender for Cloud의 정책 그룹 단위이며, MDE의 보안 기준 평가와 직접적 관련이 없습니다.</li>
+<li><b>Events</b>는 보안 이벤트 및 경고 데이터에 관한 항목입니다.</li>
+</ul>
+<p>따라서 산업 표준 벤치마크(CIS, NIST 등)에 따른 장치 보안 설정 비교에는 <b>Security baselines assessment</b>를 사용해야 합니다.</p>
+<p><b>정답:</b> D. Security baselines assessment</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-security-baselines">Security baselines assessment in Microsoft Defender for Endpoint</a></p>`
+  },
+  {
+    id: 271,
+    title: "Assign group-based licensing in Microsoft 365",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains the groups shown in the following table.</p>
+${IMG_Q271_1 ? `<p><img src="${IMG_Q271_1}" style="max-width:100%"></p>` : ""}
+<p>You plan to create 10 new users and configure group-based licensing to assign each user a Microsoft 365 E5 license.<br>
+To which group should you add the users, and which portal should you use to assign the license?<br>
+To answer, select the appropriate options in the answer area.<br>
+NOTE: Each correct selection is worth one point.</p>
+${IMG_Q271_2 ? `<p><img src="${IMG_Q271_2}" style="max-width:100%"></p>` : ""}`,
+    type: "pair",
+    pairLabels: ["Group", "Portal"],
+    pairOptionsLeft: [
+      "Group1",
+      "Group2",
+      "Group3"
+    ],
+    pairOptionsRight: [
+      "The Microsoft 365 admin center",
+      "The Microsoft Entra admin center",
+      "The Microsoft Purview compliance portal"
+    ],
+    pairAnswer: [
+      "Group2",
+      "The Microsoft Entra admin center"
+    ],
+    explanationHtml: `<h3>해설</h3>
+<p>그룹 기반 라이선스(Group-based licensing)는 Azure AD(현재 Microsoft Entra ID)에서 <b>Microsoft 365 그룹 또는 보안 그룹(Security-enabled Microsoft 365 group)</b>을 대상으로 구성할 수 있습니다.</p>
+<ul>
+<li><b>Group2</b>는 Microsoft 365 그룹이며 “Role assignments allowed = Yes” 상태이므로, 라이선스 할당이 가능합니다.</li>
+<li><b>Group1</b>은 보안 그룹이지만 “Role assignments allowed = No”로 설정되어 있어 라이선스 적용이 불가능합니다.</li>
+<li><b>Group3</b>은 Distribution 그룹이므로 그룹 기반 라이선스 기능을 지원하지 않습니다.</li>
+<li>그룹 기반 라이선스는 <b>Microsoft Entra admin center</b> (이전 Azure AD admin center)에서 설정해야 합니다.</li>
+</ul>
+<p><b>정답:</b><br>
+Group → Group2<br>
+Portal → The Microsoft Entra admin center</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/azure/active-directory/enterprise-users/licensing-groups-assign">Assign licenses to users by group membership in Microsoft Entra ID</a></p>`
+  },
+  {
+    id: 272,
+    title: "Implement balanced baseline protection in Microsoft Defender for Office 365",
+    promptHtml: `<p>You have a Microsoft 365 E5 subscription and use Microsoft Defender for Office 365.<br>
+You need to implement a threat policy that will apply a balanced baseline protection profile to protect against spam, phishing, and malware.<br>
+<b>Solution:</b> You create an anti-malware policy.<br>
+Does this meet the goal?</p>`,
+    type: "single",
+    options: [
+      "A. Yes",
+      "B. No"
+    ],
+    correctAnswers: ["B. No"],
+    explanationHtml: `<h3>해설</h3>
+<p>균형 잡힌 보안 기준(balanced baseline protection profile)을 적용하여 스팸, 피싱, 멀웨어로부터 보호하려면 <b>Defender for Office 365의 Preset Security Policies</b>를 사용해야 합니다.</p>
+<ul>
+<li><b>Standard Protection</b> 및 <b>Strict Protection</b> 프로필은 스팸, 피싱, 멀웨어를 종합적으로 방어하는 사전 설정 정책입니다.</li>
+<li><b>Anti-malware policy</b>는 파일 기반 위협(멀웨어) 탐지만 수행하며, 피싱이나 스팸 메일 필터링은 포함되지 않습니다.</li>
+<li>따라서 문제에서 요구한 “balanced baseline protection profile”을 구현하려면 <b>Preset Security Policies</b>를 구성해야 하며, 단독으로 Anti-malware policy를 생성하는 것은 충분하지 않습니다.</li>
+</ul>
+<p><b>정답:</b> B. No</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/microsoft-365/security/office-365-security/preset-security-policies">Preset Security Policies in Microsoft Defender for Office 365</a></p>`
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
