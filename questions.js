@@ -242,6 +242,7 @@ function choicePromptHtml(stem, img = null) {
 }
 
 window.questions = [
+  /*
   // 1
   {
     id: 1,
@@ -1282,7 +1283,7 @@ window.questions = [
       <p><a href="https://learn.microsoft.com/entra/identity/authentication/howto-password-writeback">Enable password writeback</a></p>
     `
   },
-
+*/
   // 38
   {
     id: 38,
@@ -3642,15 +3643,15 @@ window.questions = [
     id: 115,
     title: "SIT 기반 Auto-label 정책 적용 범위",
     promptHtml: `
-      <p> You have a Microsoft 365 E5 tenant that contains a Microsoft SharePoint Online site named Site1. 
-      Site1 contains the files shown in the following table
+      <p> You have a Microsoft 365 E5 tenant that contains a Microsoft SharePoint Online site named Site1. <br>
+      Site1 contains the files shown in the following table<br>
       ${IMG_Q115_1 ? `<p><img src="${IMG_Q115_1}" style="max-width:100%"></p>` : ""}  
-      You create a sensitivity label named Sensitivity1 and an auto-label policy that has the following configurations:
-      Name: AutoLabel1
-      Label to auto-apply: Sensitivity1
-      Rules for SharePoint Online sites: Rule1-SPO
-      Choose locations where you want to apply the label: Site1
-      Rule1-SPO is configured as shown in the following exhibit.
+      You create a sensitivity label named Sensitivity1 and an auto-label policy that has the following configurations:<br>
+      Name: AutoLabel1<br>
+      Label to auto-apply: Sensitivity1<br>
+      Rules for SharePoint Online sites: Rule1-SPO<br>
+      Choose locations where you want to apply the label: Site1<br>
+      Rule1-SPO is configured as shown in the following exhibit.<br>
       ${IMG_Q115_2 ? `<p><img src="${IMG_Q115_2}" style="max-width:100%"></p>` : ""}  
       For each location below, select Yes/No for automatic labeling.</p>
       ${IMG_Q115_3 ? `<p><img src="${IMG_Q115_3}" style="max-width:100%"></p>` : ""}  
@@ -3676,22 +3677,22 @@ window.questions = [
     id: 116,
     title: "Microsoft 365 Defender Incident Notification Rule 판정",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription that contains the devices shown in the following table.
+      <p>You have a Microsoft 365 E5 subscription that contains the devices shown in the following table.<br>
       ${IMG_Q116_1 ? `<p><img src="${IMG_Q116_1}" style="max-width:100%"></p>` : ""}
-      At 08:00. you create an incident notification rule that has the following configurations:
-      * Name: Notification!
-      * Notification settings
-      o Notify on alert seventy: Low
-      o Device group scope: All (3)
-      o Details: First notification per incident  
-      * Recipients: Userl@contoso.com, User2@contoso.com
-      At 08:02. you create an incident notification rule that has the following configurations:
-      * Name: Notification
-      * Notification settings
-      o Notify on alert severity: Low. Medium
-      o Device group scope: DevtceGroup1, DeviceGroup2
-      * Recipients: Userl@contoso.com
-      in Microsoft 365 Defender, alerts are logged as shown in the following table.
+      At 08:00. you create an incident notification rule that has the following configurations:<br>
+      * Name: Notification!<br>
+      * Notification settings<br>
+      o Notify on alert seventy: Low<br>
+      o Device group scope: All (3)<br>
+      o Details: First notification per incident  <br>
+      * Recipients: Userl@contoso.com, User2@contoso.com<br>
+      At 08:02. you create an incident notification rule that has the following configurations:<br>
+      * Name: Notification<br>
+      * Notification settings<br>
+      o Notify on alert severity: Low. Medium<br>
+      o Device group scope: DevtceGroup1, DeviceGroup2<br>
+      * Recipients: Userl@contoso.com<br>
+      in Microsoft 365 Defender, alerts are logged as shown in the following table.<br>
       ${IMG_Q116_2 ? `<p><img src="${IMG_Q116_2}" style="max-width:100%"></p>` : ""}
       For each statement shown, select Yes/No based on the logs.</p>
       ${IMG_Q116_3 ? `<p><img src="${IMG_Q116_3}" style="max-width:100%"></p>` : ""}
@@ -3717,7 +3718,7 @@ window.questions = [
     id: 117,
     title: "디렉터리 동기화 전 사전 검증: 도구/권한",
     promptHtml: `
-      <p>Your on-premises AD will be synchronized to Microsoft 365.
+      <p>Your on-premises AD will be synchronized to Microsoft 365.<br>
       Identify the tool to detect issues before sync and the minimum group membership required.</p>
       ${IMG_Q117_1 ? `<p><img src="${IMG_Q117_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -3743,8 +3744,8 @@ window.questions = [
     id: 118,
     title: "두 보존 정책 조합 시 최종 삭제 시점",
     promptHtml: `
-      <p>You have two retention policies applied to the same SharePoint site.
-      File1.docx was created on January 1, 2022 and last modified on January 31, 2022.
+      <p>You have two retention policies applied to the same SharePoint site.<br>
+      File1.docx was created on January 1, 2022 and last modified on January 31, 2022.<br>
       When will File1.docx be deleted automatically?</p>
       ${IMG_Q118_1 ? `<p><img src="${IMG_Q118_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -3770,7 +3771,7 @@ window.questions = [
     id: 119,
     title: "Microsoft 365 그룹 Unified Labeling 활성화",
     promptHtml: `
-      <p>You need to enable unified labeling for Microsoft 365 groups.
+      <p>You need to enable unified labeling for Microsoft 365 groups.<br>
       Which cmdlet should you run?</p>
     `,
     type: "single",
@@ -3793,11 +3794,11 @@ window.questions = [
     id: 120,
     title: "정책 우선순위 기반 사용자별 결과",
     promptHtml: `
-      <p> You have a Microsoft 365 subscription that contains three groups named All users, Sales team, and Office users, and two users shown in the following table.
+      <p> You have a Microsoft 365 subscription that contains three groups named All users, Sales team, and Office users, and two users shown in the following table.<br>
       ${IMG_Q120_1 ? `<p><img src="${IMG_Q120_1}" style="max-width:100%"></p>` : ""}
-       In Microsoft Endpoint Manager, you have the Policies for Office apps settings shown in the following exhibit.
+       In Microsoft Endpoint Manager, you have the Policies for Office apps settings shown in the following exhibit.<br>
       ${IMG_Q120_2 ? `<p><img src="${IMG_Q120_2}" style="max-width:100%"></p>` : ""} 
-      The policies use the settings shown in the following table.
+      The policies use the settings shown in the following table.<br>
       ${IMG_Q120_3 ? `<p><img src="${IMG_Q120_3}" style="max-width:100%"></p>` : ""}
        What is the default share folder location for User1 and the default Office theme for User2? To answer, select the appropriate options in the answer area.
       </p>
@@ -3835,13 +3836,13 @@ window.questions = [
     id: 121,
     title: "동기화된 사용자 계정의 보안 인증 방식 검토",
     promptHtml: `
-      <p>Your network contains an Active Directory forest.
-      You deploy Microsoft 365.
-      You plan to implement directory synchronization.
-      You need to recommend a security solution for the synchronized identities. The solution must meet the following requirements:
-      - Users must be able to authenticate successfully to Microsoft 365 services if Active Directory becomes unavailable.
-      - User passwords must be 10 characters or more.
-      Solution: Implement password hash synchronization and configure password protection in the Azure AD tenant.
+      <p>Your network contains an Active Directory forest.<br>
+      You deploy Microsoft 365.<br>
+      You plan to implement directory synchronization.<br>
+      You need to recommend a security solution for the synchronized identities. The solution must meet the following requirements:<br>
+      - Users must be able to authenticate successfully to Microsoft 365 services if Active Directory becomes unavailable.<br>
+      - User passwords must be 10 characters or more.<br>
+      Solution: Implement password hash synchronization and configure password protection in the Azure AD tenant.<br>
       Does this meet the goal?</p>
     `,
     type: "single",
@@ -3889,7 +3890,7 @@ window.questions = [
     id: 123,
     title: "Azure ATP Sensor 자동 업데이트 소요시간",
     promptHtml: `
-      <p>You implement Microsoft Azure Advanced Threat Protection (Azure ATP).
+      <p>You implement Microsoft Azure Advanced Threat Protection (Azure ATP).<br>
       You have an Azure ATP sensor configured as shown in the following exhibit.</p>
       ${IMG_Q123_1 ? `<p><img src="${IMG_Q123_1}" style="max-width:100%"></p>` : ""}
       <p>How long after the Azure ATP cloud service is updated will the sensor update?</p>
@@ -3914,8 +3915,8 @@ window.questions = [
     id: 124,
     title: "Security Administrator의 MDI 센서 구성 권한",
     promptHtml: `
-      <p>You have a Microsoft Azure Active Directory (Azure AD) tenant named Contoso.com.
-      You create a Microsoft Defender for Identity instance named Contoso.
+      <p>You have a Microsoft Azure Active Directory (Azure AD) tenant named Contoso.com.<br>
+      You create a Microsoft Defender for Identity instance named Contoso.<br>
       The tenant contains the users shown in the following table.</p>
       ${IMG_Q124_1 ? `<p><img src="${IMG_Q124_1}" style="max-width:100%"></p>` : ""}
       <p>You need to modify the configuration of the Defender for Identity sensors.
@@ -3942,17 +3943,18 @@ window.questions = [
     id: 125,
     title: "FSRM과 Azure Information Protection 연동 구성 순서",
     promptHtml: `
-      <p>Your network contains an on-premises Active Directory domain that syncs to Azure Active Directory (Azure AD). The domain contains the servers shown in the following table.</p>
+      <p>Your network contains an on-premises Active Directory domain that syncs to Azure Active Directory (Azure AD).<br> 
+      The domain contains the servers shown in the following table.</p>
       ${IMG_Q125_1 ? `<p><img src="${IMG_Q125_1}" style="max-width:100%"></p>` : ""}
-      <p>You use Azure Information Protection.
-      You install Microsoft Word on all the devices.
-      You plan to configure policies to meet the following requirements:
-        * Word files created by using Windows devices must be encrypted automatically.
-        * If an Android device becomes jailbroken, access to corporate data must be blocked from Word.
-        * For iOS devices, users must be prevented from using native or third-party mail clients to connect to Microsoft 365.
-      Which type of polio/ should you configure for each device? To answer, drag the appropriate policy
-      types to the correct devices. Each policy type may be used once, more than once, or not at all. You
-      may need to drag the split bar between panes or scroll to view content.
+      <p>You use Azure Information Protection.<br>
+      You install Microsoft Word on all the devices.<br>
+      You plan to configure policies to meet the following requirements:<br>
+        * Word files created by using Windows devices must be encrypted automatically.<br>
+        * If an Android device becomes jailbroken, access to corporate data must be blocked from Word.<br>
+        * For iOS devices, users must be prevented from using native or third-party mail clients to connect to Microsoft 365.<br>
+      Which type of polio/ should you configure for each device? To answer, drag the appropriate policy<br>
+      types to the correct devices. Each policy type may be used once, more than once, or not at all. 
+      You may need to drag the split bar between panes or scroll to view content.<br>
       NOTE: Each correct selection is worth one point</p>
       ${IMG_Q125_2 ? `<p><img src="${IMG_Q125_2}" style="max-width:100%"></p>` : ""}
     `,
@@ -3981,50 +3983,51 @@ window.questions = [
 
   // 126
   {
-    id: 126,
-    title: "Sensitivity Label 게시 가능 그룹 유형 식별",
-    promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription that contains the groups shown in the following table.</p>
-      ${IMG_Q126_1 ? `<p><img src="${IMG_Q126_1}" style="max-width:100%"></p>` : ""}
-      <p>You plan to publish a sensitivity label named Label1.
-      To which groups can you publish Label1?</p>
-    `,
-    type: "single",
-    options: [
-      "A. Group1 only",
-      "B. Group1 and Group2 only",
-      "C. Group1 and Group4 only",
-      "D. Group1, Group2, and Group3 only",
-      "E. Group1, Group2, Group3, and Group4"
-    ],
-    correctAnswers: ["D. Group1, Group2, and Group3 only"],
-    explanationHtml: `
-      <h3>Explanation</h3>
-      <p>라벨 정책 대상은 메일 사용이 가능한 그룹(Microsoft 365 그룹, 메일 사용 보안 그룹, 배포 그룹)입니다.</p>
-      <p>메일 주소가 없는 일반 보안 그룹(Group4)은 정책 대상이 아닙니다.</p>
-      <p>따라서 표의 조합에서 Group1/2/3만 게시 가능입니다.</p>
-      <p>배포 시 필요 권한은 Information Protection Administrator 등이며, 정책 전파에는 시간이 걸릴 수 있습니다.</p>
-      <p>정책 필터로 사용자/그룹 범위를 세분화할 수 있습니다.</p>
-      <p>컨테이너 레이블(Teams/사이트) 적용 여부와도 구분해 해석해야 합니다.</p>
-      <p><a href="https://learn.microsoft.com/purview/sensitivity-labels-teams-groups-sites">민감도 레이블 게시 방법</a></p>
-    `
-  },
+  id: 126,
+  title: "Groups eligible for publishing sensitivity labels",
+  promptHtml: `<p>You have a Microsoft 365 E5 subscription that contains the groups shown in the following table.</p>
+${IMG_Q126_1 ? `<p><img src="${IMG_Q126_1}" style="max-width:100%"></p>` : ""}
+<p>You plan to publish a sensitivity label named <b>Label1</b>.<br>
+To which groups can you publish Label1?</p>`,
+  type: "single",
+  options: [
+    "A. Group1 only",
+    "B. Group1 and Group2 only",
+    "C. Group1 and Group4 only",
+    "D. Group1, Group2, and Group3 only",
+    "E. Group1, Group2, Group3, and Group4"
+  ],
+  correctAnswers: ["A. Group1 only"],
+  explanationHtml: `<h3>해설</h3>
+<p>민감도 레이블(Sensitivity label)을 게시(publish)할 때는 <b>Microsoft 365 그룹(Microsoft 365)</b> 또는 <b>보안(Security) 그룹</b>을 대상으로 지정할 수 있습니다.</p>
+<ul>
+<li><b>Microsoft 365 그룹</b> → 지원됨 ✅ (예: Group1)</li>
+<li><b>Security 그룹</b> → 지원되지 않음 ❌ </li>
+<li><b>Distribution 그룹</b> → 지원되지 않음 ❌</li>
+<li><b>Mail-enabled Security 그룹</b> → 지원되지 않음 ❌</li>
+</ul>
+<p>따라서, Label1을 게시할 수 있는 대상은 <b>Group1</b> 입니다.</p>
+<p><b>정답:</b> A. Group1</p>
+<p><b>참고 문서:</b><br>
+<a href="https://learn.microsoft.com/en-us/entra/identity/users/groups-assign-sensitivity-labels?tabs=microsoft#sensitivity-labels-arent-available-for-assignment-on-a-group">Sensitivity labels aren't available for assignment on a group</a></p>`
+}
+,
 
   // 127
   {
     id: 127,
     title: "조건부 액세스 정책 및 MFA 차단 상태별 접근 가능 여부",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription that contains the users shown in the following table.
+      <p>You have a Microsoft 365 subscription that contains the users shown in the following table.<br>
       ${IMG_Q127_1 ? `<p><img src="${IMG_Q127_1}" style="max-width:100%"></p>` : ""}
-      You have the named locations shown in the following table.
+      You have the named locations shown in the following table.<br>
       ${IMG_Q127_2 ? `<p><img src="${IMG_Q127_2}" style="max-width:100%"></p>` : ""}
-      You create a conditional access policy that has the following configurations:
-      - Users or workload identities: Include Group1, Exclude Group2
-      - Cloud apps or actions: Include all cloud apps
-      - Conditions: Include Any location, Exclude Montreal
-      - Access control: Grant access, Require multi-factor authentication
-      User1 is on the multi-factor authentication (MFA) blocked users list.
+      You create a conditional access policy that has the following configurations:<br>
+      - Users or workload identities: Include Group1, Exclude Group2<br>
+      - Cloud apps or actions: Include all cloud apps<br>
+      - Conditions: Include Any location, Exclude Montreal<br>
+      - Access control: Grant access, Require multi-factor authentication<br>
+      User1 is on the multi-factor authentication (MFA) blocked users list.<br>
       For each of the following statements, select Yes if the statement is true. Otherwise, select No.</p>
       ${IMG_Q127_3 ? `<p><img src="${IMG_Q127_3}" style="max-width:100%"></p>` : ""}
     `,
@@ -4052,9 +4055,9 @@ window.questions = [
     id: 128,
     title: "Anti‑phishing 정책: CEO 사칭 차단과 정상 메일 최소 방해",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription.
+      <p>You have a Microsoft 365 subscription.<br>
       You deploy the anti-phishing policy shown in the following exhibit.</p>
-      <p>Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
+      <p>Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.<br>
       NOTE: Each correct selection is worth one point.</p>
       ${IMG_Q128_1 ? `<p><img src="${IMG_Q128_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -4094,9 +4097,9 @@ window.questions = [
     id: 129,
     title: "App1에만 MFA 요구",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription.
-      You register two applications named App1 and App2 to Azure AD.
-      You need to ensure that users who connect to App1 require multi-factor authentication (MFA). MFA is required only for App1.
+      <p>You have a Microsoft 365 subscription.<br>
+      You register two applications named App1 and App2 to Azure AD.<br>
+      You need to ensure that users who connect to App1 require multi-factor authentication (MFA). MFA is required only for App1.<br>
       What should you do?</p>
     `,
     type: "single",
@@ -4123,8 +4126,8 @@ window.questions = [
     id: 130,
     title: "심각도 높은 인시던트 발생 시 관리자 알림",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription.
-      You need to be alerted when Microsoft 365 Defender detects high-severity incidents.
+      <p>You have a Microsoft 365 E5 subscription.<br>
+      You need to be alerted when Microsoft 365 Defender detects high-severity incidents.<br>
       What should you use?</p>
     `,
     type: "single",
@@ -4150,15 +4153,15 @@ window.questions = [
     id: 131,
     title: "Azure AD 로그인 가능한 UPN 판별",
     promptHtml: `
-      <p>Your network contains an on-premises Active Directory forest named contoso.com.
-      The forest contains the following domains:
-      - Contoso.com
-      - East.contoso.com
-      The forest contains the users shown in the following table.
+      <p>Your network contains an on-premises Active Directory forest named contoso.com.<br>
+      The forest contains the following domains:<br>
+      - Contoso.com<br>
+      - East.contoso.com<br>
+      The forest contains the users shown in the following table.<br>
        ${IMG_Q131_1 ? `<p><img src="${IMG_Q131_1}" style="max-width:100%"></p>` : ""}
-      The forest syncs to an Azure AD tenant named contoso.com as shown in the exhibit.
+      The forest syncs to an Azure AD tenant named contoso.com as shown in the exhibit.<br>
       ${IMG_Q131_2 ? `<p><img src="${IMG_Q131_2}" style="max-width:100%"></p>` : ""}
-      For each of the following statements, select Yes if the statement is true. Otherwise, select No.
+      For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>
       NOTE: Each correct selection is worth one point.</p>
       ${IMG_Q131_3 ? `<p><img src="${IMG_Q131_3}" style="max-width:100%"></p>` : ""}
      
@@ -4187,10 +4190,10 @@ window.questions = [
     id: 132,
     title: "도메인 소유권 검증 이메일 주소 변경 방법",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription.
-      You add a domain named contoso.com.
-      When you attempt to verify the domain, you are prompted to send a verification email to admin@contoso.com.
-      You need to change the email address used to verify the domain.
+      <p>You have a Microsoft 365 subscription.<br>
+      You add a domain named contoso.com.<br>
+      When you attempt to verify the domain, you are prompted to send a verification email to admin@contoso.com.<br>
+      You need to change the email address used to verify the domain.<br>
       What should you do?</p>
     `,
     type: "single",
@@ -4218,10 +4221,10 @@ window.questions = [
     id: 133,
     title: "DLP 정책 적용 위치 설정",
     promptHtml: `
-      <p>You are testing a data loss prevention (DLP) policy to protect the sharing of credit card information with external users.
-      During testing, you discover that a user can share credit card information with external users by using email.
-      However, the user is prevented from sharing files that contain credit card information by using Microsoft SharePoint.
-      You need to prevent the user from sharing the credit card information by using email and SharePoint.
+      <p>You are testing a data loss prevention (DLP) policy to protect the sharing of credit card information with external users.<br>
+      During testing, you discover that a user can share credit card information with external users by using email.<br>
+      However, the user is prevented from sharing files that contain credit card information by using Microsoft SharePoint.<br>
+      You need to prevent the user from sharing the credit card information by using email and SharePoint.<br>
       What should you configure?</p>
     `,
     type: "single",
@@ -4249,8 +4252,8 @@ window.questions = [
     id: 134,
     title: "File1.exe 다운로드 차단 설정",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription that uses Microsoft Defender for Endpoint.
-      From Microsoft Defender for Endpoint, you turn on the Allow or block file advanced feature.
+      <p>You have a Microsoft 365 E5 subscription that uses Microsoft Defender for Endpoint.<br>
+      From Microsoft Defender for Endpoint, you turn on the Allow or block file advanced feature.<br>
       You need to block users from downloading a file named File1.exe.</p>
     `,
     type: "single",
@@ -4277,14 +4280,14 @@ window.questions = [
     id: 135,
     title: "OU 필터링 설정 수정으로 동기화 문제 해결 가능 여부",
     promptHtml: `
-      <p>Your network contains an Active Directory domain.
-      You deploy an Azure AD tenant.
-      Another administrator configures the domain to synchronize to Azure AD.
-      You discover that 10 user accounts in an organizational unit (OU) are NOT synchronized to Azure AD.
-      All the other user accounts synchronized successfully.
-      You review Azure AD Connect Health and discover that all the user account synchronizations completed successfully.
-      You need to ensure that the 10 user accounts are synchronized to Azure AD.
-      Solution: From Azure AD Connect, you modify the filtering settings.
+      <p>Your network contains an Active Directory domain.<br>
+      You deploy an Azure AD tenant.<br>
+      Another administrator configures the domain to synchronize to Azure AD.<br>
+      You discover that 10 user accounts in an organizational unit (OU) are NOT synchronized to Azure AD.<br>
+      All the other user accounts synchronized successfully.<br>
+      You review Azure AD Connect Health and discover that all the user account synchronizations completed successfully.<br>
+      You need to ensure that the 10 user accounts are synchronized to Azure AD.<br>
+      Solution: From Azure AD Connect, you modify the filtering settings.<br>
       Does this meet the goal?</p>
     `,
     type: "single",
@@ -4307,14 +4310,14 @@ window.questions = [
     id: 136,
     title: "Enrollment Status Page (ESP) 적용 여부 판단",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 tenant that contains the users shown in the following table.
+      <p>You have a Microsoft 365 E5 tenant that contains the users shown in the following table.<br>
       ${IMG_Q136_1 ? `<p><img src="${IMG_Q136_1}" style="max-width:100%"></p>` : ""}
-      You purchase the devices shown in the following table.
+      You purchase the devices shown in the following table.<br>
       ${IMG_Q136_2 ? `<p><img src="${IMG_Q136_2}" style="max-width:100%"></p>` : ""}
-      Show app and profile configuration progress: Yes
-      Allow users to collect logs about installation errors: Yes
-      Only show page to devices provisioned by out-of-box experience (OOBE): No Assignments: Group2
-      For each of the following statements, select Yes if the statement is true. Otherwise, select No.
+      Show app and profile configuration progress: Yes<br>
+      Allow users to collect logs about installation errors: Yes<br>
+      Only show page to devices provisioned by out-of-box experience (OOBE): No Assignments: Group2<br>
+      For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>
       For each statement, select Yes if true. Otherwise, select No.</p>
       ${IMG_Q136_3 ? `<p><img src="${IMG_Q136_3}" style="max-width:100%"></p>` : ""}
     `,
@@ -4342,10 +4345,10 @@ window.questions = [
     id: 137,
     title: "ATP(Defender for Office 365) 관리 권한 부여 적절성 판단",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription.
-      You create an account for a new security administrator named SecAdmin1.
-      You need to ensure that SecAdmin1 can manage Office 365 Advanced Threat Protection (ATP) settings and policies for Microsoft Teams, SharePoint, and OneDrive.
-      Solution: From the Azure Active Directory admin center, you assign SecAdmin1 the Teams Service Administrator role.
+      <p>You have a Microsoft 365 E5 subscription.<br>
+      You create an account for a new security administrator named SecAdmin1.<br>
+      You need to ensure that SecAdmin1 can manage Office 365 Advanced Threat Protection (ATP) settings and policies for Microsoft Teams, SharePoint, and OneDrive.<br>
+      Solution: From the Azure Active Directory admin center, you assign SecAdmin1 the Teams Service Administrator role.<br>
       Does this meet the goal?</p>
     `,
     type: "single",
@@ -4368,19 +4371,19 @@ window.questions = [
     id: 138,
     title: "Sensitivity labels 지원을 위한 Office 버전 및 파일 형식 식별",
     promptHtml: `
-      <p>Your company has a Microsoft 365 E5 tenant.
-      Users at the company use the following versions of Microsoft Office:
-      - Microsoft 365 Apps for enterprise
-      - Office for the web
-      - Office 2016
-      - Office 2019
-      The company currently uses the following Office file types:
-      - .docx
-      - .xlsx
-      - .doc
-      - .xls
-      You plan to use sensitivity labels. You need to identify:
-      - Which versions of Office require an add-in to support the sensitivity labels.
+      <p>Your company has a Microsoft 365 E5 tenant.<br>
+      Users at the company use the following versions of Microsoft Office:<br>
+      - Microsoft 365 Apps for enterprise<br>
+      - Office for the web<br>
+      - Office 2016<br>
+      - Office 2019<br>
+      The company currently uses the following Office file types:<br>
+      - .docx<br>
+      - .xlsx<br>
+      - .doc<br>
+      - .xls<br>
+      You plan to use sensitivity labels. You need to identify:<br>
+      - Which versions of Office require an add-in to support the sensitivity labels.<br>
       - Which file types support the sensitivity labels.</p>
       ${IMG_Q138_1 ? `<p><img src="${IMG_Q138_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -4427,10 +4430,10 @@ window.questions = [
     id: 139,
     title: "App1에서 인쇄 차단을 위한 Cloud App Control 정책 유형 식별",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription that contains a user named User1.
-      You have a Conditional Access policy applied to a cloud-based app named App1.
-      App1 has Conditional Access App Control deployed.
-      You need to create a Microsoft Defender for Cloud Apps policy to block User1 from printing from App1.</p>
+      <p>You have a Microsoft 365 E5 subscription that contains a user named User1.<br>
+      You have a Conditional Access policy applied to a cloud-based app named App1.<br>
+      App1 has Conditional Access App Control deployed.<br>
+      You need to create a Microsoft Defender for Cloud Apps policy to block User1 from printing from App1.</p><br>
     `,
     type: "single",
     options: [
@@ -4457,10 +4460,10 @@ window.questions = [
     id: 140,
     title: "Intune 등록 시 Defender 자동 온보딩을 위한 방법 검증",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription.
-      You integrate Microsoft Defender for Endpoint with Microsoft Intune.
-      You need to ensure that devices automatically onboard to Defender for Endpoint when they are enrolled in Intune.
-      Solution: You configure a device configuration profile.
+      <p>You have a Microsoft 365 E5 subscription.<br>
+      You integrate Microsoft Defender for Endpoint with Microsoft Intune.<br>
+      You need to ensure that devices automatically onboard to Defender for Endpoint when they are enrolled in Intune.<br>
+      Solution: You configure a device configuration profile.<br>
       Does this meet the goal?</p>
     `,
     type: "single",
@@ -4483,11 +4486,11 @@ window.questions = [
     id: 141,
     title: "Microsoft 365 하이브리드 배포 전 디렉터리 동기화 준비 단계",
     promptHtml: `
-      <p>Your network contains an Active Directory forest named contoso.local.
-      You purchase a Microsoft 365 subscription.
-      You plan to move to Microsoft 365 and to implement a hybrid deployment solution for the next 12 months.
-      You need to prepare for the planned move to Microsoft 365.
-      What is the best action to perform before you implement directory synchronization?
+      <p>Your network contains an Active Directory forest named contoso.local.<br>
+      You purchase a Microsoft 365 subscription.<br>
+      You plan to move to Microsoft 365 and to implement a hybrid deployment solution for the next 12 months.<br>
+      You need to prepare for the planned move to Microsoft 365.<br>
+      What is the best action to perform before you implement directory synchronization?<br>
       More than one answer choice may achieve the goal. Select the BEST answer.</p>
     `,
     type: "single",
@@ -4515,9 +4518,9 @@ window.questions = [
     id: 142,
     title: "사용자 메일함에 이미 전달된 악성 메일 자동 감지/제거",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription.
-      You plan to create an anti-malware policy named Policy1.
-      You need to ensure that Policy1 can detect malicious email messages that were already delivered to a user's mailbox.
+      <p>You have a Microsoft 365 E5 subscription.<br>
+      You plan to create an anti-malware policy named Policy1.<br>
+      You need to ensure that Policy1 can detect malicious email messages that were already delivered to a user's mailbox.<br>
       What should you do in the Microsoft Defender portal?</p>
     `,
     type: "single",
@@ -4545,10 +4548,10 @@ window.questions = [
     id: 143,
     title: "Microsoft 365 Admin Center 사용자 대량 가져오기: 파일 형식/필수 속성",
     promptHtml: `
-      <p>Your company uses a legacy on-premises LDAP directory that contains 100 users.
-      The company purchases a Microsoft 365 subscription.
-      You need to import the 100 users into Microsoft 365 by using the Microsoft 365 admin center.
-      Which type of file should you use and which properties are required?
+      <p>Your company uses a legacy on-premises LDAP directory that contains 100 users.<br>
+      The company purchases a Microsoft 365 subscription.<br>
+      You need to import the 100 users into Microsoft 365 by using the Microsoft 365 admin center.<br>
+      Which type of file should you use and which properties are required?<br>
       NOTE: Each correct selection is worth one point.</p>
       ${IMG_Q143_1 ? `<p><img src="${IMG_Q143_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -4590,10 +4593,10 @@ window.questions = [
     id: 144,
     title: "사용자가 DLP 정책을 우회하지 못하도록 설정",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription.
-      You configure a data loss prevention (DLP) policy.
-      You discover that users are incorrectly marking content as false positive and bypassing the DLP policy.
-      You need to prevent the users from bypassing the DLP policy.
+      <p>You have a Microsoft 365 subscription.<br>
+      You configure a data loss prevention (DLP) policy.<br>
+      You discover that users are incorrectly marking content as false positive and bypassing the DLP policy.<br>
+      You need to prevent the users from bypassing the DLP policy.<br>
       What should you configure?</p>
     `,
     type: "single",
@@ -4657,17 +4660,17 @@ window.questions = [
     id: 146,
     title: "억제 규칙 범위와 알림 표시 영향 판별",
     promptHtml: `
-      <p>Your company uses Microsoft Defender for Endpoint.
-      The devices onboarded to Microsoft Defender for Endpoint are shown in the following table
+      <p>Your company uses Microsoft Defender for Endpoint.<br>
+      The devices onboarded to Microsoft Defender for Endpoint are shown in the following table<br>
       ${IMG_Q146_1 ? `<p><img src="${IMG_Q146_1}" style="max-width:100%"></p>` : ""}
-      The alerts visible in the Microsoft Defender for Endpoint alerts queue are shown in the following table.
+      The alerts visible in the Microsoft Defender for Endpoint alerts queue are shown in the following table.<br>
       ${IMG_Q146_2 ? `<p><img src="${IMG_Q146_2}" style="max-width:100%"></p>` : ""}
-      You create a suppression rule that has the following settings:
-        * Triggering IOC: Any IOC
-        * Action: Hide alert
-        * Suppression scope: Alerts on ATP1 device group
-      For each of the following statements, select Yes if the statement is true. Otherwise, select No. NOTE:
-      Each correct selection is worth one point
+      You create a suppression rule that has the following settings:<br>
+        * Triggering IOC: Any IOC<br>
+        * Action: Hide alert<br>
+        * Suppression scope: Alerts on ATP1 device group<br>
+      For each of the following statements, select Yes if the statement is true. Otherwise, select No. NOTE:<br>
+      Each correct selection is worth one point<br>
       ${IMG_Q146_3 ? `<p><img src="${IMG_Q146_3}" style="max-width:100%"></p>` : ""}
     `,
     statements: [
@@ -4694,17 +4697,17 @@ window.questions = [
     id: 147,
     title: "조건부 액세스: 신뢰 위치 포함 시 MFA 적용 여부",
     promptHtml: `
-      <p> You have a Microsoft Entra tenant named contoso.com that contains the users shown in the following table.
+      <p> You have a Microsoft Entra tenant named contoso.com that contains the users shown in the following table.<br>
       ${IMG_Q147_1 ? `<p><img src="${IMG_Q147_1}" style="max-width:100%"></p>` : ""}
-       Per-user multifactor authentication is configured to use 131.107.5.0/24 as trusted IPs.
-      The tenant contains the named locations shown in the following table
+       Per-user multifactor authentication is configured to use 131.107.5.0/24 as trusted IPs.<br>
+      The tenant contains the named locations shown in the following table<br>
       ${IMG_Q147_2 ? `<p><img src="${IMG_Q147_2}" style="max-width:100%"></p>` : ""}
-       You create a conditional access policy that has the following configurations:
-        * Users: All users
-        * Target resources assignment: App1
-        * Conditions: Include all trusted locations
-        * Grant access: Require multi-factor authentication
-       For each of the following statements, select Yes if the statement is true. Otherwise, select No.
+       You create a conditional access policy that has the following configurations:<br>
+        * Users: All users<br>
+        * Target resources assignment: App1<br>
+        * Conditions: Include all trusted locations<br>
+        * Grant access: Require multi-factor authentication<br>
+       For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>
       ${IMG_Q147_3 ? `<p><img src="${IMG_Q147_3}" style="max-width:100%"></p>` : ""}
     `,
     statements: [
@@ -4731,11 +4734,11 @@ window.questions = [
     id: 148,
     title: "Teams 외부 멤버 채널에서 DLP 정책 적용되도록 설정",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription.
-      You create a new data loss prevention (DLP) policy named DLP1 that protects financial data from being shared by using Microsoft Teams messages. You apply DLP1 to the users in the finance department.
-      An incident is raised when a finance department user named User1 shares financial data in a Teams channel that includes external members.
-      When User1 uses Teams to send the same message in a 1:1 chat or a private channel, the message is blocked as expected.
-      You need to ensure that User1 is prevented from sharing financial data in Teams channels that include external members.
+      <p>You have a Microsoft 365 E5 subscription.<br>
+      You create a new data loss prevention (DLP) policy named DLP1 that protects financial data from being shared by using Microsoft Teams messages. You apply DLP1 to the users in the finance department.<br>
+      An incident is raised when a finance department user named User1 shares financial data in a Teams channel that includes external members.<br>
+      When User1 uses Teams to send the same message in a 1:1 chat or a private channel, the message is blocked as expected.<br>
+      You need to ensure that User1 is prevented from sharing financial data in Teams channels that include external members.<br>
       What should you do?</p>
     `,
     type: "single",
@@ -4763,14 +4766,14 @@ window.questions = [
     id: 149,
     title: "정책 우선순위 기반으로 캐시 및 커서 설정 적용 판단",
     promptHtml: `
-      <p> You have a Microsoft 365 E5 subscription that contains the users shown in the following table
+      <p> You have a Microsoft 365 E5 subscription that contains the users shown in the following table<br>
       ${IMG_Q149_1 ? `<p><img src="${IMG_Q149_1}" style="max-width:100%"></p>` : ""}
-      In Microsoft Endpoint Manager, you have the Policies for Office apps settings shown in the following table.
+      In Microsoft Endpoint Manager, you have the Policies for Office apps settings shown in the following table.<br>
       ${IMG_Q149_2 ? `<p><img src="${IMG_Q149_2}" style="max-width:100%"></p>` : ""}
-      The policies use the settings shown.
+      The policies use the settings shown.<br>
       ${IMG_Q149_3 ? `<p><img src="${IMG_Q149_3}" style="max-width:100%"></p>` : ""}
-      For each of the following statements, select Yes if the statement is true. Otherwise, select No.
-      NOTE: Each correct selection is worth one point.
+      For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>
+      NOTE: Each correct selection is worth one point.<br>
       ${IMG_Q149_4 ? `<p><img src="${IMG_Q149_4}" style="max-width:100%"></p>` : ""}
     `,
     statements: [
@@ -4797,9 +4800,9 @@ window.questions = [
     id: 150,
     title: "Built-in Protection 프리셋에서 적용되는 정책 유형 식별",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription that uses Microsoft Defender for Office 365.
-      A Built-in protection preset security policy is applied to the subscription.
-      Which two policy types will be applied by the Built-in protection policy? Each correct answer presents a complete solution.
+      <p>You have a Microsoft 365 subscription that uses Microsoft Defender for Office 365.<br>
+      A Built-in protection preset security policy is applied to the subscription.<br>
+      Which two policy types will be applied by the Built-in protection policy? Each correct answer presents a complete solution.<br>
       NOTE: Each correct selection is worth one point.</p>
     `,
     type: "multi",
@@ -4826,23 +4829,27 @@ window.questions = [
     id: 151,
     title: "SSPR 패스워드 변경 시 AD DS와 동기화되도록 설정하는 순서",
     promptHtml: `
-      <p>You have an Azure subscription that is linked to a hybrid Microsoft Entra tenant.
-      All users sync from Active Directory Domain Services (AD DS) to the tenant by using Express Settings in Microsoft Entra Connect.
-      You plan to implement self-service password reset (SSPR).
-      You need to ensure that when a user resets or changes a password, the password syncs with AD DS.
+      <p>You have an Azure subscription that is linked to a hybrid Microsoft Entra tenant.<br>
+      All users sync from Active Directory Domain Services (AD DS) to the tenant by using Express Settings in Microsoft Entra Connect.<br>
+      You plan to implement self-service password reset (SSPR).<br>
+      You need to ensure that when a user resets or changes a password, the password syncs with AD DS.<br>
       Which actions should you perform in sequence?</p>
       ${IMG_Q151_1 ? `<p><img src="${IMG_Q151_1}" style="max-width:100%"></p>` : ""}
     `,
-    type: "sequence",
-    sequenceOptions: [
-      "Validate permissions for the Microsoft Entra Connect account",
-      "Select Password writeback in Microsoft Entra Connect",
-      "From the Microsoft Entra admin center, configure on-premises integration password writeback"
+    type: "dragdrop",
+    dropLabels: ["Step 1", "Step 2", "Step 3"],
+    dragItems: [
+      "Validate permissions for the Microsoft Entra Connect account.",
+      "From the Microsoft Entra admin center, configure on-premises integration password writeback.",
+      "From the Microsoft Entra admin center, configure othe authentication methods for SSPR.",
+      "from the Microsoft Entra admin center, configure the registration for SSPR.",
+      "Select Group writeback in Microsoft Entra Connect.",
+      "Select Password writeback in Microsoft Entra Connect." 
     ],
-    sequenceAnswer: [
-      "Validate permissions for the Microsoft Entra Connect account",
-      "Select Password writeback in Microsoft Entra Connect",
-      "From the Microsoft Entra admin center, configure on-premises integration password writeback"
+    correctAnswers: [
+      "Validate permissions for the Microsoft Entra Connect account.",
+      "Select Password writeback in Microsoft Entra Connect.",
+      "From the Microsoft Entra admin center, configure on-premises integration password writeback."
     ],
     explanationHtml: `
       <h3>Explanation</h3>
@@ -4861,11 +4868,11 @@ window.questions = [
     id: 152,
     title: "인터넷 연결이 끊겼을 때 Azure AD 인증 가능한 사용자",
     promptHtml: `
-      <p>You have a hybrid deployment of Microsoft 365 that contains the users shown in the following table.
-      Azure AD Connect has the following settings:
-      - Password Hash Sync: Enabled
-      - Pass-through Authentication: Enabled
-      You need to identify which users will be able to authenticate by using Azure AD if connectivity between on-premises Active Directory and the internet is lost.
+      <p>You have a hybrid deployment of Microsoft 365 that contains the users shown in the following table.<br>
+      Azure AD Connect has the following settings:<br>
+      - Password Hash Sync: Enabled<br>
+      - Pass-through Authentication: Enabled<br>
+      You need to identify which users will be able to authenticate by using Azure AD if connectivity between on-premises Active Directory and the internet is lost.<br>
       Which users should you identify?</p>
       ${IMG_Q152_1 ? `<p><img src="${IMG_Q152_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -4894,14 +4901,14 @@ window.questions = [
     id: 153,
     title: "Enrollment Status Page(ESP) 정책 적용 대상별 동작 판단",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription that contains the users shown in the following table.
+      <p>You have a Microsoft 365 subscription that contains the users shown in the following table.<br>
       ${IMG_Q153_1 ? `<p><img src="${IMG_Q153_1}" style="max-width:100%"></p>` : ""}
-      You configure an Enrollment Status Page (ESP) profile as shown in the exhibit.
+      You configure an Enrollment Status Page (ESP) profile as shown in the exhibit.<br>
       ${IMG_Q153_2 ? `<p><img src="${IMG_Q153_2}" style="max-width:100%"></p>` : ""}
-      You assign the policy to Group1.
+      You assign the policy to Group1.<br>
       You purchase devices as shown in the following table.
       ${IMG_Q153_3 ? `<p><img src="${IMG_Q153_3}" style="max-width:100%"></p>` : ""}
-      For each of the following statements, select Yes if the statement is true. Otherwise, select No.
+      For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>
       NOTE: Each correct selection is worth one point.</p>
       ${IMG_Q153_4 ? `<p><img src="${IMG_Q153_4}" style="max-width:100%"></p>` : ""}
     `,
@@ -4929,7 +4936,7 @@ window.questions = [
     id: 154,
     title: "사용 가능한 모든 퍼블리시된 레이블 식별",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription that has published sensitivity labels shown in the following exhibit.
+      <p>You have a Microsoft 365 E5 subscription that has published sensitivity labels shown in the following exhibit.<br>
       Which labels can users apply to content?</p>
       ${IMG_Q154_1 ? `<p><img src="${IMG_Q154_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -4958,7 +4965,7 @@ window.questions = [
     id: 155,
     title: "엔드포인트 등록 제한 정책 적용 판단",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription that contains the users in the following table.
+      <p>You have a Microsoft 365 subscription that contains the users in the following table.<br>
       ${IMG_Q155_1 ? `<p><img src="${IMG_Q155_1}" style="max-width:100%"></p>` : ""}
       In Microsoft Endpoint Manager, you create two device type restrictions that have the settings shown in the following table.<br>
       ${IMG_Q155_2 ? `<p><img src="${IMG_Q155_2}" style="max-width:100%"></p>` : ""}
@@ -4991,9 +4998,9 @@ window.questions = [
     id: 156,
     title: "ISO/IEC 27001 규정 준수 상태 평가 도구 식별",
     promptHtml: `
-      <p>Your company has a Microsoft E5 tenant.
-      The company must meet the requirements of the ISO/IEC 27001:2013 standard.
-      You need to assess the company's current state of compliance.
+      <p>Your company has a Microsoft E5 tenant.<br>
+      The company must meet the requirements of the ISO/IEC 27001:2013 standard.<br>
+      You need to assess the company's current state of compliance.<br>
       What should you use?</p>
     `,
     type: "single",
@@ -5021,11 +5028,11 @@ window.questions = [
     id: 157,
     title: "VDI 사용자의 잘못된 고위험 로그인 차단 방지",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription that contains users in the United States, Europe, and Asia.
-      You use Microsoft Entra ID Protection.
-      You have a virtual desktop infrastructure (VDI). All VDI servers are located in the United States.
-      Users connect to Microsoft 365 from laptops and the VDI.
-      Some VDI users report that they are blocked from signing in to Microsoft 365 due to a high sign-in risk.
+      <p>You have a Microsoft 365 E5 subscription that contains users in the United States, Europe, and Asia.<br>
+      You use Microsoft Entra ID Protection.<br>
+      You have a virtual desktop infrastructure (VDI). All VDI servers are located in the United States.<br>
+      Users connect to Microsoft 365 from laptops and the VDI.<br>
+      Some VDI users report that they are blocked from signing in to Microsoft 365 due to a high sign-in risk.<br>
       You need to reduce the likelihood that the VDI users will be erroneously blocked from signing in to Microsoft 365. The solution must ensure that sign-ins from the VDI environment are protected by using ID Protection.</p>
     `,
     type: "single",
@@ -5053,10 +5060,10 @@ window.questions = [
     id: 158,
     title: "ID Protection의 “Users at risk detected alerts” 자동 포함 역할",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription.
-      You create the users shown in the following table.
+      <p>You have a Microsoft 365 E5 subscription.<br>
+      You create the users shown in the following table.<br>
       ${IMG_Q158_1 ? `<p><img src="${IMG_Q158_1}" style="max-width:100%"></p>` : ""}
-      You plan to use Microsoft Entra ID Protection.
+      You plan to use Microsoft Entra ID Protection.<br>
       Which users will be added automatically to the Users at risk detected alerts list?</p>
     `,
     type: "single",
@@ -5085,11 +5092,11 @@ window.questions = [
     id: 159,
     title: "Teams 활성 사용자 수 및 Microsoft 서비스 상태 모니터링 도구 식별",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription.
-      You need to review metrics for the following:
-      - The daily active users in Microsoft Teams
-      - Recent Microsoft service issues
-      What should you use?
+      <p>You have a Microsoft 365 subscription.<br>
+      You need to review metrics for the following:<br>
+      - The daily active users in Microsoft Teams<br>
+      - Recent Microsoft service issues<br>
+      What should you use?<br>
       Each correct selection is worth one point.</p>
       ${IMG_Q159_1 ? `<p><img src="${IMG_Q159_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -5131,10 +5138,10 @@ window.questions = [
     id: 160,
     title: "공동 관리(Co-management)가 추가 구성 없이 지원되는 장치 식별",
     promptHtml: `
-      <p>You have a hybrid Azure Active Directory (Azure AD) tenant and a Microsoft Endpoint Configuration Manager deployment.
-      You have the devices shown in the following table.
-      You plan to enable co-management.
-      You need to identify which devices support co-management without requiring the installation of additional software.
+      <p>You have a hybrid Azure Active Directory (Azure AD) tenant and a Microsoft Endpoint Configuration Manager deployment.<br>
+      You have the devices shown in the following table.<br>
+      You plan to enable co-management.<br>
+      You need to identify which devices support co-management without requiring the installation of additional software.<br>
       Which devices should you identify?</p>
       ${IMG_Q160_1 ? `<p><img src="${IMG_Q160_1}" style="max-width:100%"></p>` : ""}
     `,
@@ -5164,8 +5171,8 @@ window.questions = [
     id: 161,
     title: "최신 기능 및 품질 업데이트 최소 설치",
     promptHtml: `
-      <p>You purchase a new computer that has Windows 10, version 21H1 preinstalled.
-      You need to ensure that the computer is up-to-date. The solution must minimize the number of updates installed.
+      <p>You purchase a new computer that has Windows 10, version 21H1 preinstalled.<br>
+      You need to ensure that the computer is up-to-date. The solution must minimize the number of updates installed.<br>
       What should you do on the computer?</p>
     `,
     type: "single",
@@ -5193,12 +5200,14 @@ window.questions = [
     id: 162,
     title: "Hybrid AD 사용자 동기화 오류 조치",
     promptHtml: `
-      <p>Your network contains an Active Directory domain.
-      You deploy a Microsoft Entra tenant.
-      Another administrator configures the domain to synchronize to the Microsoft Entra tenant. You discover that 10 user accounts in an organizational unit (OU) are NOT synchronized to the Microsoft Entra tenant. All the other user accounts synchronized successfully.
-      You review Microsoft Entra Connect Health and discover that all the user account synchronizations completed successfully.
-      You need to ensure that the 10 user accounts are synchronized to the Microsoft Entra tenant.
-      Solution: From Microsoft Entra Connect, you modify the Microsoft Entra credentials.
+      <p>Your network contains an Active Directory domain.<br>
+      You deploy a Microsoft Entra tenant.<br>
+      Another administrator configures the domain to synchronize to the Microsoft Entra tenant. <br>
+      You discover that 10 user accounts in an organizational unit (OU) are NOT synchronized to the Microsoft Entra tenant. <br>
+      All the other user accounts synchronized successfully.<br>
+      You review Microsoft Entra Connect Health and discover that all the user account synchronizations completed successfully.<br>
+      You need to ensure that the 10 user accounts are synchronized to the Microsoft Entra tenant.<br>
+      Solution: From Microsoft Entra Connect, you modify the Microsoft Entra credentials.<br>
       Does this meet the goal?</p>
     `,
     type: "single",
@@ -5221,11 +5230,11 @@ window.questions = [
     id: 163,
     title: "게스트 + 부서명에 “Support” 포함 사용자 그룹 생성",
     promptHtml: `
-      <p>You have a Microsoft 365 subscription that contains the users shown in the following table.
+      <p>You have a Microsoft 365 subscription that contains the users shown in the following table.<br>
       ${IMG_Q163_1 ? `<p><img src="${IMG_Q163_1}" style="max-width:100%"></p>` : ""}
-      You need to configure a dynamic user group that will include the guest users in any department that contains the word Support.
-      How should you complete the membership rule?
-      NOTE: Each correct selection is worth one point.</p>
+      You need to configure a dynamic user group that will include the guest users in any department that contains the word Support.<br>
+      How should you complete the membership rule?<br>
+      NOTE: Each correct selection is worth one point.</p><br>
       ${IMG_Q163_2 ? `<p><img src="${IMG_Q163_2}" style="max-width:100%"></p>` : ""}
     `,
     type: "pair",
@@ -5266,11 +5275,11 @@ window.questions = [
     id: 164,
     title: "DLP 규칙 중복 트리거에 따른 사용자별 알림 횟수 평가",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription that contains two users and a Microsoft SharePoint site named Site1.
-      You create a data loss prevention (DLP) policy named DLP1 that has the advanced DLP rules shown in the table.
+      <p>You have a Microsoft 365 E5 subscription that contains two users and a Microsoft SharePoint site named Site1.<br>
+      You create a data loss prevention (DLP) policy named DLP1 that has the advanced DLP rules shown in the table.<br>
       ${IMG_Q164_1 ? `<p><img src="${IMG_Q164_1}" style="max-width:100%"></p>` : ""}
-      DLP1 is applied to Site1.
-      You have the files shown in the following table.
+      DLP1 is applied to Site1.<br>
+      You have the files shown in the following table.<br>
       ${IMG_Q164_2 ? `<p><img src="${IMG_Q164_2}" style="max-width:100%"></p>` : ""} 
       How many notifications will each user receive? Select the appropriate options.</p>
       ${IMG_Q164_3 ? `<p><img src="${IMG_Q164_3}" style="max-width:100%"></p>` : ""}
@@ -5300,10 +5309,10 @@ window.questions = [
     id: 165,
     title: "RBAC 활성화 후 포털 접근 권한 변화 평가",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription that contains the users shown in the following table.
+      <p>You have a Microsoft 365 E5 subscription that contains the users shown in the following table.<br>
       ${IMG_Q165_1 ? `<p><img src="${IMG_Q165_1}" style="max-width:100%"></p>` : ""}
-      You are implementing Microsoft Defender for Endpoint.
-      You need to enable role-based access control (RBAC) to restrict access to the Microsoft 365 Defender portal.
+      You are implementing Microsoft Defender for Endpoint.<br>
+      You need to enable role-based access control (RBAC) to restrict access to the Microsoft 365 Defender portal.<br>
       Which users can enable RBAC, and which users will no longer have access to the Microsoft 365 Defender portal after RBAC is enabled?</p>
       ${IMG_Q165_2 ? `<p><img src="${IMG_Q165_2}" style="max-width:100%"></p>` : ""}
     `,
@@ -5345,10 +5354,10 @@ window.questions = [
     id: 166,
     title: "Defender for Office 365 정책 관리 권한 평가",
     promptHtml: `
-      <p>You have a Microsoft 365 E5 subscription.
-      You create an account for a new security administrator named SecAdmin1.
-      You need to ensure that SecAdmin1 can manage Microsoft Defender for Office 365 settings and policies for Microsoft Teams, SharePoint, and OneDrive.
-      Solution: From the Azure Active Directory admin center, you assign SecAdmin1 the Teams Administrator role.
+      <p>You have a Microsoft 365 E5 subscription.<br>
+      You create an account for a new security administrator named SecAdmin1.<br>
+      You need to ensure that SecAdmin1 can manage Microsoft Defender for Office 365 settings and policies for Microsoft Teams, SharePoint, and OneDrive.<br>
+      Solution: From the Azure Active Directory admin center, you assign SecAdmin1 the Teams Administrator role.<br>
       Does this meet the goal?</p>
     `,
     type: "single",
@@ -5371,8 +5380,8 @@ window.questions = [
     id: 167,
     title: "LinkedIn 커넥터 데이터 저장 위치",
     promptHtml: `
-      <p>You have a Microsoft 365 tenant and a LinkedIn company page.
-      You plan to archive data from the LinkedIn page to Microsoft 365 by using the LinkedIn connector.
+      <p>You have a Microsoft 365 tenant and a LinkedIn company page.<br>
+      You plan to archive data from the LinkedIn page to Microsoft 365 by using the LinkedIn connector.<br>
       Where can you store data from the LinkedIn connector?</p>
     `,
     type: "single",
@@ -5400,12 +5409,13 @@ window.questions = [
     id: 168,
     title: "Windows Update for Business GPO 설정 파일 복사로 구성 가능한가?",
     promptHtml: `
-      <p>Your network contains an on-premises Active Directory domain. The domain contains domain controllers that run Windows Server 2019. The functional level of the forest and the domain is Windows Server 2012 R2.
-      The domain contains 100 computers that run Windows 10 and a member server named Server1 that runs Windows Server 2012 R2.
-      You plan to use Server1 to manage the domain and to configure Windows 10 Group Policy settings.
-      You install the Group Policy Management Console (GPMC) on Server1.
-      You need to configure the Windows Update for Business Group Policy settings on Server1.
-      Solution: You copy the Group Policy Administrative Templates from a Windows 10 computer to Server1.
+      <p>Your network contains an on-premises Active Directory domain. The domain contains domain controllers that run Windows Server 2019.<br>
+      The functional level of the forest and the domain is Windows Server 2012 R2.<br>
+      The domain contains 100 computers that run Windows 10 and a member server named Server1 that runs Windows Server 2012 R2.<br>
+      You plan to use Server1 to manage the domain and to configure Windows 10 Group Policy settings.<br>
+      You install the Group Policy Management Console (GPMC) on Server1.<br>
+      You need to configure the Windows Update for Business Group Policy settings on Server1.<br>
+      Solution: You copy the Group Policy Administrative Templates from a Windows 10 computer to Server1.<br>
       Does this meet the goal?</p>
     `,
     type: "single",
@@ -5428,15 +5438,15 @@ window.questions = [
     id: 169,
     title: "User2의 인증 실패 해결",
     promptHtml: `
-      <p> Your network contains an on-premises Active Directory domain named contoso.com. The domain contains the users shown in the following table.
+      <p> Your network contains an on-premises Active Directory domain named contoso.com. The domain contains the users shown in the following table.<br>
       ${IMG_Q169_1 ? `<p><img src="${IMG_Q169_1}" style="max-width:100%"></p>` : ""}
-      The domain syncs to an Azure AD tenant named contoso.com as shown in the exhibit. (Click the Exhibit tab.)
+      The domain syncs to an Azure AD tenant named contoso.com as shown in the exhibit. (Click the Exhibit tab.)<br>
       ${IMG_Q169_2 ? `<p><img src="${IMG_Q169_2}" style="max-width:100%"></p>` : ""}
-       User2 fails to authenticate to Azure AD when signing in as user2@fabrikam.com.
-       You need to ensure that User2 can access the resources in Azure AD.
-       Solution: From the Microsoft Entra admin center, you add fabrikam.com as a custom domain. You
-       instruct User2 to sign in as user2@fabrikam.com.
-       Does this meet the goal?
+       User2 fails to authenticate to Azure AD when signing in as user2@fabrikam.com.<br>
+       You need to ensure that User2 can access the resources in Azure AD.<br>
+       Solution: From the Microsoft Entra admin center, you add fabrikam.com as a custom domain. <br>
+       You instruct User2 to sign in as user2@fabrikam.com.<br>
+       Does this meet the goal?</p>
     `,
     type: "single",
     options: ["A. Yes", "B. No"],
@@ -5459,13 +5469,13 @@ window.questions = [
     title: "OU 필터링 및 그룹 기반 동기화 결과 확인",
     promptHtml: `
       <p>Your network contains an on-premises Active Directory domain and a Microsoft 365 subscription.
-      The domain contains the users and groups shown in the tables.
+      The domain contains the users and groups shown in the tables.<br>
       ${IMG_Q170_1 ? `<p><img src="${IMG_Q170_1}" style="max-width:100%"></p>` : ""}
-      The domain contains the groups shown in the following table.
+      The domain contains the groups shown in the following table.<br>
       ${IMG_Q170_2 ? `<p><img src="${IMG_Q170_2}" style="max-width:100%"></p>` : ""}
-      You are deploying Azure AD Connect and configure Domain and OU filtering as shown in the exhibit.
+      You are deploying Azure AD Connect and configure Domain and OU filtering as shown in the exhibit.<br>
       ${IMG_Q170_3 ? `<p><img src="${IMG_Q170_3}" style="max-width:100%"></p>` : ""}
-      For each statement, select Yes if it is true. Otherwise, select No.
+      For each statement, select Yes if it is true. Otherwise, select No.<br>
       NOTE: Each correct selection is worth one point.</p>
       ${IMG_Q170_4 ? `<p><img src="${IMG_Q170_4}" style="max-width:100%"></p>` : ""}
     `,
