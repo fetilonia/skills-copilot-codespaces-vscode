@@ -243,6 +243,81 @@
 			border-radius: 12px;
 			background: rgba(255, 255, 255, .02)
 		}
+
+		/* dragdrop (left bank → right drop slots) */
+		.bank-dd {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			min-height: 44px
+		}
+
+		.dd-pill {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 10px;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			background: rgba(255, 255, 255, .04);
+			color: var(--text);
+			cursor: grab;
+			user-select: none;
+		}
+
+		.dd-grid {
+			display: grid;
+			gap: 12px;
+		}
+
+		.dd-slot {}
+
+		.dd-slotlabel {
+			font-weight: 700;
+			color: #c7d2fe;
+			margin-bottom: 6px
+		}
+
+		.dd-drop {
+			min-height: 48px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			flex-wrap: wrap;
+			padding: 10px;
+			border: 2px dashed var(--border);
+			border-radius: 12px;
+			background: rgba(255, 255, 255, .02);
+			transition: .12s ease;
+		}
+
+		.dd-drop.drag-over {
+			outline: 2px dashed var(--accent);
+			border-color: var(--accent);
+			background: rgba(79, 124, 255, .08);
+		}
+
+		.dd-chip {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 10px;
+			border: 1px solid var(--border);
+			border-radius: 10px;
+			background: #162135;
+		}
+
+		.dd-x {
+			width: 22px;
+			height: 22px;
+			display: inline-grid;
+			place-items: center;
+			border-radius: 50%;
+			background: #26324a;
+			font-weight: 900;
+			cursor: pointer;
+			font-size: 12px;
+		}
 	</style>
 </head>
 
@@ -547,6 +622,128 @@
 				});
 				return;
 			}
+			// dragdrop (left bank → right drop slots)
+			if (q.type === "dragdrop" && Array.isArray(q.dragItems) && Array.isArray(q.dropLabels)) {
+				// 좌측: 드래그 가능한 뱅크
+				const bankId = "dd-bank";
+				const zoneId = (i) => `dd-drop-${i}`;
+
+				// 좌측 뱅크 HTML
+				const bankHtml = `
+    <div class="statement">
+      <div class="row" style="gap:16px;">
+        <div><strong>Actions</strong> (drag from here)</div>
+      </div>
+      <div id="${bankId}" class="bank-dd">
+        ${q.dragItems.map((t, i) => `<div class="dd-pill" draggable="true" data-id="d${i}" data-text="${escapeHtml(t)}">${escapeHtml(t)}</div>`).join('')}
+      </div>
+      <div class="result" id="res-0"></div>
+    </div>
+  `;
+
+				// 우측 슬롯 HTML
+				const rightHtml = q.dropLabels.map((label, i) => `
+    <div class="dd-slot">
+      <div class="dd-slotlabel">${escapeHtml(label)}</div>
+      <div class="dd-drop" id="${zoneId(i)}" data-idx="${i}"></div>
+      <div class="result" id="res-dd-${i}"></div>
+    </div>
+  `).join('');
+
+				$dynamic.innerHTML = `
+    <div class="row" style="gap:20px; align-items:flex-start;">
+      <div style="flex:1; min-width:320px;">${bankHtml}</div>
+      <div style="flex:1; min-width:320px;">
+        <div class="dd-grid">${rightHtml}</div>
+      </div>
+    </div>
+  `;
+
+				// 드래그 이벤트 바인딩
+				const $bank = document.getElementById(bankId);
+				const $pills = $bank.querySelectorAll('.dd-pill');
+				const $drops = q.dropLabels.map((_, i) => document.getElementById(zoneId(i)));
+
+				let dragEl = null;
+
+				$pills.forEach(p => {
+					p.addEventListener('dragstart', e => {
+						dragEl = p;
+						e.dataTransfer.setData('text/plain', p.dataset.text);
+						e.dataTransfer.setData('app/id', p.dataset.id);
+						e.dataTransfer.effectAllowed = 'move';
+						setTimeout(() => p.style.opacity = ".5", 0);
+					});
+					p.addEventListener('dragend', () => { if (dragEl) dragEl.style.opacity = "1"; dragEl = null; });
+				});
+
+				function makeChip(text, id) {
+					const chip = document.createElement('div');
+					chip.className = 'dd-chip';
+					chip.dataset.text = text;
+					chip.dataset.id = id;
+					chip.innerHTML = `<span>${escapeHtml(text)}</span><span class="dd-x" title="Remove">×</span>`;
+					chip.querySelector('.dd-x').addEventListener('click', () => {
+						// 칩을 제거하면 뱅크로 복귀
+						const pill = document.createElement('div');
+						pill.className = 'dd-pill';
+						pill.setAttribute('draggable', 'true');
+						pill.dataset.text = text; pill.dataset.id = id;
+						pill.innerHTML = escapeHtml(text);
+						// 다시 드래그 바인딩
+						pill.addEventListener('dragstart', e => {
+							dragEl = pill;
+							e.dataTransfer.setData('text/plain', pill.dataset.text);
+							e.dataTransfer.setData('app/id', pill.dataset.id);
+							e.dataTransfer.effectAllowed = 'move';
+							setTimeout(() => pill.style.opacity = ".5", 0);
+						});
+						pill.addEventListener('dragend', () => { if (dragEl) dragEl.style.opacity = "1"; dragEl = null; });
+						$bank.appendChild(pill);
+						chip.remove();
+					});
+					return chip;
+				}
+
+				function clearZone(z) {
+					const chip = z.querySelector('.dd-chip');
+					if (chip) {
+						// 기존 칩을 뱅크로 반환
+						const text = chip.dataset.text, id = chip.dataset.id;
+						const pill = document.createElement('div');
+						pill.className = 'dd-pill'; pill.setAttribute('draggable', 'true');
+						pill.dataset.text = text; pill.dataset.id = id; pill.innerHTML = escapeHtml(text);
+						pill.addEventListener('dragstart', e => {
+							dragEl = pill;
+							e.dataTransfer.setData('text/plain', pill.dataset.text);
+							e.dataTransfer.setData('app/id', pill.dataset.id);
+							e.dataTransfer.effectAllowed = 'move';
+							setTimeout(() => pill.style.opacity = ".5", 0);
+						});
+						pill.addEventListener('dragend', () => { if (dragEl) dragEl.style.opacity = "1"; dragEl = null; });
+						$bank.appendChild(pill);
+						chip.remove();
+					}
+				}
+
+				$drops.forEach(z => {
+					z.addEventListener('dragover', e => { e.preventDefault(); z.classList.add('drag-over'); e.dataTransfer.dropEffect = 'move'; });
+					z.addEventListener('dragleave', () => z.classList.remove('drag-over'));
+					z.addEventListener('drop', e => {
+						e.preventDefault(); z.classList.remove('drag-over');
+						const text = e.dataTransfer.getData('text/plain');
+						const id = e.dataTransfer.getData('app/id');
+						if (!text || !id) return;
+						clearZone(z); // 슬롯에 기존 칩이 있으면 반환
+						z.appendChild(makeChip(text, id));
+						// 드래그된 pill 원본 제거
+						if (dragEl && dragEl.parentElement) dragEl.parentElement.removeChild(dragEl);
+						dragEl = null;
+					});
+				});
+
+				return;
+			}
 			$dynamic.innerHTML = `<div class="muted">이 문항 타입은 아직 구성되지 않았습니다.</div>`;
 		}
 
@@ -606,6 +803,26 @@
 					res.className = "result " + (ok ? "ok" : "bad");
 					if (!ok) allCorrect = false;
 				}
+			} else if (q.type === "dragdrop") {
+				const picked = (q.dropLabels || []).map((_, i) => {
+					const z = document.getElementById(`dd-drop-${i}`);
+					const chip = z ? z.querySelector('.dd-chip') : null;
+					return chip ? chip.dataset.text : "";
+				});
+				const need = q.correctAnswers || [];
+				const res = document.getElementById('res-0');
+
+				// 모든 슬롯이 채워졌는지
+				if (picked.filter(Boolean).length < need.length) {
+					res.textContent = "일부 단계가 비어 있습니다. 모든 Step에 항목을 배치해 주세요.";
+					res.className = "result";
+					allAnswered = false;
+				} else {
+					const ok = need.length > 0 && picked.every((v, i) => v === need[i]);
+					res.textContent = ok ? "정답!" : `오답. 정답 순서: ${need.join(" → ")}`;
+					res.className = "result " + (ok ? "ok" : "bad");
+					if (!ok) allCorrect = false;
+				}
 			}
 
 			if (q.explanationHtml && allAnswered) {
@@ -636,6 +853,7 @@
 			if (q?.type === "single") RUN.single[RUN.current] = "";
 			if (q?.type === "multi") RUN.multi[RUN.current] = new Set();
 			if (q?.type === "sequence") RUN.sequence[RUN.current] = q.sequenceOptions ? q.sequenceOptions.slice() : [];
+			if (q?.type === "dragdrop") { /* 별도 상태 보관 없음 → 렌더로 초기화 */ }
 			$ex.style.display = "none"; $ex.innerHTML = ""; render();
 		}
 
